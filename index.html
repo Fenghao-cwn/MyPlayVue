@@ -26,7 +26,7 @@
 	</body>
 
 	<script src="static/js/bootstrap.min.js"></script>
-		<script>
+	<script>
 		$(document).ready(function() {
 			$('.popup-with-zoom-anim').magnificPopup({
 				type: 'inline',
@@ -41,5 +41,21 @@
 			});
 
 		});
+		$("li a.menu").click(function() {
+			$("ul.cl-effect-1").slideToggle(300, function() {
+				// Animation complete.
+			});
+		});
+		$("li a.menu1").click(function() {
+			$("ul.cl-effect-2").slideToggle(300, function() {
+				// Animation complete.
+			});
+		});
+		$(".top-navigation").click(function() {
+			$(".drop-navigation").slideToggle(300, function() {
+				// Animation complete.
+			});
+		});
 	</script>
+
 </html>
