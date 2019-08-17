@@ -22,7 +22,7 @@
 					</div>
 					<div class="header-top-right">
 						<div class="file">
-							<a href="upload.html">上传视频</a>
+							<a href="/upload">上传视频</a>
 						</div>
 						<div class="signin">
 							<a href="#small-dialog2" class="play-icon popup-with-zoom-anim">注册</a>
@@ -230,13 +230,16 @@
 					</li>
 					<ul class="cl-effect-2">
 						<li>
-							<a href="movies.html">动漫</a>
+							
+							<router-link to="/videoDisplay">动漫</router-link>
 						</li>
 						<li>
-							<a href="movies.html">电影</a>
+							<router-link to="/videoDisplay">电影</router-link>
+							
 						</li>
 						<li>
-							<a href="movies.html">电视剧</a>
+							<router-link to="/videoDisplay">电视剧</router-link>
+							
 						</li>
 					</ul>
 
@@ -247,7 +250,7 @@
 						<a href="movies.html" class="song-icon"><span class="glyphicon glyphicon-music" aria-hidden="true"></span>Songs</a>
 					</li>
 					<li>
-						<a href="news.html" class="news-icon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>会员</a>
+						<a href="news.html" class="news-icon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>会员购</a>
 					</li>
 					<li>
 						<a href="#" class="menu"><span class="glyphicon glyphicon-film glyphicon-king" aria-hidden="true"></span>个人中心<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
@@ -301,9 +304,6 @@
 		<router-view/>
 	</div>
 </template>
-<script>
-
-</script>
 <script>
 	export default {
 		name: 'App'
