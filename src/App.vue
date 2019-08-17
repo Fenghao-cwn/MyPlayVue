@@ -10,7 +10,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-					<a class="navbar-brand" href="index.html">
+					<a class="navbar-brand" href="/">
 						<h1><img src="../static/images/logo.png" alt="" /></h1></a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
@@ -217,7 +217,7 @@
 			<div class="drop-navigation drop-navigation">
 				<ul class="nav nav-sidebar">
 					<li class="active">
-						<a href="index.html" class="home-icon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>主站</a>
+						<a href="/" class="home-icon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>主站</a>
 					</li>
 					<li>
 						<a href="shows.html" class="user-icon"><span class="glyphicon glyphicon-home glyphicon-blackboard" aria-hidden="true"></span>电视台</a>
@@ -230,20 +230,19 @@
 					</li>
 					<ul class="cl-effect-2">
 						<li>
-							
+
 							<router-link to="/videoDisplay">动漫</router-link>
 						</li>
 						<li>
 							<router-link to="/videoDisplay">电影</router-link>
-							
+
 						</li>
 						<li>
 							<router-link to="/videoDisplay">电视剧</router-link>
-							
+
 						</li>
 					</ul>
 
-					
 					<!-- script-for-menu -->
 
 					<li>
@@ -300,7 +299,9 @@
 				</div>
 			</div>
 		</div>
+		<div class="clearfix"> </div>
 		<!--左侧结束-->
+		
 		<router-view/>
 	</div>
 </template>
