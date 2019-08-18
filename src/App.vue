@@ -1,333 +1,314 @@
 <template>
-  <div id="app">
-    <!--头部开始-->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-            aria-expanded="false" aria-controls="navbar">
+	<div id="app">
+		<!--头部开始-->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">
-            <h1><img src="../static/images/logo.png" alt="" /></h1>
-          </a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <div class="top-search">
-            <form class="navbar-form navbar-right">
-              <input type="text" class="form-control" placeholder="Search...">
-              <input type="submit" value=" ">
-            </form>
-          </div>
-          <div class="header-top-right">
-            <div class="file">
-              <a href="/upload">上传视频</a>
-            </div>
-            <div class="signin">
-              <a href="#small-dialog2" class="play-icon popup-with-zoom-anim">注册</a>
-              <!-- pop-up-box -->
+					<a class="navbar-brand" href="/">
+						<h1><img src="../static/images/logo.png" alt="" /></h1></a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<div class="top-search">
+						<form class="navbar-form navbar-right">
+							<input type="text" class="form-control" placeholder="Search...">
+							<input type="submit" value=" ">
+						</form>
+					</div>
+					<div class="header-top-right">
+						<div class="file">
+							<a href="/upload">上传视频</a>
+						</div>
+						<div class="signin">
+							<a href="#small-dialog2" class="play-icon popup-with-zoom-anim">注册</a>
+							<!-- pop-up-box -->
 
-              <!--//pop-up-box -->
-              <div id="small-dialog2" class="mfp-hide">
-                <h3>Create Account</h3>
-                <div class="social-sits">
-                  <div class="facebook-button">
-                    <a href="#">Connect with Facebook</a>
-                  </div>
-                  <div class="chrome-button">
-                    <a href="#">Connect with Google</a>
-                  </div>
-                  <div class="button-bottom">
-                    <p>Already have an account?
-                      <a href="#small-dialog" class="play-icon popup-with-zoom-anim">Login</a>
-                    </p>
-                  </div>
-                </div>
-                <div class="signup">
-                  <form>
-                    <input type="text" class="email" placeholder="Mobile Number" maxlength="10" pattern="[1-9]{1}\d{9}"
-                      title="Enter a valid mobile number" />
-                  </form>
-                  <div class="continue-button">
-                    <a href="#small-dialog3" class="hvr-shutter-out-horizontal play-icon popup-with-zoom-anim">CONTINUE</a>
-                  </div>
-                </div>
-                <div class="clearfix"> </div>
-              </div>
-              <div id="small-dialog3" class="mfp-hide">
-                <h3>Create Account</h3>
-                <div class="social-sits">
-                  <div class="facebook-button">
-                    <a href="#">Connect with Facebook</a>
-                  </div>
-                  <div class="chrome-button">
-                    <a href="#">Connect with Google</a>
-                  </div>
-                  <div class="button-bottom">
-                    <p>Already have an account?
-                      <a href="#small-dialog" class="play-icon popup-with-zoom-anim">Login</a>
-                    </p>
-                  </div>
-                </div>
-                <div class="signup">
-                  <form>
-                    <input type="text" class="email" placeholder="Email" required="required" pattern="([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?"
-                      title="Enter a valid email" />
-                    <input type="password" placeholder="Password" required="required" pattern=".{6,}" title="Minimum 6 characters required"
-                      autocomplete="off" />
-                    <input type="text" class="email" placeholder="Mobile Number" maxlength="10" pattern="[1-9]{1}\d{9}"
-                      title="Enter a valid mobile number" />
-                    <input type="submit" value="Sign Up" />
-                  </form>
-                </div>
-                <div class="clearfix"> </div>
-              </div>
-              <div id="small-dialog7" class="mfp-hide">
-                <h3>Create Account</h3>
-                <div class="social-sits">
-                  <div class="facebook-button">
-                    <a href="#">Connect with Facebook</a>
-                  </div>
-                  <div class="chrome-button">
-                    <a href="#">Connect with Google</a>
-                  </div>
-                  <div class="button-bottom">
-                    <p>Already have an account?
-                      <a href="#small-dialog" class="play-icon popup-with-zoom-anim">Login</a>
-                    </p>
-                  </div>
-                </div>
-                <div class="signup">
-                  <form action="upload.html">
-                    <input type="text" class="email" placeholder="Email" required="required" pattern="([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?"
-                      title="Enter a valid email" />
-                    <input type="password" placeholder="Password" required="required" pattern=".{6,}" title="Minimum 6 characters required"
-                      autocomplete="off" />
-                    <input type="submit" value="Sign In" />
-                  </form>
-                </div>
-                <div class="clearfix"> </div>
-              </div>
-              <div id="small-dialog4" class="mfp-hide">
-                <h3>Feedback</h3>
-                <div class="feedback-grids">
-                  <div class="feedback-grid">
-                    <p>Suspendisse tristique magna ut urna pellentesque, ut egestas velit faucibus. Nullam mattis
-                      lectus ullamcorper dui dignissim, sit amet egestas orci ullamcorper.</p>
-                  </div>
-                  <div class="button-bottom">
-                    <p>
-                      <a href="#small-dialog" class="play-icon popup-with-zoom-anim">Sign in</a> to get started.</p>
-                  </div>
-                </div>
-              </div>
-              <div id="small-dialog5" class="mfp-hide">
-                <h3>Help</h3>
-                <div class="help-grid">
-                  <p>Suspendisse tristique magna ut urna pellentesque, ut egestas velit faucibus. Nullam mattis lectus
-                    ullamcorper dui dignissim, sit amet egestas orci ullamcorper.</p>
-                </div>
-                <div class="help-grids">
-                  <div class="help-button-bottom">
-                    <p>
-                      <a href="#small-dialog4" class="play-icon popup-with-zoom-anim">Feedback</a>
-                    </p>
-                  </div>
-                  <div class="help-button-bottom">
-                    <p>
-                      <a href="#small-dialog6" class="play-icon popup-with-zoom-anim">Lorem ipsum dolor sit amet</a>
-                    </p>
-                  </div>
-                  <div class="help-button-bottom">
-                    <p>
-                      <a href="#small-dialog6" class="play-icon popup-with-zoom-anim">Nunc vitae rutrum enim</a>
-                    </p>
-                  </div>
-                  <div class="help-button-bottom">
-                    <p>
-                      <a href="#small-dialog6" class="play-icon popup-with-zoom-anim">Mauris at volutpat leo</a>
-                    </p>
-                  </div>
-                  <div class="help-button-bottom">
-                    <p>
-                      <a href="#small-dialog6" class="play-icon popup-with-zoom-anim">Mauris vehicula rutrum velit</a>
-                    </p>
-                  </div>
-                  <div class="help-button-bottom">
-                    <p>
-                      <a href="#small-dialog6" class="play-icon popup-with-zoom-anim">Aliquam eget ante non orci fac</a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div id="small-dialog6" class="mfp-hide">
-                <div class="video-information-text">
-                  <h4>Video information & settings</h4>
-                  <p>Suspendisse tristique magna ut urna pellentesque, ut egestas velit faucibus. Nullam mattis lectus
-                    ullamcorper dui dignissim, sit amet egestas orci ullamcorper.</p>
-                  <ol>
-                    <li>Nunc vitae rutrum enim. Mauris at volutpat leo. Vivamus dapibus mi ut elit fermentum tincidunt.</li>
-                    <li>Nunc vitae rutrum enim. Mauris at volutpat leo. Vivamus dapibus mi ut elit fermentum tincidunt.</li>
-                    <li>Nunc vitae rutrum enim. Mauris at volutpat leo. Vivamus dapibus mi ut elit fermentum tincidunt.</li>
-                    <li>Nunc vitae rutrum enim. Mauris at volutpat leo. Vivamus dapibus mi ut elit fermentum tincidunt.</li>
-                    <li>Nunc vitae rutrum enim. Mauris at volutpat leo. Vivamus dapibus mi ut elit fermentum tincidunt.</li>
-                  </ol>
-                </div>
-              </div>
+							<!--//pop-up-box -->
+							<div id="small-dialog2" class="mfp-hide">
+								<h3>Create Account</h3>
+								<div class="social-sits">
+									<div class="facebook-button">
+										<a href="#">Connect with Facebook</a>
+									</div>
+									<div class="chrome-button">
+										<a href="#">Connect with Google</a>
+									</div>
+									<div class="button-bottom">
+										<p>Already have an account?
+											<a href="#small-dialog" class="play-icon popup-with-zoom-anim">Login</a>
+										</p>
+									</div>
+								</div>
+								<div class="signup">
+									<form>
+										<input type="text" class="email" placeholder="Mobile Number" maxlength="10" pattern="[1-9]{1}\d{9}" title="Enter a valid mobile number" />
+									</form>
+									<div class="continue-button">
+										<a href="#small-dialog3" class="hvr-shutter-out-horizontal play-icon popup-with-zoom-anim">CONTINUE</a>
+									</div>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div id="small-dialog3" class="mfp-hide">
+								<h3>Create Account</h3>
+								<div class="social-sits">
+									<div class="facebook-button">
+										<a href="#">Connect with Facebook</a>
+									</div>
+									<div class="chrome-button">
+										<a href="#">Connect with Google</a>
+									</div>
+									<div class="button-bottom">
+										<p>Already have an account?
+											<a href="#small-dialog" class="play-icon popup-with-zoom-anim">Login</a>
+										</p>
+									</div>
+								</div>
+								<div class="signup">
+									<form>
+										<input type="text" class="email" placeholder="Email" required="required" pattern="([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?" title="Enter a valid email" />
+										<input type="password" placeholder="Password" required="required" pattern=".{6,}" title="Minimum 6 characters required" autocomplete="off" />
+										<input type="text" class="email" placeholder="Mobile Number" maxlength="10" pattern="[1-9]{1}\d{9}" title="Enter a valid mobile number" />
+										<input type="submit" value="Sign Up" />
+									</form>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div id="small-dialog7" class="mfp-hide">
+								<h3>Create Account</h3>
+								<div class="social-sits">
+									<div class="facebook-button">
+										<a href="#">Connect with Facebook</a>
+									</div>
+									<div class="chrome-button">
+										<a href="#">Connect with Google</a>
+									</div>
+									<div class="button-bottom">
+										<p>Already have an account?
+											<a href="#small-dialog" class="play-icon popup-with-zoom-anim">Login</a>
+										</p>
+									</div>
+								</div>
+								<div class="signup">
+									<form action="upload.html">
+										<input type="text" class="email" placeholder="Email" required="required" pattern="([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?" title="Enter a valid email" />
+										<input type="password" placeholder="Password" required="required" pattern=".{6,}" title="Minimum 6 characters required" autocomplete="off" />
+										<input type="submit" value="Sign In" />
+									</form>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div id="small-dialog4" class="mfp-hide">
+								<h3>Feedback</h3>
+								<div class="feedback-grids">
+									<div class="feedback-grid">
+										<p>Suspendisse tristique magna ut urna pellentesque, ut egestas velit faucibus. Nullam mattis lectus ullamcorper dui dignissim, sit amet egestas orci ullamcorper.</p>
+									</div>
+									<div class="button-bottom">
+										<p>
+											<a href="#small-dialog" class="play-icon popup-with-zoom-anim">Sign in</a> to get started.</p>
+									</div>
+								</div>
+							</div>
+							<div id="small-dialog5" class="mfp-hide">
+								<h3>Help</h3>
+								<div class="help-grid">
+									<p>Suspendisse tristique magna ut urna pellentesque, ut egestas velit faucibus. Nullam mattis lectus ullamcorper dui dignissim, sit amet egestas orci ullamcorper.</p>
+								</div>
+								<div class="help-grids">
+									<div class="help-button-bottom">
+										<p>
+											<a href="#small-dialog4" class="play-icon popup-with-zoom-anim">Feedback</a>
+										</p>
+									</div>
+									<div class="help-button-bottom">
+										<p>
+											<a href="#small-dialog6" class="play-icon popup-with-zoom-anim">Lorem ipsum dolor sit amet</a>
+										</p>
+									</div>
+									<div class="help-button-bottom">
+										<p>
+											<a href="#small-dialog6" class="play-icon popup-with-zoom-anim">Nunc vitae rutrum enim</a>
+										</p>
+									</div>
+									<div class="help-button-bottom">
+										<p>
+											<a href="#small-dialog6" class="play-icon popup-with-zoom-anim">Mauris at volutpat leo</a>
+										</p>
+									</div>
+									<div class="help-button-bottom">
+										<p>
+											<a href="#small-dialog6" class="play-icon popup-with-zoom-anim">Mauris vehicula rutrum velit</a>
+										</p>
+									</div>
+									<div class="help-button-bottom">
+										<p>
+											<a href="#small-dialog6" class="play-icon popup-with-zoom-anim">Aliquam eget ante non orci fac</a>
+										</p>
+									</div>
+								</div>
+							</div>
+							<div id="small-dialog6" class="mfp-hide">
+								<div class="video-information-text">
+									<h4>Video information & settings</h4>
+									<p>Suspendisse tristique magna ut urna pellentesque, ut egestas velit faucibus. Nullam mattis lectus ullamcorper dui dignissim, sit amet egestas orci ullamcorper.</p>
+									<ol>
+										<li>Nunc vitae rutrum enim. Mauris at volutpat leo. Vivamus dapibus mi ut elit fermentum tincidunt.</li>
+										<li>Nunc vitae rutrum enim. Mauris at volutpat leo. Vivamus dapibus mi ut elit fermentum tincidunt.</li>
+										<li>Nunc vitae rutrum enim. Mauris at volutpat leo. Vivamus dapibus mi ut elit fermentum tincidunt.</li>
+										<li>Nunc vitae rutrum enim. Mauris at volutpat leo. Vivamus dapibus mi ut elit fermentum tincidunt.</li>
+										<li>Nunc vitae rutrum enim. Mauris at volutpat leo. Vivamus dapibus mi ut elit fermentum tincidunt.</li>
+									</ol>
+								</div>
+							</div>
 
-            </div>
-            <div class="signin">
-              <a href="#small-dialog" class="play-icon popup-with-zoom-anim">登录</a>
-              <div id="small-dialog" class="mfp-hide">
-                <h3>Login</h3>
-                <div class="social-sits">
-                  <div class="facebook-button">
-                    <a href="#">Connect with Facebook</a>
-                  </div>
-                  <div class="chrome-button">
-                    <a href="#">Connect with Google</a>
-                  </div>
-                  <div class="button-bottom">
-                    <p>New account?
-                      <a href="#small-dialog2" class="play-icon popup-with-zoom-anim">Signup</a>
-                    </p>
-                  </div>
-                </div>
-                <div class="signup">
-                  <form>
-                    <input type="text" class="email" placeholder="Enter email / mobile" required="required" pattern="([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?" />
-                    <input type="password" placeholder="Password" required="required" pattern=".{6,}" title="Minimum 6 characters required"
-                      autocomplete="off" />
-                    <input type="submit" value="LOGIN" />
-                  </form>
-                  <div class="forgot">
-                    <a href="#">Forgot password ?</a>
-                  </div>
-                </div>
-                <div class="clearfix"> </div>
-              </div>
-            </div>
-            <div class="clearfix"> </div>
-          </div>
-        </div>
-        <div class="clearfix"> </div>
-      </div>
-    </nav>
-    <!--头部结束-->
-    <!--左侧开始-->
-    <div class="col-sm-3 col-md-2 sidebar">
-      <div class="tp-navigation">
-        <div class="t-menu">MENU</div>
-        <div class="t-img">
-          <img src="images/lines.png" alt="" />
-        </div>
-        <div class="clearfix"> </div>
-      </div>
-      <div class="drop-navigation drop-navigation">
-        <ul class="nav nav-sidebar">
-          <li class="active">
-            <a href="/" class="home-icon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>主站</a>
-          </li>
-          <li>
-            <a href="shows.html" class="user-icon"><span class="glyphicon glyphicon-home glyphicon-blackboard"
-                aria-hidden="true"></span>电视台</a>
-          </li>
-          <li>
-            <a href="history.html" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-hourglass"
-                aria-hidden="true"></span>动态</a>
-          </li>
-          <li>
-            <a href="#" class="menu1"><span class="glyphicon glyphicon-film" aria-hidden="true"></span>视频分类<span class="glyphicon glyphicon-menu-down"
-                aria-hidden="true"></span></a>
-          </li>
-          <ul class="cl-effect-2">
-            <li>
+						</div>
+						<div class="signin">
+							<a href="#small-dialog" class="play-icon popup-with-zoom-anim">登录</a>
+							<div id="small-dialog" class="mfp-hide">
+								<h3>Login</h3>
+								<div class="social-sits">
+									<div class="facebook-button">
+										<a href="#">Connect with Facebook</a>
+									</div>
+									<div class="chrome-button">
+										<a href="#">Connect with Google</a>
+									</div>
+									<div class="button-bottom">
+										<p>New account?
+											<a href="#small-dialog2" class="play-icon popup-with-zoom-anim">Signup</a>
+										</p>
+									</div>
+								</div>
+								<div class="signup">
+									<form>
+										<input type="text" class="email" placeholder="Enter email / mobile" required="required" pattern="([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?" />
+										<input type="password" placeholder="Password" required="required" pattern=".{6,}" title="Minimum 6 characters required" autocomplete="off" />
+										<input type="submit" value="LOGIN" />
+									</form>
+									<div class="forgot">
+										<a href="#">Forgot password ?</a>
+									</div>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</nav>
+		<!--头部结束-->
+		<!--左侧开始-->
+		<div class="col-sm-3 col-md-2 sidebar">
+			<div class="tp-navigation">
+				<div class="t-menu">MENU</div>
+				<div class="t-img">
+					<img src="images/lines.png" alt="" />
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="drop-navigation drop-navigation">
+				<ul class="nav nav-sidebar">
+					<li class="active">
+						<a href="/" class="home-icon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>主站</a>
+					</li>
+					<li>
+						<a href="shows.html" class="user-icon"><span class="glyphicon glyphicon-home glyphicon-blackboard" aria-hidden="true"></span>电视台</a>
+					</li>
+					<li>
+						<a href="history.html" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-hourglass" aria-hidden="true"></span>动态</a>
+					</li>
+					<li>
+						<a href="#" class="menu1"><span class="glyphicon glyphicon-film" aria-hidden="true"></span>视频分类<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
+					</li>
+					<ul class="cl-effect-2">
+						<li>
 
-              <router-link to="/videoDisplay">动漫</router-link>
-            </li>
-            <li>
-              <router-link to="/videoDisplay">电影</router-link>
+							<router-link to="/videoDisplay">动漫</router-link>
+						</li>
+						<li>
+							<router-link to="/videoDisplay">电影</router-link>
 
-            </li>
-            <li>
-              <router-link to="/videoDisplay">电视剧</router-link>
+						</li>
+						<li>
+							<router-link to="/videoDisplay">电视剧</router-link>
 
-            </li>
-          </ul>
+						</li>
+					</ul>
 
-          <!-- script-for-menu -->
+					<!-- script-for-menu -->
 
-          <li>
-            <a href="movies.html" class="song-icon"><span class="glyphicon glyphicon-music" aria-hidden="true"></span>Songs</a>
-          </li>
-          <li>
-            <a href="/shop" class="news-icon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>会员购</a>
-          </li>
-          <li>
-            <a href="#" class="menu"><span class="glyphicon glyphicon-film glyphicon-king" aria-hidden="true"></span>个人中心<span
-                class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
-          </li>
-          <ul class="cl-effect-1">
-            <li>
-              <a href="sports.html">个人资料</a>
-            </li>
-            <li>
-              <a href="sports.html">我的收藏</a>
-            </li>
-            <li>
-              <a href="sports.html">我的动态</a>
-            </li>
-            <li>
-              <a href="sports.html">我的关注</a>
-            </li>
-            <li>
-              <a href="sports.html">视频管理</a>
-            </li>
-            <li>
-              <a href="/order">订单管理</a>
-            </li>
-          </ul>
-        </ul>
-        <!-- script-for-menu -->
+					<li>
+						<a href="movies.html" class="song-icon"><span class="glyphicon glyphicon-music" aria-hidden="true"></span>Songs</a>
+					</li>
+					<li>
+						<a href="news.html" class="news-icon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>会员购</a>
+					</li>
+					<li>
+						<a href="#" class="menu"><span class="glyphicon glyphicon-film glyphicon-king" aria-hidden="true"></span>个人中心<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
+					</li>
+					<ul class="cl-effect-1">
+						<li>
+							<a href="sports.html">个人资料</a>
+						</li>
+						<li>
+							<a href="sports.html">我的收藏</a>
+						</li>
+						<li>
+							<a href="sports.html">我的动态</a>
+						</li>
+						<li>
+							<a href="sports.html">我的关注</a>
+						</li>
+						<li>
+							<a href="sports.html">视频管理</a>
+						</li>
+					</ul>
+				</ul>
+				<!-- script-for-menu -->
 
-        <div class="side-bottom">
-          <div class="side-bottom-icons">
-            <ul class="nav2">
-              <li>
-                <a href="#" class="facebook"> </a>
-              </li>
-              <li>
-                <a href="#" class="facebook twitter"> </a>
-              </li>
-              <li>
-                <a href="#" class="facebook chrome"> </a>
-              </li>
-              <li>
-                <a href="#" class="facebook dribbble"> </a>
-              </li>
-            </ul>
-          </div>
-          <div class="copyright">
-            <p>Copyright &copy; 2015.Company name All rights reserved.
-              <a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="clearfix"> </div>
-    <!--左侧结束-->
-
-    <router-view />
-  </div>
+				<div class="side-bottom">
+					<div class="side-bottom-icons">
+						<ul class="nav2">
+							<li>
+								<a href="#" class="facebook"> </a>
+							</li>
+							<li>
+								<a href="#" class="facebook twitter"> </a>
+							</li>
+							<li>
+								<a href="#" class="facebook chrome"> </a>
+							</li>
+							<li>
+								<a href="#" class="facebook dribbble"> </a>
+							</li>
+						</ul>
+					</div>
+					<div class="copyright">
+						<p>Copyright &copy; 2015.Company name All rights reserved.
+							<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clearfix"> </div>
+		<!--左侧结束-->
+		
+		<router-view/>
+	</div>
 </template>
 <script>
-  export default {
-    name: 'App'
-  }
+	export default {
+		name: 'App'
+	}
 </script>
 <style>
 
