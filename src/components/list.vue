@@ -2,24 +2,19 @@
   <div>
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 		<div class="page-shopping-cart" id="shopping-cart">
-			<h4 class="cart-title">购物清单</h4>
+			<h4 class="cart-title">我的订单</h4>
 			<div class="cart-product-title clearfix">
-				<div class="td-check fl">
-					<span class="check-span fl check-all" :class="{'check-true':isSelectAll}"></span>全选</div>
 				<div class="td-product fl">商品</div>
 				<div class="td-num fl">数量</div>
 				<div class="td-price fl">单价(元)</div>
 				<div class="td-total fl">金额(元)</div>
-				<div class="td-do fl">操作</div>
+
 			</div>
 			<div class="cart-product clearfix">
 				<table>
 					<tbody>
 						<tr v-for="(item,index) in productList">
-							<td class="td-check">
-								<span class="check-span" @click="item.select=!item.select" :class="{'check-true':item.select}">
-								</span>
-							</td>
+
 							<td class="td-product"><img :src="item.pro_img" width="98" height="98">
 								<div class="product-info">
 									<h6>{{item.pro_name}}</h6>
@@ -31,13 +26,10 @@
 							</td>
 							<td class="td-num">
 								<div class="product-num">
-									<a href="javascript:;" class="num-reduce num-do fl" @click="sub(item)"><span></span></a>
 
 
-                  <input type="text" class="num-input" v-model="item.pro_num">
+                  <input type="text" class="num-input" v-model="item.pro_num" disabled="disabled">
 
-
-									<a href="javascript:;" class="num-add num-do fr" @click="item.pro_num++"><span></span></a>
 								</div>
 							</td>
 							<td class="td-price">
@@ -46,24 +38,42 @@
 							<td class="td-total">
 								<p class="red-text">￥<span class="total-text">{{item.pro_price*item.pro_num}}</span>.00</p>
 							</td>
-							<td class="td-do"><a href="javascript:;"
-							class="product-delect" @click="deleteOneProduct(index)">删除</a></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 			<div class="cart-product-info">
-				<a class="delect-product" href="javascript:;"  @click="deleteProduct"><span></span>删除所选商品</a>
-				<a class="keep-shopping" href="#"><span></span>继续购物</a>
-				<a class="btn-buy fr" href="/list">去结算</a>
+				<a class="btn-buy fr" href="javascript:;">立即支付</a>
 				<p class="fr product-total">￥<span>{{getTotal.totalPrice}}</span></p>
 				<p class="fr check-num"><span>{{getTotal.totalNum}}</span>件商品总计（不含运费）：</p>
 			</div>
-			<div class="cart-worder clearfix">
-				<a href="javascript:;" class="choose-worder fl"><span></span>绑定跟单员</a>
-				<div class="worker-info fl">
-				</div>
-			</div>
+
+
+
+      <div class="form-horizontal">
+              <h4 class="cart-title">收货地址</h4>
+      						<div class="form-group">
+      							<label for="name" class="col-sm-1 control-label">姓名：</label>
+      							<div class="col-sm-6">
+      								<input class="form-control" name="name" value="" placeholder="请输入姓名" type="text" required="required">
+      							</div>
+      						</div>
+      						<div class="form-group">
+      							<label for="name" class="col-sm-1 control-label">电话：</label>
+      							<div class="col-sm-6">
+      								<input class="form-control" name="phone" value="" placeholder="请输入电话" type="text" required="required">
+      							</div>
+      						</div>
+      						<div class="form-group">
+      							<label for="name" class="col-sm-1 control-label">地址：</label>
+      							<div class="col-sm-6">
+      								<input class="form-control" name="address" value="" placeholder="请输入地址" type="text" required="required">
+      							</div>
+      						</div>
+      					</div>
+
+
+
 		</div>
 	</div>
   </div>
@@ -71,7 +81,7 @@
 
 <script>
 	export default {
-		name: 'order',
+		name: 'list',
 
 		data() {
 
@@ -103,13 +113,6 @@
 
 		},
     computed: {
-    	//检测是否全选
-    	isSelectAll: function() {
-    		//如果productList中每一条数据的select都为true，返回true，否则返回false;
-    		return this.productList.every(function(val) {
-    			return val.select
-    		});
-    	},
     	//获取总价和产品总件数
     	getTotal: function() {
     		//获取productList中select为true的数据。
@@ -129,31 +132,6 @@
     	}
     },
     methods: {
-      sub:function(item){
-
-        if (item.pro_num>1){
-          item.pro_num--
-        }
-        else{
-          item.pro_num=1
-        }
-      },
-    	 //全选与取消全选
-    	    selectProduct:function(_isSelect){
-    	        //遍历productList，全部取反
-    	        for (var i = 0, len = this.productList.length; i < len; i++) {
-    	            this.productList[i].select = !_isSelect;
-    	        }
-    	    },
-    		//删除已经选中(select=true)的产品
-    		deleteProduct:function () {
-    		    this.productList=this.productList.filter(function (item) {return !item.select})
-    		},
-    		//删除单条产品
-    		deleteOneProduct:function (index) {
-    		    //根据索引删除productList的记录
-    		    this.productList.splice(index,1);
-    		}
 
     },
     mounted: function() {
@@ -236,10 +214,10 @@
 		  width:70px;
 		}
 		.page-shopping-cart .td-product{
-		  width:380px;
+		  width:420px;
 		}
 		.page-shopping-cart .td-num, .page-shopping-cart .td-price, .page-shopping-cart .td-total{
-		  width:160px;
+		  width:260px;
 		}
 		.page-shopping-cart .td-do{
 		  width:150px;
@@ -383,7 +361,7 @@
 		  font-size: 20px;
 		  display: block;
 		  width: 110px;
-		  background: #ff7700;
+		  background: #ff0000;
 		  text-align: center;
 		  margin-left: 30px;
 		}
@@ -461,4 +439,7 @@
 		.choose-worker-box .worker-list li img {
 		    border: 1px solid #fff;
 		    border-radius: 100%; }
+    .form-horizontal .form-group {
+        margin: 10px 0px 10px 0px;
+    }
 </style>

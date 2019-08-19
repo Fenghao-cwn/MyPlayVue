@@ -19,6 +19,7 @@ import notice_content from '@/components/notice_content'
 /**/
 import shop from '@/components/shop'
 import order from '@/components/order'
+import list from '@/components/list'
 import my_ueditor from '@/components/my_ueditor'
 
 import solo_message from '@/components/solo_message'
@@ -96,6 +97,11 @@ export default new Router({
       name:'order',
       component:order
     },
+    {
+      path:'/list',
+      name:'list',
+      component:list
+    },
 
     {
       path: '/shop',
@@ -117,9 +123,9 @@ export default new Router({
       name: 'notice_content',
       component: notice_content
     }
-    
 
-    
+
+
 
 
 
