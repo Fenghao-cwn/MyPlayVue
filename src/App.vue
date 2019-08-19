@@ -22,99 +22,37 @@
 					</div>
 					<div class="header-top-right">
 						<div class="file">
-							<a href="/upload">上传视频</a>
+							<a href="/my_upload">上传视频</a>
 						</div>
 						<div class="signin">
-							<a href="#small-dialog2" class="play-icon popup-with-zoom-anim">注册</a>
+							<a href="#small-dialog3" class="play-icon popup-with-zoom-anim">注册</a>
 							<!-- pop-up-box -->
 
 							<!--//pop-up-box -->
-							<div id="small-dialog2" class="mfp-hide">
-								<h3>Create Account</h3>
-								<div class="social-sits">
-									<div class="facebook-button">
-										<a href="#">Connect with Facebook</a>
-									</div>
-									<div class="chrome-button">
-										<a href="#">Connect with Google</a>
-									</div>
-									<div class="button-bottom">
-										<p>Already have an account?
-											<a href="#small-dialog" class="play-icon popup-with-zoom-anim">Login</a>
-										</p>
-									</div>
-								</div>
-								<div class="signup">
-									<form>
-										<input type="text" class="email" placeholder="Mobile Number" maxlength="10" pattern="[1-9]{1}\d{9}" title="Enter a valid mobile number" />
-									</form>
-									<div class="continue-button">
-										<a href="#small-dialog3" class="hvr-shutter-out-horizontal play-icon popup-with-zoom-anim">CONTINUE</a>
-									</div>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
+							
 							<div id="small-dialog3" class="mfp-hide">
-								<h3>Create Account</h3>
-								<div class="social-sits">
-									<div class="facebook-button">
-										<a href="#">Connect with Facebook</a>
-									</div>
-									<div class="chrome-button">
-										<a href="#">Connect with Google</a>
-									</div>
-									<div class="button-bottom">
-										<p>Already have an account?
-											<a href="#small-dialog" class="play-icon popup-with-zoom-anim">Login</a>
-										</p>
-									</div>
-								</div>
+								<h3>创建账号</h3>
 								<div class="signup">
 									<form>
-										<input type="text" class="email" placeholder="Email" required="required" pattern="([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?" title="Enter a valid email" />
-										<input type="password" placeholder="Password" required="required" pattern=".{6,}" title="Minimum 6 characters required" autocomplete="off" />
-										<input type="text" class="email" placeholder="Mobile Number" maxlength="10" pattern="[1-9]{1}\d{9}" title="Enter a valid mobile number" />
-										<input type="submit" value="Sign Up" />
+										<input type="text" class="email" placeholder="昵称" required="required" />
+										<input type="password" placeholder="密码" required="required" pattern=".{6,}" autocomplete="off" />
+										<input type="text" class="email" placeholder="填写常用手机号" maxlength="10" pattern="[1-9]{1}\d{9}" />
+										<div class="note">
+											<input type="text" class="email " placeholder="请输入短信验证码" maxlength="10" pattern=".{6,}" />
+											<button class="note-button el-button">
+															<span >点击获取</span>
+														</button>
+										</div>
+										<input type="submit" value="	注 册	" />
+										<div class="tologin">
+											<a href="#">已有账号，直接登录></a>
+										</div>
 									</form>
 								</div>
 								<div class="clearfix"> </div>
 							</div>
-							<div id="small-dialog7" class="mfp-hide">
-								<h3>Create Account</h3>
-								<div class="social-sits">
-									<div class="facebook-button">
-										<a href="#">Connect with Facebook</a>
-									</div>
-									<div class="chrome-button">
-										<a href="#">Connect with Google</a>
-									</div>
-									<div class="button-bottom">
-										<p>Already have an account?
-											<a href="#small-dialog" class="play-icon popup-with-zoom-anim">Login</a>
-										</p>
-									</div>
-								</div>
-								<div class="signup">
-									<form action="upload.html">
-										<input type="text" class="email" placeholder="Email" required="required" pattern="([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?" title="Enter a valid email" />
-										<input type="password" placeholder="Password" required="required" pattern=".{6,}" title="Minimum 6 characters required" autocomplete="off" />
-										<input type="submit" value="Sign In" />
-									</form>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-							<div id="small-dialog4" class="mfp-hide">
-								<h3>Feedback</h3>
-								<div class="feedback-grids">
-									<div class="feedback-grid">
-										<p>Suspendisse tristique magna ut urna pellentesque, ut egestas velit faucibus. Nullam mattis lectus ullamcorper dui dignissim, sit amet egestas orci ullamcorper.</p>
-									</div>
-									<div class="button-bottom">
-										<p>
-											<a href="#small-dialog" class="play-icon popup-with-zoom-anim">Sign in</a> to get started.</p>
-									</div>
-								</div>
-							</div>
+							
+							
 							<div id="small-dialog5" class="mfp-hide">
 								<h3>Help</h3>
 								<div class="help-grid">
@@ -172,28 +110,19 @@
 							<a href="#small-dialog" class="play-icon popup-with-zoom-anim">登录</a>
 							<div id="small-dialog" class="mfp-hide">
 								<h3>Login</h3>
-								<div class="social-sits">
-									<div class="facebook-button">
-										<a href="#">Connect with Facebook</a>
-									</div>
-									<div class="chrome-button">
-										<a href="#">Connect with Google</a>
-									</div>
-									<div class="button-bottom">
-										<p>New account?
-											<a href="#small-dialog2" class="play-icon popup-with-zoom-anim">Signup</a>
-										</p>
-									</div>
-								</div>
 								<div class="signup">
 									<form>
-										<input type="text" class="email" placeholder="Enter email / mobile" required="required" pattern="([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?" />
-										<input type="password" placeholder="Password" required="required" pattern=".{6,}" title="Minimum 6 characters required" autocomplete="off" />
-										<input type="submit" value="LOGIN" />
+										<input type="text" class="email" placeholder="您的手机号" required="required" pattern="([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?"/>
+										<input type="password" placeholder="密码" required="required" pattern=".{6,}"  autocomplete="off" />				
+										<p style="overflow: hidden;">
+											<input type="submit" style="float: left;margin-left: 5%;"  value="	 登  录	 "/>
+									  	<input type="submit" style="float: right;margin-right: 5%;"  value="	 注 册	  "/>
+										</p>
+										<div class="forget-pass">
+												<a href="#">忘记密码？</a>
+										</div>
 									</form>
-									<div class="forgot">
-										<a href="#">Forgot password ?</a>
-									</div>
+								
 								</div>
 								<div class="clearfix"> </div>
 							</div>
@@ -223,7 +152,7 @@
 						<a href="shows.html" class="user-icon"><span class="glyphicon glyphicon-home glyphicon-blackboard" aria-hidden="true"></span>电视台</a>
 					</li>
 					<li>
-						<a href="history.html" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-hourglass" aria-hidden="true"></span>动态</a>
+						<a href="/ueditor" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-hourglass" aria-hidden="true"></span>动态</a>
 					</li>
 					<li>
 						<a href="#" class="menu1"><span class="glyphicon glyphicon-film" aria-hidden="true"></span>视频分类<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
@@ -259,17 +188,35 @@
 							<a href="sports.html">个人资料</a>
 						</li>
 						<li>
-							<a href="sports.html">我的收藏</a>
+							<a href="/my_collection">我的收藏</a>
 						</li>
 						<li>
 							<a href="sports.html">我的动态</a>
 						</li>
 						<li>
-							<a href="sports.html">我的关注</a>
+							<a href="/my_follow">我的关注</a>
 						</li>
 						<li>
-							<a href="sports.html">视频管理</a>
+							<a href="/my_video">视频管理</a>
 						</li>
+					</ul>
+					<li>
+						<a href="#" class="menu2"><span class="glyphicon glyphicon-film glyphicon-queen" aria-hidden="true"></span>消息中心<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
+					</li>
+					<ul class="cl-effect-3">
+						<li>
+							<a href="/inbox">收件箱</a>
+						</li>
+						<li>
+							<a href="/outbox">发件箱</a>
+						</li>
+						<li>
+							<a href="#">收到的赞</a>
+						</li>
+						<li>
+							<a href="/notice">系统通知</a>
+						</li>
+						
 					</ul>
 				</ul>
 				<!-- script-for-menu -->
@@ -305,6 +252,7 @@
 		<router-view/>
 	</div>
 </template>
+
 <script>
 	export default {
 		name: 'App'
