@@ -178,15 +178,13 @@
 						<a href="movies.html" class="song-icon"><span class="glyphicon glyphicon-music" aria-hidden="true"></span>Songs</a>
 					</li>
 					<li>
-						<a href="news.html" class="news-icon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>会员购</a>
+						<a href="/shop" class="news-icon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>会员购</a>
 					</li>
 					<li>
 						<a href="#" class="menu"><span class="glyphicon glyphicon-film glyphicon-king" aria-hidden="true"></span>个人中心<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
 					</li>
 					<ul class="cl-effect-1">
-						<li>
-							<a href="sports.html">个人资料</a>
-						</li>
+						
 						<li>
 							<a href="/my_collection">我的收藏</a>
 						</li>
@@ -198,6 +196,9 @@
 						</li>
 						<li>
 							<a href="/my_video">视频管理</a>
+						</li>
+						<li>
+							<a href="/order">我的订单</a>
 						</li>
 					</ul>
 					<li>

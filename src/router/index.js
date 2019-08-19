@@ -15,6 +15,10 @@ import notice from '@/components/notice'
 import inbox from '@/components/inbox'
 import outbox from '@/components/outbox'
 
+/**/
+import shop from '@/components/shop'
+import order from '@/components/order'
+
 Vue.use(Router)
 
 export default new Router({
@@ -83,7 +87,20 @@ export default new Router({
       path: '/outbox',
       name: 'outbox',
       component: outbox
+    },
+     {
+      path:'/order',
+      name:'order',
+      component:order
+    },
+
+    {
+      path: '/shop',
+      name: 'shop',
+      component: shop
     }
+
+    
 
 
 
