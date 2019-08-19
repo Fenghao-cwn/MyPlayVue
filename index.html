@@ -18,6 +18,9 @@
 		<script type="text/javascript" src="static/js/modernizr.custom.min.js"></script>
 		<link href="static/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
 		<script src="static/js/jquery.magnific-popup.js" type="text/javascript"></script>
+		<link href="static/css/notice.css" rel="stylesheet" type="text/css"/>
+		<link href="static/css/popuo-box-signup.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="static/css/style-signup.css" rel='stylesheet' type='text/css' media="all" />
 		<!--//pop-up-box -->
 		<title>myplay</title>
 	</head>
@@ -49,6 +52,11 @@
 		});
 		$("li a.menu1").click(function() {
 			$("ul.cl-effect-2").slideToggle(300, function() {
+				// Animation complete.
+			});
+		});
+		$("li a.menu2").click(function() {
+			$("ul.cl-effect-3").slideToggle(300, function() {
 				// Animation complete.
 			});
 		});
