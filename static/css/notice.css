@@ -85,7 +85,7 @@ blockquote{
 	height: 50px;
 	border-radius:50% ;
 }
-.media-heading{
+.media-heading a{
 	line-height: 15px;
 	color: #21DEEF;
 }
