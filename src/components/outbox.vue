@@ -19,6 +19,8 @@
 								<h3 class="media-heading">
 								Nested media heading
 							</h3>
+							</a>
+							<a href="/notice_content">
 							<div class="medias">
 								<div class="media-body qwqw">
 										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
@@ -36,6 +38,8 @@
 								<h3 class="media-heading">
 								Nested media heading
 							</h3>
+							</a>
+							<a href="/notice_content">
 							<div class="medias">
 								<div class="media-body qwqw">
 										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
@@ -53,6 +57,8 @@
 								<h3 class="media-heading">
 								Nested media heading
 							</h3>
+							</a>
+							<a href="/notice_content">
 							<div class="medias">
 								<div class="media-body qwqw">
 										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
@@ -70,6 +76,8 @@
 								<h3 class="media-heading">
 								Nested media heading
 							</h3>
+							</a>
+							<a href="/notice_content">
 							<div class="medias">
 								<div class="media-body qwqw">
 										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
@@ -87,6 +95,8 @@
 								<h3 class="media-heading">
 								Nested media heading
 							</h3>
+							</a>
+							<a href="/notice_content">
 							<div class="medias">
 								<div class="media-body qwqw">
 										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
@@ -104,6 +114,8 @@
 								<h3 class="media-heading">
 								Nested media heading
 							</h3>
+							</a>
+							<a href="/notice_content">
 							<div class="medias">
 								<div class="media-body qwqw">
 										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
@@ -121,6 +133,8 @@
 								<h3 class="media-heading">
 								Nested media heading
 							</h3>
+							</a>
+							<a href="/notice_content">
 							<div class="medias">
 								<div class="media-body qwqw">
 										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
@@ -138,6 +152,65 @@
 								<h3 class="media-heading">
 								Nested media heading
 							</h3>
+							</a>
+							<a href="/notice_content">
+							<div class="medias">
+								<div class="media-body qwqw">
+										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
+									
+								</div>
+							</div>
+							</a>
+							
+						</div>
+					</div>
+					<div class="media well">
+						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
+						<div class="media-body">
+							<a href="#">
+								<h3 class="media-heading">
+								Nested media heading
+							</h3>
+							</a>
+							<a href="/notice_content">
+							<div class="medias">
+								<div class="media-body qwqw">
+										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
+									
+								</div>
+							</div>
+							</a>
+							
+						</div>
+					</div>
+					<div class="media well">
+						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
+						<div class="media-body">
+							<a href="#">
+								<h3 class="media-heading">
+								Nested media heading
+							</h3>
+							</a>
+							<a href="/notice_content">
+							<div class="medias">
+								<div class="media-body qwqw">
+										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
+									
+								</div>
+							</div>
+							</a>
+							
+						</div>
+					</div>
+					<div class="media well">
+						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
+						<div class="media-body">
+							<a href="#">
+								<h3 class="media-heading">
+								Nested media heading
+							</h3>
+							</a>
+							<a href="/notice_content">
 							<div class="medias">
 								<div class="media-body qwqw">
 										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading

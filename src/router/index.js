@@ -14,6 +14,7 @@ import videoShow from '@/components/videoShow'
 import notice from '@/components/notice'
 import inbox from '@/components/inbox'
 import outbox from '@/components/outbox'
+import notice_content from '@/components/notice_content'
 
 /**/
 import shop from '@/components/shop'
@@ -110,6 +111,11 @@ export default new Router({
       path: '/solo_message',
       name: 'solo_message',
       component: solo_message
+    },
+    {
+      path: '/notice_content',
+      name: 'notice_content',
+      component: notice_content
     }
     
 
