@@ -465,10 +465,7 @@ button::-moz-focus-inner {
 .signup {
     position: relative;
     padding: 2em 0 0 6em;
-    float: right !important;
-    width: 50%;
-    border-left: solid 1px #E4E4E4;
-    text-align: left;
+    float:  !important;
 }
 .login h3,.signup h3{
 	margin: 0;

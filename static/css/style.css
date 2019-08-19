@@ -150,18 +150,18 @@ ul.nav.nav-sidebar li a:focus {
     outline: none;
     background: none;
 }
-.menu,.menu1{
+.menu,.menu1,.menu2{
     display: block;
     cursor: pointer;
     position: relative;
 }
-.menu,.menu1:hover{
+.menu,.menu1,.menu2:hover{
 	color:#ff4c4c;
 }
 .sidebar.top-navigation{
 	display:none;
 }
-ul.cl-effect-1,ul.cl-effect-2 {
+ul.cl-effect-1,ul.cl-effect-2,ul.cl-effect-3{
 	display: none;
 }
 .nav-sidebar ul {
@@ -171,7 +171,7 @@ ul.cl-effect-1,ul.cl-effect-2 {
 	width: 100%;
 	left:0;
 }
-.nav-sidebar ul.cl-effect-1 li,.nav-sidebar ul.cl-effect-2 li {
+.nav-sidebar ul.cl-effect-1 li,.nav-sidebar ul.cl-effect-2 li,.nav-sidebar ul.cl-effect-3 li {
     display: block;
     margin: 0;
 }
@@ -567,7 +567,7 @@ a.btn.btn-primary.btn-lg.see-button.hvr-shutter-out-horizontal {
     color: #21DEEF;
     text-decoration: none;
     padding-left: 1.8em;
-    background: url(../images/u12.png) no-repeat 0px 1px;
+   /* background: url(../images/u12.png) no-repeat 0px 1px;*/
 }
 .resent-grid-info p.author a.author:hover{
     text-decoration: none;
@@ -1633,7 +1633,7 @@ span.glyphicon.glyphicon-user {
 }
 /*-- upload --*/
 .upload {
-    padding: 8em 0;
+    padding: 1em 0;
     background: #F3F3F3;
 }
 .upload-right{
