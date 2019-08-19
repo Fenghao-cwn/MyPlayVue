@@ -189,7 +189,7 @@
 							<a href="/my_collection">我的收藏</a>
 						</li>
 						<li>
-							<a href="sports.html">我的动态</a>
+							<a href="/my_ueditor">我的动态</a>
 						</li>
 						<li>
 							<a href="/my_follow">我的关注</a>

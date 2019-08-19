@@ -18,6 +18,8 @@ import outbox from '@/components/outbox'
 /**/
 import shop from '@/components/shop'
 import order from '@/components/order'
+import my_ueditor from '@/components/my_ueditor'
+
 
 Vue.use(Router)
 
@@ -98,6 +100,11 @@ export default new Router({
       path: '/shop',
       name: 'shop',
       component: shop
+    },
+    {
+      path: '/my_ueditor',
+      name: 'my_ueditor',
+      component: my_ueditor
     }
 
     
