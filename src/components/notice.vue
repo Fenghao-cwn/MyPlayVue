@@ -1,7 +1,9 @@
 <template>
-	<div class="main-notice" style="background: url(../../static/images/notice.jpg) no-repeat;">
-		<div class="container " >
-			<div class="row clearfix">
+	<div >
+	<div  class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main cfcf">	
+	<div class="main-notice" >
+		<div class="container containers" >
+			<div class="row clearfix rows">
 				<div class="col-md-12 column notice">
 					<blockquote class="system-notice">
 						<p style="color:#21DEEF ;font-size: 24px; margin-top: -10px;">
@@ -99,7 +101,8 @@
 			</div>
 		</div>
 		
-		
+		</div>
+		</div>
 		
 		
 	</div>

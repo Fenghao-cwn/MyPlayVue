@@ -11,11 +11,14 @@ blockquote{
 
 .notice {
 	width: 80%;
-	height: 720px;
+	height: 534px;
 	overflow-x: hidden;
 	overflow-y: auto;
 }
-
+.cfcf{
+	background: url(../images/notice.jpg) no-repeat ;
+	background-size: cover;
+}
 /*兼容IE*/
 
 .notice {
@@ -49,7 +52,7 @@ blockquote{
     border:0 ;;
 	border-radius: 4px;
 	margin: 10px;
-	width: 1114px;
+	width: 855px;
 	min-width: 400px;
 }
 .system-notice1{
@@ -61,22 +64,24 @@ blockquote{
     border:0 ;;
 	border-radius: 4px;
 	margin: 10px;
-	width: 901px;
+	 width: 876px;;
 	margin-left: -1px;
 	min-width: 400px;
 }
 .content{
 	text-indent:2em;
 }
+.containers {
+    width: 1138px;
+}
 .well{
 	background-color: rgb(233,246,254,0.4);
 	border-radius: 4px;
-	height: 220px;
-	margin-left: 14px;
+	height: 180px;
 }
 .head-sculpture{
-	width: 60px;
-	height: 60px;
+	width: 50px;
+	height: 50px;
 	border-radius:50% ;
 }
 .media-heading{
@@ -101,7 +106,7 @@ blockquote{
     -webkit-box-orient: vertical;
     -webkit-box-pack: center;
     -webkit-box-align: center;
-    -webkit-line-clamp:4;
+    -webkit-line-clamp:3;
     overflow: hidden;
 }
 .media{

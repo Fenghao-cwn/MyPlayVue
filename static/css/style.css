@@ -60,7 +60,7 @@ form.navbar-form.navbar-right {
     right: 26px;
 }
 .header-top-right {
-  float: right;
+  margin-top: 20px;
 }
 .file {
   float: left;
@@ -2755,4 +2755,7 @@ background: url(../images/social.png) no-repeat 0px 0px;
 	.footer-bottom ul li a.f-history {
 		padding: .52em 1em .52em 3em;
 	}
+}
+.media{
+	    margin: 10px 0 5px 0;
 }
