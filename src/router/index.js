@@ -20,7 +20,7 @@ import shop from '@/components/shop'
 import order from '@/components/order'
 import my_ueditor from '@/components/my_ueditor'
 
-
+import solo_message from '@/components/solo_message'
 Vue.use(Router)
 
 export default new Router({
@@ -105,7 +105,13 @@ export default new Router({
       path: '/my_ueditor',
       name: 'my_ueditor',
       component: my_ueditor
+    },
+    {
+      path: '/solo_message',
+      name: 'solo_message',
+      component: solo_message
     }
+    
 
     
 
