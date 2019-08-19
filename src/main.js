@@ -7,6 +7,7 @@ import resource from 'vue-resource'
 Vue.use(resource)
 Vue.config.productionTip = false
 Vue.http.options.emulateJSON = true
+Vue.http.options.withCredentials = true;//解决cookie丢失
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
