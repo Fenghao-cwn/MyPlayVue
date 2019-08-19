@@ -14,10 +14,10 @@
 							<label for="exampleInputEmail1">昵称：</label><input type="text" name="name" class="form-control" id="exampleInputEmail1" />
 						</div>
 						<div class="form-group">
-							<label for="exampleInputEmail1">手机号：</label><input type="text" name="phone" class="form-control" id="exampleInputEmail1" />
+							<label for="exampleInputEmail1">手机号：</label><input type="text" readonly="readonly" name="phone" class="form-control" id="exampleInputEmail1" />
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword1">密码：</label><input type="password" readonly="readonly" name="password" class="form-control" id="exampleInputPassword1" />
+							<label for="exampleInputPassword1">密码：</label><input type="password"  name="password" class="form-control" id="exampleInputPassword1" />
 						</div>
 						<div class="form-group">
 							<label for="exampleInputPassword1">性别：</label>

@@ -10,7 +10,7 @@
 			<div class="media">
 				<h5>Tom Brown</h5>
 				<div class="img-user col-md-1 column">
-					<a href=""><img alt="140x140" src="../../static/img/noface.gif" class="img-circle" /></a>
+					<a href="/solo_top"><img alt="140x140" src="../../static/img/noface.gif" class="img-circle" /></a>
 				</div>
 				<div class="media-body">
 					<p>Maecenas ultricies rhoncus tincidunt maecenas imperdiet ipsum id ex pretium hendrerit maecenas imperdiet ipsum id ex pretium hendrerit</p>

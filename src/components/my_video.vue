@@ -11,18 +11,18 @@
 				<div class="row">
 					<div class="col-md-3 my_video" >
 						<div class="thumbnail">
-							<img alt="300x200" src="../../static/images/c1.jpg" />
+							<a href=""><img alt="300x200" src="../../static/images/c1.jpg" /></a>
+							<div class="resent-grid-info recommended-grid-info">
 							<div class="caption">
-							<h3>
-								Thumbnail label
-							</h3>
-								<p>
-									Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+								<h5><a href="" class="title">Varius sit sed Nullam interdum</a></h5>
+								<p class="video-my">
+									Cras justo odio, dapibus ac facilisis in,egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id
 								</p>
 								<p>
 									<a class="btn btn-primary" href="#">删除</a>
 									<a class="btn" href="#">Action</a>
 								</p>
+							</div>
 							</div>
 						</div>
 					</div>
@@ -54,4 +54,13 @@
 	.my_video{
 		margin-left: 50px;
 	}
+	.video-my{
+		display: -webkit-box;
+	    -webkit-box-orient: vertical;
+	    -webkit-box-pack: center;
+	    -webkit-box-align: center;
+	    -webkit-line-clamp:2;
+	    overflow: hidden;
+	}
+	
 </style>

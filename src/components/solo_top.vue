@@ -8,6 +8,13 @@
 				<h3 class="user-name">火星花</h3>
 				<h6 class="user-text">花花花啦啦啦啦啦啦拉拉拉拉啦</h6>
 			</div>
+			<button class="btn btn-default  button-g">
+				<span class="glyphicon glyphicon-plus"></span>关注
+			</button>
+			<button class="btn btn-default btn-info button-g">
+					<span class="glyphicon glyphicon-envelope"></span>私信
+			</button>
+
 			
 		</div>
 	</div>
@@ -44,5 +51,9 @@
 	.user-text {
 		margin-left: -10px;
 		color: white;
+	}
+	.button-g{
+		margin-top: 140px;
+		margin-left: 20px;
 	}
 </style>
