@@ -1,5 +1,7 @@
 <template>
-	<div class="main-notice" style="background: url(../../static/images/notice.jpg) no-repeat;">
+	<div >
+	<div style="background: url(../../static/images/notice.jpg) no-repeat;" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<div class="main-notice" >
 		<div class="container " >
 			<div class="row clearfix">
 				<div class="col-md-12 column notice">
@@ -155,7 +157,8 @@
 		
 		
 		
-		
+		</div>
+		</div>
 	</div>
 </template>
 

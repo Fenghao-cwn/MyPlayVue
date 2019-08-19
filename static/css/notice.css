@@ -10,7 +10,7 @@ blockquote{
 }
 
 .notice {
-	width: 100%;
+	width: 80%;
 	height: 720px;
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -20,8 +20,6 @@ blockquote{
 
 .notice {
 
-	margin-top: 30px;
-	margin-left: 7px;
 	/*箭头颜色*/
 }
 
@@ -63,7 +61,8 @@ blockquote{
     border:0 ;;
 	border-radius: 4px;
 	margin: 10px;
-	width: 1123px;
+	width: 901px;
+	margin-left: -1px;
 	min-width: 400px;
 }
 .content{
