@@ -15,10 +15,11 @@
 					<div class="media well">
 						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
 						<div class="media-body">
-							<a href="#">
-								<h3 class="media-heading">
-								Nested media heading
+							
+							<h3 class="media-heading">
+								<a href="#">Nested media heading</a><span>&nbsp;|&nbsp;<a href="#">回复</a></span>
 							</h3>
+							<a href="#">
 							<div class="medias">
 								<div class="media-body qwqw">
 										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
@@ -32,10 +33,11 @@
 					<div class="media well">
 						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
 						<div class="media-body">
-							<a href="#">
-								<h3 class="media-heading">
-								Nested media heading
+							
+							<h3 class="media-heading">
+								<a href="#">Nested media heading</a><span>&nbsp;|&nbsp;<a href="#">回复</a></span>
 							</h3>
+							<a href="#">
 							<div class="medias">
 								<div class="media-body qwqw">
 										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
@@ -49,10 +51,11 @@
 					<div class="media well">
 						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
 						<div class="media-body">
-							<a href="#">
-								<h3 class="media-heading">
-								Nested media heading
+							
+							<h3 class="media-heading">
+								<a href="#">Nested media heading</a><span>&nbsp;|&nbsp;<a href="#">回复</a></span>
 							</h3>
+							<a href="#">
 							<div class="medias">
 								<div class="media-body qwqw">
 										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
@@ -66,78 +69,11 @@
 					<div class="media well">
 						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
 						<div class="media-body">
-							<a href="#">
-								<h3 class="media-heading">
-								Nested media heading
-							</h3>
-							<div class="medias">
-								<div class="media-body qwqw">
-										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
-									
-								</div>
-							</div>
-							</a>
 							
-						</div>
-					</div>
-					<div class="media well">
-						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
-						<div class="media-body">
-							<a href="#">
-								<h3 class="media-heading">
-								Nested media heading
+							<h3 class="media-heading">
+								<a href="#">Nested media heading</a><span>&nbsp;|&nbsp;<a href="#">回复</a></span>
 							</h3>
-							<div class="medias">
-								<div class="media-body qwqw">
-										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
-									
-								</div>
-							</div>
-							</a>
-							
-						</div>
-					</div>
-					<div class="media well">
-						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
-						<div class="media-body">
 							<a href="#">
-								<h3 class="media-heading">
-								Nested media heading
-							</h3>
-							<div class="medias">
-								<div class="media-body qwqw">
-										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
-									
-								</div>
-							</div>
-							</a>
-							
-						</div>
-					</div>
-					<div class="media well">
-						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
-						<div class="media-body">
-							<a href="#">
-								<h3 class="media-heading">
-								Nested media heading
-							</h3>
-							<div class="medias">
-								<div class="media-body qwqw">
-										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
-									
-								</div>
-							</div>
-							</a>
-							
-						</div>
-					</div>
-					<div class="media well">
-						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
-						<div class="media-body">
-							<a href="#">
-								<h3 class="media-heading">
-								Nested media heading
-							</h3>
 							<div class="medias">
 								<div class="media-body qwqw">
 										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
@@ -149,6 +85,8 @@
 						</div>
 					</div>
 					
+					
+					 
 					
 					
 				</div>
