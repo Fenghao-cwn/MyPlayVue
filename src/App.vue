@@ -220,31 +220,6 @@
 						
 					</ul>
 				</ul>
-				<!-- script-for-menu -->
-
-				<div class="side-bottom">
-					<div class="side-bottom-icons">
-						<ul class="nav2">
-							<li>
-								<a href="#" class="facebook"> </a>
-							</li>
-							<li>
-								<a href="#" class="facebook twitter"> </a>
-							</li>
-							<li>
-								<a href="#" class="facebook chrome"> </a>
-							</li>
-							<li>
-								<a href="#" class="facebook dribbble"> </a>
-							</li>
-						</ul>
-					</div>
-					<div class="copyright">
-						<p>Copyright &copy; 2015.Company name All rights reserved.
-							<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
-						</p>
-					</div>
-				</div>
 			</div>
 		</div>
 		<div class="clearfix"> </div>

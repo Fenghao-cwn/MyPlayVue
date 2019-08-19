@@ -24,8 +24,12 @@
 										<option value="">lala</option>	
 								</select>
 							</div>
+							<div class="form-group">
+							<label for="name">视频描述:</label>
+							<textarea class="form-control" name="signature" rows="3"></textarea>
+						</div>
 						<div class="form-group">
-							<label for="lastname">头像:</label>
+							<label for="lastname">上传视频和视频封面:</label>
 							
 							<upload></upload>
 							
