@@ -112,10 +112,10 @@
 								<h3>Login</h3>
 								<div class="signup">
 									<form>
-										<input type="text" class="email" placeholder="您的手机号" required="required" pattern="([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?"/>
-										<input type="password" placeholder="密码" required="required" pattern=".{6,}"  autocomplete="off" />				
+										<input type="text" class="email" v-model="user.phone" placeholder="您的手机号"  required="required" pattern=".{11,}"/>
+										<input type="password" v-model="user.password" placeholder="密码" required="required" pattern=".{6,}"  autocomplete="off" />				
 										<p style="overflow: hidden;">
-											<input type="submit" style="float: left;margin-left: 5%;"  value="	 登  录	 "/>
+										<input type="submit" style="float: left;margin-left: 5%;"  value="	 登  录	 " v-on:click="login"  />
 									  	<input type="submit" style="float: right;margin-right: 5%;"  value="	 注 册	  "/>
 										</p>
 										<div class="forget-pass">
@@ -157,19 +157,12 @@
 					<li>
 						<a href="#" class="menu1"><span class="glyphicon glyphicon-film" aria-hidden="true"></span>视频分类<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
 					</li>
-					<ul class="cl-effect-2">
-						<li>
-
-							<router-link to="/videoDisplay">动漫</router-link>
+					<!--电影分类-->
+					<ul class="cl-effect-2" v-for="category in categorys">
+						<li @click="select(category.id)">		
+							<a class="menu1">{{category.name}}</a>
 						</li>
-						<li>
-							<router-link to="/videoDisplay">电影</router-link>
-
-						</li>
-						<li>
-							<router-link to="/videoDisplay">电视剧</router-link>
-
-						</li>
+						
 					</ul>
 
 					<!-- script-for-menu -->
@@ -231,7 +224,63 @@
 
 <script>
 	export default {
-		name: 'App'
+		name: 'App',
+		data() {
+			return{
+				user:{
+					phone:'',
+					password:''
+				},
+				categorys: []
+			}
+		},
+		created: function() {
+			this.loadecate();
+		},
+		methods:{
+			//查找类别
+			loadecate: function() {
+				this.$http.get("http://localhost:80/cate/cates").then(
+					function(result) {
+						this.categorys = result.body;
+					},
+					function(error) {
+						alert("加载数据失败");
+					}
+				)
+			},
+			select: function(cid) {
+				this.$router.push({
+					path: "/videoDisplay",
+					query: {
+						cid: cid
+					}
+				})
+			},
+			//登录
+			login:function(){
+				console.log(this.user.phone);
+				console.log(this.user.password);
+				
+				this.$http.post("http://localhost/user/login",{//传参
+					"phone":this.user.phone,
+					"password":this.user.password
+				}).then(
+					function(result){
+						/*this.user = result.body;*/
+						
+						/*alert("登录成功.");*/
+						this.$router.push({
+							path:"/"//路径
+							})
+						
+					},
+					function(error){
+						alert("登录失败，请重新登录.")
+					}
+				)
+			}
+		}
 	}
 </script>
 <style>

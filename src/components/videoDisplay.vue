@@ -14,101 +14,33 @@
 								</div>
 								<div class="clearfix"> </div>
 							</div>
-							<div class="col-md-3 resent-grid recommended-grid movie-video-grid">
-								<div class="resent-grid-img recommended-grid-img">
-									<a href="single.html"><img src="../../static/images/mv1.jpg" alt="" /></a>
-									<div class="time small-time show-time movie-time">
-										<p>7:34</p>
+							<!--视频循环-->
+							<div v-for="video in viedos">
+								<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="margin-bottom: 50px;">
+									<div class="resent-grid-img recommended-grid-img">
+										<a href="video.videourl"><img :src="video.photourl" alt="" /></a>
+										<div class="time small-time show-time movie-time">
+											<p>7:34</p>
+										</div>
+										<div class="clck movie-clock">
+											<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+										</div>
 									</div>
-									<div class="clck movie-clock">
-										<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-									</div>
-								</div>
-								<div class="resent-grid-info recommended-grid-info recommended-grid-movie-info">
-									<h5><a href="single.html" class="title">Varius sit sed viverra Nullam interdum metus</a></h5>
-									<ul>
-										<li>
-											<p class="author author-info">
-												<a href="#" class="author">John Maniya</a>
-											</p>
-										</li>
-										<li class="right-list">
-											<p class="views views-info">2,114,200 views</p>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-md-3 resent-grid recommended-grid movie-video-grid">
-								<div class="resent-grid-img recommended-grid-img">
-									<a href="single.html"><img src="../../static/images/mv2.jpg" alt="" /></a>
-									<div class="time small-time show-time movie-time">
-										<p>9:34</p>
-									</div>
-									<div class="clck movie-clock">
-										<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+									<div class="resent-grid-info recommended-grid-info recommended-grid-movie-info">
+										<h5><a href="single.html" class="title">{{video.title}}</a></h5>
+										<ul>
+											<li>
+												<p class="author author-info">
+													<a href="#" class="author">John Maniya</a>
+												</p>
+											</li>
+											<li class="right-list">
+												<p class="views views-info">2,114,200 views</p>
+											</li>
+										</ul>
 									</div>
 								</div>
-								<div class="resent-grid-info recommended-grid-info recommended-grid-movie-info">
-									<h5><a href="single.html" class="title">Varius sit sed viverra Nullam interdum metus</a></h5>
-									<ul>
-										<li>
-											<p class="author author-info">
-												<a href="#" class="author">John Maniya</a>
-											</p>
-										</li>
-										<li class="right-list">
-											<p class="views views-info">2,114,200 views</p>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-md-3 resent-grid recommended-grid movie-video-grid">
-								<div class="resent-grid-img recommended-grid-img">
-									<a href="single.html"><img src="../../static/images/mv3.jpg" alt="" /></a>
-									<div class="time small-time show-time movie-time">
-										<p>3:04</p>
-									</div>
-									<div class="clck movie-clock">
-										<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-									</div>
-								</div>
-								<div class="resent-grid-info recommended-grid-info recommended-grid-movie-info">
-									<h5><a href="single.html" class="title">Varius sit sed viverra Nullam interdum metus</a></h5>
-									<ul>
-										<li>
-											<p class="author author-info">
-												<a href="#" class="author">John Maniya</a>
-											</p>
-										</li>
-										<li class="right-list">
-											<p class="views views-info">2,114,200 views</p>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-md-3 resent-grid recommended-grid movie-video-grid">
-								<div class="resent-grid-img recommended-grid-img">
-									<a href="single.html"><img src="../../static/images/mv4.jpg" alt="" /></a>
-									<div class="time small-time show-time movie-time">
-										<p>2:06</p>
-									</div>
-									<div class="clck movie-clock">
-										<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-									</div>
-								</div>
-								<div class="resent-grid-info recommended-grid-info recommended-grid-movie-info">
-									<h5><a href="single.html" class="title">Varius sit sed viverra Nullam interdum metus</a></h5>
-									<ul>
-										<li>
-											<p class="author author-info">
-												<a href="#" class="author">John Maniya</a>
-											</p>
-										</li>
-										<li class="right-list">
-											<p class="views views-info">2,114,200 views</p>
-										</li>
-									</ul>
-								</div>
+								
 							</div>
 							<div class="clearfix"> </div>
 						</div>
@@ -122,7 +54,38 @@
 <script>
 	export default {
 		name: 'videoDisplay',
-		data() {}
+		data() {
+			return {
+				viedos: [],
+				cid: 0
+			}
+		},
+		beforeRouteUpdate(to,from,next){
+		    var cid=to.query.cid;
+		    this.selectByType(cid);
+		},
+		created: function() {
+			this.selectByType();
+		},
+		methods: {
+			selectByType: function(cid) {
+				//var cid = this.$route.query.cid;
+				//console.log(cid);
+				this.$http.get("http://localhost:80/cate/videos", {
+					params: {
+						cid: cid,
+						ddata:new Date()
+					}
+				}).then(function(result) {
+					this.viedos = result.body;
+					console.log(this.viedos);
+				}, function(error) {
+					alert("加载数据失败！！");
+				})
+
+			}
+
+		}
 	}
 </script>
 
