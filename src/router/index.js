@@ -20,6 +20,7 @@ import notice_content from '@/components/notice_content'
 import shop from '@/components/shop'
 import order from '@/components/order'
 import list from '@/components/list'
+import goodsInfo from '@/components/goodsInfo'
 import my_ueditor from '@/components/my_ueditor'
 
 import solo_message from '@/components/solo_message'
@@ -122,8 +123,12 @@ export default new Router({
       path: '/notice_content',
       name: 'notice_content',
       component: notice_content
+    },
+    {
+      path: '/goodsInfo',
+      name: 'goodsInfo',
+      component: goodsInfo
     }
-
 
 
 
