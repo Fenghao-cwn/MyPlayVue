@@ -157,19 +157,12 @@
 					<li>
 						<a href="#" class="menu1"><span class="glyphicon glyphicon-film" aria-hidden="true"></span>视频分类<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
 					</li>
-					<ul class="cl-effect-2">
-						<li>
-
-							<router-link to="/videoDisplay">动漫</router-link>
+					<!--电影分类-->
+					<ul class="cl-effect-2" v-for="category in categorys">
+						<li @click="select(category.id)">		
+							<a class="menu1">{{category.name}}</a>
 						</li>
-						<li>
-							<router-link to="/videoDisplay">电影</router-link>
-
-						</li>
-						<li>
-							<router-link to="/videoDisplay">电视剧</router-link>
-
-						</li>
+						
 					</ul>
 
 					<!-- script-for-menu -->
@@ -237,10 +230,33 @@
 				user:{
 					phone:'',
 					password:''
-				}
+				},
+				categorys: []
 			}
 		},
+		created: function() {
+			this.loadecate();
+		},
 		methods:{
+			//查找类别
+			loadecate: function() {
+				this.$http.get("http://localhost:80/cate/cates").then(
+					function(result) {
+						this.categorys = result.body;
+					},
+					function(error) {
+						alert("加载数据失败");
+					}
+				)
+			},
+			select: function(cid) {
+				this.$router.push({
+					path: "/videoDisplay",
+					query: {
+						cid: cid
+					}
+				})
+			},
 			//登录
 			login:function(){
 				console.log(this.user.phone);
