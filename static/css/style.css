@@ -1253,6 +1253,16 @@ width:100%;
 	-ms-border-radius: 50%;
 	-o-border-radius: 50%;
 }
+.media-left img {
+    width: 65px;
+    height: 65px;
+    display: block;
+    border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-ms-border-radius: 50%;
+	-o-border-radius: 50%;
+}
 .media-body p{
     font-size: 13px;
     color: #757575;
