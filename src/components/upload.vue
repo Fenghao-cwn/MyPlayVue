@@ -108,10 +108,15 @@
 						});
 					}
 				}
+				//从子组件向父组件传参
+              this.$emit("func",this.imgList);
 			},
 			fileDel(index) {
 				this.size = this.size - this.imgList[index].file.size; //总大小
 				this.imgList.splice(index, 1);
+				
+				//从子组件向父组件传参
+              this.$emit("func",this.imgList);
 			},
 			bytesToSize(bytes) {
 				if(bytes === 0) return '0 B';
