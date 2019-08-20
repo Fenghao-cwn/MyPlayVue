@@ -78,7 +78,7 @@
 						"Content-type": "multipart/form-data"
 					}
 				};
-				this.$http.post("http://localhost/Personal/uploadVideo", formdata, header).then(
+				this.$http.post("http://localhost/Video/uploadVideo", formdata, header).then(
 					function(result) {
 						alert("上传成功！！！");
 						
@@ -91,7 +91,7 @@
 			},
 			//得到类型数组
 			loadCategory:function(){
-				this.$http.get("http://127.0.0.1/Personal/selectAllCategory").then(
+				this.$http.get("http://127.0.0.1/Video/selectAllCategory").then(
 					function(result){
 						this.categorys=result.body;
 				},function(error){

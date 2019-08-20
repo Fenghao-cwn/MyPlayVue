@@ -2,11 +2,11 @@
 	<div>
 		<div class="img-top">
 			<div class="img-user col-md-1 column">
-				<a href="/updateUser" data-toggle="tooltip" data-placement="top" title="修改个人信息"><img alt="140x140" src="../../static/img/noface.gif" class="img-circle" /></a>
+				<a href="/updateUser" data-toggle="tooltip" data-placement="top" title="修改个人信息"><img alt="140x140" :src="user.photourl" class="img-circle" /></a>
 			</div>
 			<div class="col-md-8 column ">
-				<h3 class="user-name">火星花</h3>
-				<h6 class="user-text">花花花啦啦啦啦啦啦拉拉拉拉啦</h6>
+				<h3 class="user-name">{{user.name}}</h3>
+				<h6 class="user-text">{{user.signature}}</h6>
 			</div>
 			
 		</div>
@@ -16,7 +16,31 @@
 <script>
 	export default {
 		name: 'message_top',
-		data() {}
+		data() {
+			return{
+				user:{
+					name:'',
+					signature:'',
+					photourl:''
+				}
+			}
+		},
+		created(){
+			this.loadUser();
+		},
+		methods:{
+			loadUser(){
+				this.$http.get("http://localhost/Personal/getUser").then(
+					function(result){
+						this.user.name=result.body.name;
+						this.user.signature=result.body.signature;
+						this.user.photourl=result.body.photourl;
+				},function(error){
+					alert("事故vau");
+				})
+			}
+		}
+		
 	}
 </script>
 
