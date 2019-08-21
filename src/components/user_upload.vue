@@ -4,10 +4,8 @@
 		<div class="hello">
 		<div class="upload">
 			<div class="upload_warp">
-				<div class="upload_warp_left" @click="fileClick">
-					<div class="services-icon" style="margin-top: 27PX;">
-						<span class="glyphicon glyphicon-open" aria-hidden="true" ></span>
-					</div>
+				<div class="upload_warp_left" @click="fileClick">				
+						<img src="../../static/img/upload.png">
 				</div>
 				<div class="upload_warp_right" @drop="drop($event)" @dragenter="dragenter($event)" @dragover="dragover($event)">
 					或者将文件拖到此处
@@ -37,7 +35,7 @@
 
 <script>
 	export default {
-		name: 'upload',
+		name: 'user_upload',
 		data() {
 			return {
 				imgList: [],

@@ -9,9 +9,9 @@
 			</div>
 			<div class="recommended">
 				<div class="recommended-grids img-big">
-					<div class="col-md-2 resent-grid recommended-grid show-video-grid img-coll">
+					<div v-for="collection in collections" class="col-md-2 resent-grid recommended-grid show-video-grid img-coll">
 						<div class="resent-grid-img recommended-grid-img">
-							<a href=""><img src="../../static/images/c1.jpg" alt="" /></a>
+							<a href=""><img style="width: 200px;height: 150px;" :src="collection.vphoto" alt="" /></a>
 							<div class="time small-time show-time">
 								<p>5:09</p>
 							</div>
@@ -19,20 +19,22 @@
 								<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
 							</div>
 						</div>
-						<div class="resent-grid-info recommended-grid-info">
-							<h5><a href="single.html" class="title">Varius sit sed Nullam interdum</a></h5>
+						<div style="width: 200px;height: 130px;" class="resent-grid-info recommended-grid-info">
+							<h5><a href="single.html" class="title">{{collection.title}}</a></h5>
 							<p class="solo-p">
-									Cras justo odio, dapibus ac facilisis in,egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id
+									{{collection.vediodetail}}
 								</p>
 							<div class="img-user col-md-1 column">
-								<a href="/solo_message"><img alt="140x140" src="../../static/img/noface.gif" class="img-circle" /></a>
+								<a href=""><img alt="140x140" :src="collection.photourl" class="img-circle" /></a>
 							</div>
 							<p class="author">
-								<a href="#" class="author">John Maniya</a>
+								<a href="#" class="author">{{collection.name}}</a>
 							</p>
-							<p class="views" style="margin-left: 50px;">1,897 views</p>
+							<p class="views" style="margin-left: 50px;">{{collection.signature}}</p>
 						</div>
 					</div>
+					
+					
 
 					<div class="clearfix"> </div>
 				</div>
@@ -47,9 +49,27 @@
 	import message_top from '@/components/message_top'
 	export default {
 		name: 'my_collection',
-		data() {},
+		data() {
+			return{
+				
+				collections:[]
+			}
+		},
 		components: {
 			message_top //组件私有注册
+		},
+		created(){
+			this.loadMyCollection();
+		},
+		methods:{
+			loadMyCollection(){
+				this.$http.get("http://localhost/Personal/selectMyCollection").then(
+					function(result){
+						this.collections=result.body;
+				},function(error){
+					/*alert("！！！")*/
+				})
+			}
 		}
 	}
 </script>
@@ -65,11 +85,12 @@
 .img-circle {
 		width: 30px;
 		height: 30px;
-		margin-top: 6px;
+		margin-top: 19px;
 		margin-left: -3px;
 	}
 	.page-header{
 		margin-left: 30px;
+		margin-top: 20px;
 	}
 
 	 .solo-p{

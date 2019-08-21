@@ -9,18 +9,18 @@
 			</div>
 			<div class="recommended">
 				<div class="row">
-					<div class="col-md-3 my_video" >
+					<div v-for="video in videos" class="col-md-3 my_video" >
 						<div class="thumbnail">
-							<a href=""><img alt="300x200" src="../../static/images/c1.jpg" /></a>
+							<a href=""><img alt="300x200" :src="video.photourl" /></a>
 							<div class="resent-grid-info recommended-grid-info">
 							<div class="caption">
-								<h5><a href="" class="title">Varius sit sed Nullam interdum</a></h5>
+								<h5><a href="" class="title">{{video.title}}</a></h5>
 								<p class="video-my">
-									Cras justo odio, dapibus ac facilisis in,egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id
+									{{video.vediodetail}}
 								</p>
 								<p>
-									<a class="btn btn-primary" href="#">删除</a>
-									<a class="btn" href="#">Action</a>
+									<button class="btn btn-primary" @click="deleterVideo(video.id)">删除</button>
+									<a class="btn" href="#">上传时间：{{video.createtime}}</a>
 								</p>
 							</div>
 							</div>
@@ -39,10 +39,45 @@
 	import message_top from '@/components/message_top'
 	export default {
 		name: 'my_video',
-		data() {},
+		data() {
+			return{
+				videos:[]
+			}
+		},
 		components: {
 			message_top //组件私有注册
+		},
+		created(){
+			this.loadVideo();
+		},
+		methods:{
+			loadVideo:function(){
+				this.$http.get("http://localhost/Video/selectVideosByUid").then(
+					
+					function(result){
+						this.videos=result.body;
+				},function(error){
+					
+				})
+			},
+			deleterVideo:function(id){
+				var flag=confirm("是否删除该视频？");
+				if(flag){
+					this.$http.get("http://localhost/Video/deleterVideoByid",{
+					params:{
+						"id":id
+					}
+				}).then(
+					function(result){
+						this.videos=result.body;
+				},function(error){
+					
+				})
+				}
+				
+			}
 		}
+		
 	}
 </script>
 
@@ -50,6 +85,7 @@
 	
 	.page-header {
 		margin-left: 30px;
+		margin-top: 20px;
 	}
 	.my_video{
 		margin-left: 50px;

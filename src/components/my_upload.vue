@@ -8,7 +8,7 @@
 					Upload My Video <small>上传我的视频</small>
 				</h1>
 				</div>
-				<div class="col-md-7 column">
+				<div class="col-md-8 column">
 					
 						<div class="form-group">
 							<label for="exampleInputEmail1">标题：</label>
@@ -91,7 +91,7 @@
 			},
 			//得到类型数组
 			loadCategory:function(){
-				this.$http.get("http://127.0.0.1/Video/selectAllCategory").then(
+				this.$http.get("http://localhost/Video/selectAllCategory").then(
 					function(result){
 						this.categorys=result.body;
 				},function(error){

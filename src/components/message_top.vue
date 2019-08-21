@@ -2,7 +2,7 @@
 	<div>
 		<div class="img-top">
 			<div class="img-user col-md-1 column">
-				<a href="/updateUser" data-toggle="tooltip" data-placement="top" title="修改个人信息"><img alt="140x140" :src="user.photourl" class="img-circle" /></a>
+				<a href="" @click="toUpdate" data-toggle="tooltip" data-placement="top" title="修改个人信息"><img alt="140x140" :src="user.photourl" class="img-circle" /></a>
 			</div>
 			<div class="col-md-8 column ">
 				<h3 class="user-name">{{user.name}}</h3>
@@ -32,12 +32,18 @@
 			loadUser(){
 				this.$http.get("http://localhost/Personal/getUser").then(
 					function(result){
+						
 						this.user.name=result.body.name;
 						this.user.signature=result.body.signature;
 						this.user.photourl=result.body.photourl;
 				},function(error){
-					alert("事故vau");
+						
 				})
+			},
+			toUpdate(){
+					this.$router.push({
+						path:"/updateUser"
+					})
 			}
 		}
 		
