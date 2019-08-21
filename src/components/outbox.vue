@@ -12,215 +12,27 @@
 					</blockquote>
 					<div style="height: 42px;margin-bottom: 23px;">
 					</div>
-					<div class="media well">
-						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
-						<div class="media-body">
-							<a href="#">
+					
+					<div v-for="outbox in outboxs">
+						<div class="media well">
+							 <a href="#" class="pull-left  "><img  :src="outbox.photourl"  class="media-object head-sculpture" alt='' /></a>
+							<div class="media-body">
 								<h3 class="media-heading">
-								Nested media heading
-							</h3>
-							</a>
-							<a href="/notice_content">
-							<div class="medias">
-								<div class="media-body qwqw">
-										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
-									
+									<a href="#">{{outbox.name}}</a><span>| {{outbox.createdate}}</span>
+								</h3>
+								<a href="/notice_content">
+								<div class="medias">
+									<div class="media-body qwqw">
+											{{outbox.content}}
+									</div>
 								</div>
+								</a>
+								
 							</div>
-							</a>
-							
 						</div>
 					</div>
-					<div class="media well">
-						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
-						<div class="media-body">
-							<a href="#">
-								<h3 class="media-heading">
-								Nested media heading
-							</h3>
-							</a>
-							<a href="/notice_content">
-							<div class="medias">
-								<div class="media-body qwqw">
-										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
-									
-								</div>
-							</div>
-							</a>
-							
-						</div>
-					</div>
-					<div class="media well">
-						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
-						<div class="media-body">
-							<a href="#">
-								<h3 class="media-heading">
-								Nested media heading
-							</h3>
-							</a>
-							<a href="/notice_content">
-							<div class="medias">
-								<div class="media-body qwqw">
-										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
-									
-								</div>
-							</div>
-							</a>
-							
-						</div>
-					</div>
-					<div class="media well">
-						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
-						<div class="media-body">
-							<a href="#">
-								<h3 class="media-heading">
-								Nested media heading
-							</h3>
-							</a>
-							<a href="/notice_content">
-							<div class="medias">
-								<div class="media-body qwqw">
-										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
-									
-								</div>
-							</div>
-							</a>
-							
-						</div>
-					</div>
-					<div class="media well">
-						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
-						<div class="media-body">
-							<a href="#">
-								<h3 class="media-heading">
-								Nested media heading
-							</h3>
-							</a>
-							<a href="/notice_content">
-							<div class="medias">
-								<div class="media-body qwqw">
-										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
-									
-								</div>
-							</div>
-							</a>
-							
-						</div>
-					</div>
-					<div class="media well">
-						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
-						<div class="media-body">
-							<a href="#">
-								<h3 class="media-heading">
-								Nested media heading
-							</h3>
-							</a>
-							<a href="/notice_content">
-							<div class="medias">
-								<div class="media-body qwqw">
-										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
-									
-								</div>
-							</div>
-							</a>
-							
-						</div>
-					</div>
-					<div class="media well">
-						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
-						<div class="media-body">
-							<a href="#">
-								<h3 class="media-heading">
-								Nested media heading
-							</h3>
-							</a>
-							<a href="/notice_content">
-							<div class="medias">
-								<div class="media-body qwqw">
-										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
-									
-								</div>
-							</div>
-							</a>
-							
-						</div>
-					</div>
-					<div class="media well">
-						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
-						<div class="media-body">
-							<a href="#">
-								<h3 class="media-heading">
-								Nested media heading
-							</h3>
-							</a>
-							<a href="/notice_content">
-							<div class="medias">
-								<div class="media-body qwqw">
-										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
-									
-								</div>
-							</div>
-							</a>
-							
-						</div>
-					</div>
-					<div class="media well">
-						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
-						<div class="media-body">
-							<a href="#">
-								<h3 class="media-heading">
-								Nested media heading
-							</h3>
-							</a>
-							<a href="/notice_content">
-							<div class="medias">
-								<div class="media-body qwqw">
-										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
-									
-								</div>
-							</div>
-							</a>
-							
-						</div>
-					</div>
-					<div class="media well">
-						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
-						<div class="media-body">
-							<a href="#">
-								<h3 class="media-heading">
-								Nested media heading
-							</h3>
-							</a>
-							<a href="/notice_content">
-							<div class="medias">
-								<div class="media-body qwqw">
-										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
-									
-								</div>
-							</div>
-							</a>
-							
-						</div>
-					</div>
-					<div class="media well">
-						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
-						<div class="media-body">
-							<a href="#">
-								<h3 class="media-heading">
-								Nested media heading
-							</h3>
-							</a>
-							<a href="/notice_content">
-							<div class="medias">
-								<div class="media-body qwqw">
-										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
-									
-								</div>
-							</div>
-							</a>
-							
-						</div>
-					</div>
+					
+					
 					
 					
 				</div>
@@ -238,7 +50,26 @@
 <script>
 	export default {
 		name: 'outbox',
-		data() {}
+		data() {
+			return{
+				outboxs:[]
+			}
+		},
+		created:function(){
+			this.getoutbox();
+		},
+		methods:{
+			getoutbox:function(){
+				this.$http.get("http://localhost/message/outbox").then(
+					function(result){
+						this.outboxs = result.body;
+					},
+					function(error){
+						alert("数据加载失败.")
+					}
+				)
+			}
+		}
 	}
 </script>
  

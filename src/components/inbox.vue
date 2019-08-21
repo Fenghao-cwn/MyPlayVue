@@ -12,96 +12,27 @@
 					</blockquote>
 					<div style="height: 42px;margin-bottom: 23px;">
 					</div>
-					<div class="media well">
-						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
-						<div class="media-body">
-							
-							<h3 class="media-heading">
-								<a href="#">Nested media heading</a><span>&nbsp;|&nbsp;<a href="#">回复</a></span>
-							</h3>
-							<a href="/notice_content">
-							<div class="medias">
-								<div class="media-body qwqw">
-										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
-									
+					
+					<div v-for="inbox in inboxs">
+						<div class="media well">
+							 <a href="#" class="pull-left  "><img   :src="inbox.photourl" class="media-object head-sculpture" alt='' /></a>
+							<div class="media-body">
+								<h3 class="media-heading">
+									<a href="#">{{inbox.name}}</a><span>&nbsp;|&nbsp;<a href="#">回复</a></span>&nbsp;&nbsp;&nbsp;<span>{{inbox.createdate}}</span>
+								</h3>
+								<a href="/notice_content">
+								<div class="medias">
+									<div class="media-body qwqw">
+										{{inbox.content}}
+									</div>
 								</div>
+								</a>
+								
 							</div>
-							</a>
-							
 						</div>
 					</div>
-					<div class="media well">
-						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
-						<div class="media-body">
-							
-							<h3 class="media-heading">
-								<a href="#">Nested media heading</a><span>&nbsp;|&nbsp;<a href="#">回复</a></span>
-							</h3>
-							<a href="/notice_content">
-							<div class="medias">
-								<div class="media-body qwqw">
-										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
-									
-								</div>
-							</div>
-							</a>
-							
-						</div>
-					</div>
-					<div class="media well">
-						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
-						<div class="media-body">
-							
-							<h3 class="media-heading">
-								<a href="#">Nested media heading</a><span>&nbsp;|&nbsp;<a href="#">回复</a></span>
-							</h3>
-							<a href="/notice_content">
-							<div class="medias">
-								<div class="media-body qwqw">
-										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
-									
-								</div>
-							</div>
-							</a>
-							
-						</div>
-					</div>
-					<div class="media well">
-						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
-						<div class="media-body">
-							
-							<h3 class="media-heading">
-								<a href="#">Nested media heading</a><span>&nbsp;|&nbsp;<a href="#">回复</a></span>
-							</h3>
-							<a href="/notice_content">
-							<div class="medias">
-								<div class="media-body qwqw">
-										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
-									
-								</div>
-							</div>
-							</a>
-							
-						</div>
-					</div>
-					<div class="media well">
-						 <a href="#" class="pull-left  "><img   src="../../static/images/c.jpg" class="media-object head-sculpture" alt='' /></a>
-						<div class="media-body">
-							
-							<h3 class="media-heading">
-								<a href="#">Nested media heading</a><span>&nbsp;|&nbsp;<a href="#">回复</a></span>
-							</h3>
-							<a href="/notice_content">
-							<div class="medias">
-								<div class="media-body qwqw">
-										Nested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media headingNested media heading
-									
-								</div>
-							</div>
-							</a>
-							
-						</div>
-					</div>
+					
+					
 					
 					
 					 
@@ -121,7 +52,26 @@
 <script>
 	export default {
 		name: 'inbox',
-		data() {}
+		data() {
+			return{
+				inboxs:[]
+			}
+		},
+		created:function(){
+			this.getinbox();
+		},
+		methods:{
+			getinbox:function(){
+				this.$http.get("http://localhost/message/inbox").then(
+					function(result){
+						this.inboxs = result.body;
+					},
+					function(error){
+						alert("数据加载失败.")
+					}
+				)
+			}
+		}
 	}
 </script>
  
