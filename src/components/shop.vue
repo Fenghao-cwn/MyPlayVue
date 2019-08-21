@@ -5,29 +5,20 @@
 
 				<div class="recommended">
 					<div class="recommended-grids">
-
-
 						<div id="top" class="callbacks_container" v-for="type in typeList ">
 							<div class="recommended-info" style="margin-top: 2em;">
-								<h3>{{type.name}}</h3>
+								<h3>{{type.typeName}}</h3>
+								
 							</div>
-
-
-
 							<ul class="rslides callbacks callbacks1" id="slider3">
-
 								<li id="callbacks1_s0" style="display: block; float: left; position: relative; opacity: 1; z-index: 2; transition: opacity 500ms ease-in-out 0s;"
 								 class="callbacks1_on">
-									<div class="animated-grids" v-for="(item,index) in goodList" v-if="item.type_id == type.id">
-
-
-
+									<div class="animated-grids" v-for="(item,index) in goodList" v-if="item.typeId == type.id">
 										<div class="col-md-3 resent-grid recommended-grid slider-first">
 											<div class="resent-grid-img recommended-grid-img">
-												<a href="single.html"><img :src="item.good_img" alt=""></a>
+												<a href="single.html"><img :src="item.picture" alt=""></a>
 											</div>
 											<div class="resent-grid-info recommended-grid-info">
-
 												<h4>
 													<a href="single.html">
 														{{item.name}}
@@ -35,10 +26,6 @@
 												</h4>
 												<h4>${{item.price}}.00</h4>
 												<a class="btn btn-primary" href="#">购买</a>
-
-
-
-
 
 											</div>
 										</div>
@@ -66,118 +53,44 @@
 		data() {
 			return {
 				typeList: [{
-						'id': 101,
-						'name': "类别1"
-					},
-					{
-						'id': 102,
-						'name': "类别2"
-					},
-					{
-						'id': 103,
-						'name': "类别3"
+						'id':'' ,
+						'typeName': ''
+					}],
+
+			goodList: [{
+					'id': '', //商品id
+					'name': "", //商品名
+					'picture': '', //图片链接
+					'price': '', //单价
+					'introduce': "",
+					'typeId':''
+				}]
+			}
+		},
+		created:function(){
+			this.shoplist();
+			this.type()
+		},
+		methods:{
+			type:function(){
+				this.$http.get("http://localhost:80/goodsType/selectType").then(
+					function(result){
+						this.typeList=result.body;
+					},function(){
+						
 					}
-				],
-
-				goodList: [{
-						'id': 1001, //商品id
-						'name': "天长地久礼盒1", //商品名
-						'good_img': 'static/images/goods.jpg', //图片链接
-						'price': 800, //单价
-						'introduce': "游戏表情心意礼盒-天长地久",
-						'type_id': 101
-					},
-					{
-						'id': 1002, //商品id
-						'name': "天长地久礼盒2", //商品名
-						'good_img': 'static/images/goods1.jpg', //图片链接
-						'price': 800, //单价
-						'introduce': "游戏表情心意礼盒-天长地久",
-						'type_id': 101
-					},
-					{
-						'id': 1003, //商品id
-						'name': "天长地久礼盒3", //商品名
-						'good_img': 'static/images/goods2.jpg', //图片链接
-						'price': 800, //单价
-						'introduce': "游戏表情心意礼盒-天长地久",
-						'type_id': 101
-					},
-					{
-						'id': 1004, //商品id
-						'name': "天长地久礼盒4", //商品名
-						'good_img': 'static/images/goods3.jpg', //图片链接
-						'price': 800, //单价
-						'introduce': "游戏表情心意礼盒-天长地久",
-						'type_id': 101
-					},
-					{
-						'id': 1005, //商品id
-						'name': "天长地久礼盒5", //商品名
-						'good_img': 'static/images/goods3.jpg', //图片链接
-						'price': 800, //单价
-						'introduce': "游戏表情心意礼盒-天长地久",
-						'type_id': 102
-					},
-					{
-						'id': 1006, //商品id
-						'name': "天长地久礼盒5", //商品名
-						'good_img': 'static/images/goods3.jpg', //图片链接
-						'price': 800, //单价
-						'introduce': "游戏表情心意礼盒-天长地久",
-						'type_id': 102
-					},
-					{
-						'id': 1004, //商品id
-						'name': "天长地久礼盒5", //商品名
-						'good_img': 'static/images/goods3.jpg', //图片链接
-						'price': 800, //单价
-						'introduce': "游戏表情心意礼盒-天长地久",
-						'type_id': 102
-					},
-					{
-						'id': 1004, //商品id
-						'name': "天长地久礼盒5", //商品名
-						'good_img': 'static/images/goods3.jpg', //图片链接
-						'price': 800, //单价
-						'introduce': "游戏表情心意礼盒-天长地久",
-						'type_id': 102
-					},
-					{
-						'id': 1004, //商品id
-						'name': "天长地久礼盒5", //商品名
-						'good_img': 'static/images/goods3.jpg', //图片链接
-						'price': 800, //单价
-						'introduce': "游戏表情心意礼盒-天长地久",
-						'type_id': 103
-					},
-					{
-						'id': 1004, //商品id
-						'name': "天长地久礼盒5", //商品名
-						'good_img': 'static/images/goods3.jpg', //图片链接
-						'price': 800, //单价
-						'introduce': "游戏表情心意礼盒-天长地久",
-						'type_id': 103
-					},
-					{
-						'id': 1004, //商品id
-						'name': "天长地久礼盒5", //商品名
-						'good_img': 'static/images/goods3.jpg', //图片链接
-						'price': 800, //单价
-						'introduce': "游戏表情心意礼盒-天长地久",
-						'type_id': 103
-					},
-
-					{
-						'id': 1004, //商品id
-						'name': "天长地久礼盒5", //商品名
-						'good_img': 'static/images/goods3.jpg', //图片链接
-						'price': 800, //单价
-						'introduce': "游戏表情心意礼盒-天长地久",
-						'type_id': 103
-					}
-
-				]
+				)
+			},
+			
+			shoplist:function(){
+				this.$http.get("http://localhost:80/goods/select").then(
+					function(result){
+						console.log(result.body);
+						this.goodList=result.body;
+					
+				   },function(){
+				   	
+				   })
 			}
 		}
 	}
