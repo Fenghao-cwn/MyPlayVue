@@ -18,15 +18,14 @@
 							 <a href="#" class="pull-left  "><img   :src="inbox.photourl" class="media-object head-sculpture" alt='' /></a>
 							<div class="media-body">
 								<h3 class="media-heading">
-									<a href="#">{{inbox.name}}</a><span>&nbsp;|&nbsp;<a href="#">回复</a></span>&nbsp;&nbsp;&nbsp;<span>{{inbox.createdate}}</span>
+									<a href="#">{{inbox.fromname}}</a><span>&nbsp;|&nbsp;<a href="#">回复</a></span>&nbsp;&nbsp;&nbsp;<span>{{inbox.createdate}}</span>
 								</h3>
-								<a href="/notice_content">
-								<div class="medias">
+								<div class="medias"  @click="getcontent(inbox.id)">
 									<div class="media-body qwqw">
 										{{inbox.content}}
 									</div>
 								</div>
-								</a>
+								
 								
 							</div>
 						</div>
@@ -70,6 +69,14 @@
 						alert("数据加载失败.")
 					}
 				)
+			},
+			getcontent:function(id){
+				this.$router.push({
+					path:"/notice_content",
+					query:{
+						id:id
+					}
+				})
 			}
 		}
 	}

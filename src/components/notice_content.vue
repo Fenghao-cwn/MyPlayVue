@@ -4,15 +4,19 @@
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<div class="jumbotron">
-				<h1>
-					Hello, world!
-				</h1>
-				<p class="contenti-in">
-					This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
-				 This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more uni
-				 This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more uni
-				</p>
 				
+				<p class="contenti contentis">
+					To: {{message.toname}}
+				 
+				</p>
+				<p class="contenti-in">
+					{{message.content}}
+				 
+				</p>
+				<p class="contenti contentis" style="float: right; margin-right: 200px;">
+					—— {{message.fromname}} 
+					
+				</p>
 			</div>
 		</div>
 	</div>
@@ -24,10 +28,44 @@
 <script>
 	export default {
 		name: 'notice_content',
-		data() {}
+		data() {
+			return{
+				message:{
+					fromname:'',
+					toname:'',
+					content:''
+					
+				}
+			}
+		},
+		created:function(){
+			this.getinfo();
+		},
+		methods:{
+			getinfo:function(){
+				var id = this.$route.query.id;
+				console.log(id);
+				this.$http.get("http://localhost/message/getMessageById",{//传参
+					params:{
+						id:id
+					}
+				}).then(
+					function(result){
+						this.message.fromname = result.body.fromname;
+						this.message.toname = result.body.toname;
+						this.message.content = result.body.content;
+					},
+					function(error){
+						alert("数据加载失败.")
+					}
+				)
+			}
+		}
 	}
 </script>
  
 <style scoped>
-
+.contentis{
+	font-weight: 400;
+}
 </style>

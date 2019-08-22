@@ -15,18 +15,16 @@
 					
 					<div v-for="outbox in outboxs">
 						<div class="media well">
-							 <a href="#" class="pull-left  "><img  :src="outbox.photourl"  class="media-object head-sculpture" alt='' /></a>
+						    <a href="#" class="pull-left  "><img  :src="outbox.photourl"  class="media-object head-sculpture" alt='' /></a>
 							<div class="media-body">
 								<h3 class="media-heading">
-									<a href="#">{{outbox.name}}</a><span>| {{outbox.createdate}}</span>
+									<a href="#">{{outbox.toname}}</a><span>| {{outbox.createdate}}</span>
 								</h3>
-								<a href="/notice_content">
-								<div class="medias">
+								<div class="medias" @click="getcontent(outbox.id)">
 									<div class="media-body qwqw">
 											{{outbox.content}}
 									</div>
 								</div>
-								</a>
 								
 							</div>
 						</div>
@@ -68,6 +66,14 @@
 						alert("数据加载失败.")
 					}
 				)
+			},
+			getcontent:function(id){
+				this.$router.push({
+					path:"/notice_content",
+					query:{
+						id:id
+					}
+				})
 			}
 		}
 	}
