@@ -10,30 +10,20 @@
 			<!--视频-->
 			<div class="recommended">
 				<div class="recommended-grids img-big">
-					<div class="col-md-2 resent-grid recommended-grid show-video-grid img-coll">
+					<div v-for="video in videos" class="col-md-2 resent-grid recommended-grid show-video-grid img-coll">
 						<div class="resent-grid-img recommended-grid-img">
-							<a href=""><img src="../../static/images/c1.jpg" alt="" /></a>
-							<div class="time small-time show-time">
-								<p>5:09</p>
-							</div>
-							<div class="clck show-clock">
-								<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-							</div>
+							<a href=""><img :src="video.photourl" style="width: 200px;height: 150px;" alt="" /></a>
 						</div>
-						<div class="resent-grid-info recommended-grid-info">
+						<div style="width: 200px;height: 95px;" class="resent-grid-info recommended-grid-info">
 							<div class="caption">
-								<h5><a href="single.html" class="title">Varius sit sed Nullam interdum</a></h5>
+								<h5 style="margin-top: -5px;"><a href="#" style="margin-top: 3px;" class="title">{{video.title}}</a></h5>
 								<p class="solo-p">
-									Cras justo odio, dapibus ac facilisis in,egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id
+									{{video.vediodetail}}
 								</p>
 								<p>	
-									<a  href="#">Action</a>
+									<a  href="#" style="display: block;margin-top: 7px;margin-left: 30px;color: #9E9E9E;">上传时间：{{video.createtime}}</a>
 								</p>
 							</div>
-							<!--<h5><a href="single.html" class="title">Varius sit sed Nullam interdum</a></h5>
-									<p class="author">
-									<a href="#" class="author">John Maniya</a></p>
-									<p class="views" style="margin-left: 20px;">1,897 views</p>-->
 						</div>
 					</div>
 					<div class="clearfix"> </div>
@@ -48,30 +38,29 @@
 			</div>
 			<div class="recommended">
 				<div class="recommended-grids img-big">
-					<div class="col-md-2 resent-grid recommended-grid show-video-grid img-coll">
+					<div v-for="AuthorCollection in AuthorCollections" class="col-md-2 resent-grid recommended-grid show-video-grid img-coll">
 						<div class="resent-grid-img recommended-grid-img">
-							<a href=""><img src="../../static/images/c1.jpg" alt="" /></a>
-							<div class="time small-time show-time">
-								<p>5:09</p>
-							</div>
-							<div class="clck show-clock">
-								<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-							</div>
+							<a href=""><img :src="AuthorCollection.vphoto" style="width: 200px;height: 150px;" alt="" /></a>
 						</div>
-						<div class="resent-grid-info recommended-grid-info">
-							<h5><a href="single.html" class="title">Varius sit sed Nullam interdum</a></h5>
-							<p class="solo-p">
-									Cras justo odio, dapibus ac facilisis in,egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id
-								</p>
-							<div class="img-user col-md-1 column">
-								<a href=""><img alt="140x140" src="../../static/img/noface.gif" class="img-circle" /></a>
+						<div style="width: 200px;height: 130px;" class="resent-grid-info recommended-grid-info">
+							<div class="p-title">
+								<h5><a class="title">{{AuthorCollection.title}}</a></h5>
+								<p class="solo-p">
+										{{AuthorCollection.vediodetail}}
+									</p>
 							</div>
-							<p class="author">
-								<a href="#" class="author">John Maniya</a>
-							</p>
-							<p class="views" style="margin-left: 50px;">1,897 views</p>
+							<div class="div-user">	
+								<div class="img-user col-md-1 column">
+									<a href=""><img alt="140x140" :src="AuthorCollection.photourl" class="img-circle" /></a>
+								</div>
+								<p class="author">
+									<a href="#" class="author">{{AuthorCollection.name}}</a>
+								</p>
+								<p class="views" style="margin-left: 50px; width: 100px;">{{AuthorCollection.signature}}</p>
+							</div>
 						</div>
 					</div>
+						
 
 					<div class="clearfix"> </div>
 				</div>
@@ -111,9 +100,46 @@
 	import solo_top from '@/components/solo_top'
 	export default {
 		name: 'solo_message',
-		data() {},
+		data() {
+			return{
+				videos:[],
+				AuthorCollections:[]
+			}
+		},
 		components: {
 			solo_top //组件私有注册
+		},
+		created(){
+			this.loadAuthorVideo();
+			this.loadAuthorCollection();
+		},
+		methods:{
+			loadAuthorVideo(){
+				var aid=this.$route.query.aid;
+				this.$http.get("http://localhost/Personal/selectAuthorVideo",{
+					params:{
+						"aid":aid
+					}
+				}).then(
+					function(result){
+						this.videos=result.body;
+				},function(error){
+					alert("失败")
+				})
+			},
+			loadAuthorCollection(){
+				var aid=this.$route.query.aid;
+				this.$http.get("http://localhost/Personal/selectAuthorCollection",{
+					params:{
+						"aid":aid
+					}
+				}).then(
+					function(result){
+						this.AuthorCollections=result.body;
+				},function(error){
+					alert("失败")
+				})
+			}
 		}
 	}
 </script>
@@ -137,6 +163,7 @@
 	
 	.page-header {
 		margin-left: 30px;
+		margin-top: 20px;
 	}
 	 .solo-p{
 		display: -webkit-box;
@@ -145,14 +172,29 @@
 	    -webkit-box-align: center;
 	    -webkit-line-clamp:2;
 	    overflow: hidden;
+	    height: 27.2px;
+	    width: 170px;
+	    margin-top: -5px;
 
 	}
-	.title{
+
+	.views,.title{
 		display: -webkit-box;
 	    -webkit-box-orient: vertical;
 	    -webkit-box-pack: center;
 	    -webkit-box-align: center;
 	    -webkit-line-clamp:1;
 	    overflow: hidden;
+	   height: 20px;
+	   
+	}
+	.div-user{
+		margin-top: 16px;
+		width: 200px;
+		height: 80px;
+	}
+	.p-title{
+		width: 180px;
+		height: 50px;
 	}
 </style>

@@ -11,14 +11,14 @@
 				<div class="row">
 					<div v-for="video in videos" class="col-md-3 my_video" >
 						<div class="thumbnail">
-							<a href=""><img alt="300x200" :src="video.photourl" /></a>
+							<a href=""><img  alt="300x200" :src="video.photourl" style="width: 294px;height: 220.5px;" /></a>
 							<div class="resent-grid-info recommended-grid-info">
 							<div class="caption">
 								<h5><a href="" class="title">{{video.title}}</a></h5>
 								<p class="video-my">
 									{{video.vediodetail}}
 								</p>
-								<p>
+								<p class="del-p">
 									<button class="btn btn-primary" @click="deleterVideo(video.id)">删除</button>
 									<a class="btn" href="#">上传时间：{{video.createtime}}</a>
 								</p>
@@ -90,13 +90,16 @@
 	.my_video{
 		margin-left: 50px;
 	}
-	.video-my{
+	.video-my,.title{
 		display: -webkit-box;
 	    -webkit-box-orient: vertical;
 	    -webkit-box-pack: center;
 	    -webkit-box-align: center;
-	    -webkit-line-clamp:2;
+	    -webkit-line-clamp:1;
 	    overflow: hidden;
+	}
+	.del-p{
+		margin-top: 10px;
 	}
 	
 </style>
