@@ -1,97 +1,127 @@
 <template>
 	<div class="showall">
-        <!--left -->
-        <div class="showbot">
+		<div class="showbot">
             <div id="showbox">
             	<div id="img">
-            		<img src="static/images/goods2.jpg"  width="400" height="400" />
+            		<img :src="good.picture" width="400" height="400" />
             	</div>
                 <div id="showsum">
-	            	
 	                	<div class="tr-nobdr">
-	                		<h3 style="">商品名</h3>
+	                		<h3 style="">{{good.name}}</h3>
 	                	</div>
 	            		<div class="txt">
-	            			<span class="nowprice">￥<a href="">599.00</a></span>
+	            			<span class="nowprice">￥{{good.price}}.00</a></span>
 	            			
 	            		</div>
 	                	<div class="txt-h">
 	                		<span class="tex-o" style="font-size: 25px;">分类</span>
 	                		<ul class="glist" id="glist">
-	                			<li><a title="type1" href="">手办</a></li>
-	                			<li><a title="type2" href="">周边</a></li>
+	                			<li><a title="type1" href="">{{type.typeName}}</a></li>
+	                			<li><a title="type2" href="">{{type.typeName}}</a></li>
 	                		</ul>
 	                	</div>
 	                	<div class="gcIpt">
 	                		<span class="guT" style="margin-left:5px;font-size: 25px;">数量</span>
-	                		<input id="sub"  type="button" value="-"/>  
-	                		<input id="text" type="text" value="1"style="width:30px; text-align: center; color: #0F0F0F;"/>  
-	                		<input id="add"  type="button" value="+"/>
+	                		<input id="sub"  type="button" value="-" @click="sub" />  
+	                		<input id="text" type="text" readonly="readonly" v-model="num" style="width:50px; text-align: center; color: #0F0F0F;"/>  
+	                		<input id="add"  type="button" value="+" @click="num++"/>
 	                	</div>
 	                	<div class="nobdr-btns">
-	                		<button class="addcart yh">立即购买</button>
+	                		<button class="addcart yh" @click="nowBuy()">立即购买</button>
 	                	</div>
-	                	
-	        		
             	</div>
             </div>
-        </div>
-    </div>  
-            
+        </div>	
+	</div>
 </template>
+
 <script>
 	export default {
 		name: 'goodsInfo',
-		/*data:{
-			i:1,
-			add:document.getElementById("add"),
-		 	i:document.getElementById("text").value,
-			sub:document.getElementById("sub"),
+		data() {
+			return {
+				good:{
+					id: '', //商品id
+					name: '', //商品名
+					picture: '', //图片链接
+					price: '', //单价
+					introduce: '',
+					typeId:''
+				},
+				type:{
+					id:'' ,
+					typeName: ''
+				},
+				num:'1'
+			}
+		},
+		created(){
+			var id = this.$route.query.id;
+			this.getGood(id);
+			
 		},
 		methods:{
-			
-			add:function(){
-				i++,
-				document.getElementById("text").value = i;
+			getGood:function(id){
+				
+				this.$http.get("http://localhost/goods/selectById",{
+					params:{
+						id:id
+					}
+				}).then(
+					function(result){
+						console.log(result.body);
+						this.good = result.body;
+						this.getType();
+					},function(){
+						
+					})
+			},
+			getType:function(){
+				this.$http.get("http://localhost/goodsType/selectTypeById",{
+					params:{
+						id:this.good.typeId
+					}
+				}).then(
+					function(result){
+						console.log(result.body);
+						this.type=result.body;
+					},function(){
+						
+					})
 			},
 			sub:function(){
-	          if (i>1) {
+				if(this.num>1){
+					this.num--;		
+				}
+				this.num=1;
+			}
+		}
+	}
+</script>
+<!--<script>
+	window.onload = function(){
+		var add = document.getElementById("add");
+		var i = document.getElementById("text").value;
+		console.log(add+"***********")
+		console.log(i+"------")
+		var sub = document.getElementById("sub");
+		add.onclick = function(){			
+			i++;
+			alert (num);
+		}
+		sub.onclick = function(){
+			if (i>1) {
 				i--;
 				document.getElementById("text").value = i;
 			} else{
 				i=1;
 				document.getElementById("text").value = i;
 			}
-	    } 
-	}*/
-}
-</script>
-<script>
-	window.onload = function(){
-				var add = document.getElementById("add");
-				var i = document.getElementById("text").value;
-				var sub = document.getElementById("sub");
-				
-				add.onclick = function(){
-					i++;
-					document.getElementById("text").value = i;
-					
-				}
-				sub.onclick = function(){
-					if (i>1) {
-						i--;
-						document.getElementById("text").value = i;
-						
-					} else{
-						i=1;
-						document.getElementById("text").value = i;
-						
-					}
-				}				
-			}	
+		}				
+	}	
 
-</script>
-	
+</script>-->
+
 <style>
 	#app{margin-left:340px; margin-top:100px;width:1000px;}
 	

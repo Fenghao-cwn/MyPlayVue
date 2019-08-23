@@ -104,7 +104,6 @@ export default new Router({
       name:'list',
       component:list
     },
-
     {
       path: '/shop',
       name: 'shop',
@@ -130,10 +129,8 @@ export default new Router({
       name: 'goodsInfo',
       component: goodsInfo
     }
-
-
-
-
+	
+		
 
   ]
 })

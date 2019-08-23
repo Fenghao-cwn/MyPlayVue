@@ -2,7 +2,6 @@
 	<div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<div class="main-grids">
-
 				<div class="recommended">
 					<div class="recommended-grids">
 						<div id="top" class="callbacks_container" v-for="type in typeList ">
@@ -24,8 +23,9 @@
 														{{item.name}}
 													</a>
 												</h4>
-												<h4>${{item.price}}.00</h4>
-												<a class="btn btn-primary" href="#">购买</a>
+												<h4>￥{{item.price}}.00</h4>
+												<!--<a class="btn btn-primary" :href="'/goodsInfo/:'+item.id">购买</a>-->
+											     <button class="btn btn-primary"  @click="goumai(item.id)">购买</button>
 
 											</div>
 										</div>
@@ -91,6 +91,15 @@
 				   },function(){
 				   	
 				   })
+			},
+			goumai:function(id){
+				console.log("传之前："+id);
+				this.$router.push({
+					path:'/goodsInfo',
+					query:{						
+						id:id
+					}
+				})
 			}
 		}
 	}
