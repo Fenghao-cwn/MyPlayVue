@@ -112,7 +112,17 @@ blockquote{
 }
 .media{
 	padding-left: 4em;
+	position: relative;
+}
 	
+	
+.boxclose{
+    font-size: 20px;
+    position: absolute;
+    top: 4px;
+    right: 11px;
+    color: gray;
+    cursor: default;
 }
 .medias{
 	cursor: pointer;

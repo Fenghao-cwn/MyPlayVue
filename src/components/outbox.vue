@@ -15,6 +15,7 @@
 					
 					<div v-for="outbox in outboxs">
 						<div class="media well">
+							<div class="boxclose" @click="close(outbox.id)">×</div>
 						    <a href="#" class="pull-left  "><img  :src="outbox.photourl"  class="media-object head-sculpture" alt='' /></a>
 							<div class="media-body">
 								<h3 class="media-heading">
@@ -57,6 +58,16 @@
 			this.getoutbox();
 		},
 		methods:{
+			close:function(id){//修改
+				this.$http.put("http://localhost/message/outboxclose",{//传参
+					"id":id
+				}).then(
+					function(){
+					this.getoutbox();	
+					},
+					function(){}
+				)
+			},
 			getoutbox:function(){
 				this.$http.get("http://localhost/message/outbox").then(
 					function(result){

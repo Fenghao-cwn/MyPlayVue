@@ -62,11 +62,11 @@
 		},
 		methods:{
 			close:function(id){//修改
-				this.$http.put("http://localhost/message/close",{//传参
-					"id":this.inbox.id
+				this.$http.put("http://localhost/message/inboxclose",{//传参
+					"id":id
 				}).then(
 					function(){
-						
+					this.getinbox();	
 					},
 					function(){}
 				)
@@ -94,16 +94,5 @@
 </script>
  
 <style scoped>
-.media{
-	position: relative;
-}	
-	
-.boxclose{
-    font-size: 20px;
-    position: absolute;
-    top: 4px;
-    right: 11px;
-    color: gray;
-    cursor: default;
-}
+
 </style>
