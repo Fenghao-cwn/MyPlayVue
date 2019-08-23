@@ -25,34 +25,44 @@
 							<a href="/my_upload">上传视频</a>
 						</div>
 						<div class="signin">
-							<a href="#small-dialog3" class="play-icon popup-with-zoom-anim">注册</a>
+							<a href="#small-dialog3" class="play-icon popup-with-zoom-anim" v-show="registers">注册</a>
 							<!-- pop-up-box -->
 
 							<!--//pop-up-box -->
-							
-							<div id="small-dialog3" class="mfp-hide">
+
+							<div id="small-dialog3" class="mfp-hide" v-show="registerin">
 								<h3>创建账号</h3>
 								<div class="signup">
-									<form>
-										<input type="text" class="email" placeholder="昵称" required="required" />
-										<input type="password" placeholder="密码" required="required" pattern=".{6,}" autocomplete="off" />
-										<input type="text" class="email" placeholder="填写常用手机号" maxlength="10" pattern="[1-9]{1}\d{9}" />
+									<div>
+										<input type="text" class="email" placeholder="昵称" v-model="user.name" required="required" />
+										
+										<input type="password" placeholder="密码" v-model="user.password" required="required" pattern=".{6,}" autocomplete="off" />
+										<!-- @keyup.native vue element-ui注册当键盘键被松开时的事件，@blur 注册失去焦点事件，@input 注册当用户输入时触发事件，maxlength 限制input框输入的最大长度 -->
+										<input type="text" class="email" @keyup.native="Phonerule" @blur="rulePhoneTrue" placeholder="请填写常用手机号" v-model="user.phone" maxlength="11" pattern="^1[34578]\d{9}$" />
+										<div style="color: red;" v-show="contactPhoneShow">
+											{{contactPhoneText}}
+										</div>
+										<div style="color: red;" v-show="phoneExitShow">
+											{{phoneExitText}}
+										</div>
 										<div class="note">
-											<input type="text" class="email " placeholder="请输入短信验证码" maxlength="10" pattern=".{6,}" />
-											<button class="note-button el-button">
-															<span >点击获取</span>
-														</button>
+											<input type="text" class="email " placeholder="请输入短信验证码" v-model="codes" maxlength="4" pattern=".{4,}" />
+											<button v-show="sendCode" class="note-button el-button" @click="getCode" :disabled="isSend">
+												<span >点击获取</span>
+											</button>
+											<button v-show="!sendCode" class="note-button el-button">
+												<span >{{times}}s后重试</span>
+											</button>
 										</div>
-										<input type="submit" value="	注 册	" />
+										<input type="submit" value="	注 册	" @click="register" />
 										<div class="tologin">
-											<a href="#">已有账号，直接登录></a>
+											<a href="#small-dialog" class="play-icon popup-with-zoom-anim">已有账号，直接登录></a>
 										</div>
-									</form>
+									</div>
 								</div>
 								<div class="clearfix"> </div>
 							</div>
-							
-							
+
 							<div id="small-dialog5" class="mfp-hide">
 								<h3>Help</h3>
 								<div class="help-grid">
@@ -107,22 +117,21 @@
 
 						</div>
 						<div class="signin">
-							<a href="#small-dialog" class="play-icon popup-with-zoom-anim">登录</a>
-							<div id="small-dialog" class="mfp-hide">
+							<a href="#small-dialog" v-show="loginbutton" class="play-icon popup-with-zoom-anim">登录</a>
+							<a href="#" @click="logout" v-show="!loginbutton" class="play-icon popup-with-zoom-anim">退出登录</a>
+							<div id="small-dialog" class="mfp-hide" v-show="loginin">
 								<h3>Login</h3>
 								<div class="signup">
-									<form>
-										<input type="text" class="email" v-model="user.phone" placeholder="您的手机号"  required="required" pattern=".{11,}"/>
-										<input type="password" v-model="user.password" placeholder="密码" required="required" pattern=".{6,}"  autocomplete="off" />				
+										<input type="text" class="email" v-model="user.phone" placeholder="您的手机号" required="required" pattern=".{11,}" />
+										<input type="password" v-model="user.password" placeholder="密码" required="required" pattern=".{6,}" autocomplete="off" />
 										<p style="overflow: hidden;">
-										<input type="submit" style="float: left;margin-left: 5%;"  value="	 登  录	 " v-on:click="login"  />
-									  	<input type="submit" style="float: right;margin-right: 5%;"  value="	 注 册	  "/>
+											<input type="submit" style="float: left;margin-left: 5%;" value="	 登  录	 " v-on:click="login" />
+											<a href="#small-dialog3" class="play-icon popup-with-zoom-anim">
+												<input type="submit" style="float: right;margin-right: 5%;" value="	注 册	">	
+											</a>
+											
 										</p>
-										<div class="forget-pass">
-												<a href="#">忘记密码？</a>
-										</div>
-									</form>
-								
+										
 								</div>
 								<div class="clearfix"> </div>
 							</div>
@@ -159,10 +168,10 @@
 					</li>
 					<!--电影分类-->
 					<ul class="cl-effect-2" v-for="category in categorys">
-						<li @click="select(category.id)">		
+						<li @click="select(category.id)">
 							<a class="menu1">{{category.name}}</a>
 						</li>
-						
+
 					</ul>
 
 					<!-- script-for-menu -->
@@ -177,7 +186,7 @@
 						<a href="#" class="menu"><span class="glyphicon glyphicon-film glyphicon-king" aria-hidden="true"></span>个人中心<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
 					</li>
 					<ul class="cl-effect-1">
-						
+
 						<li>
 							<a href="/my_collection">我的收藏</a>
 						</li>
@@ -210,14 +219,14 @@
 						<li>
 							<a href="/notice">系统通知</a>
 						</li>
-						
+
 					</ul>
 				</ul>
 			</div>
 		</div>
 		<div class="clearfix"> </div>
 		<!--左侧结束-->
-		
+
 		<router-view/>
 	</div>
 </template>
@@ -226,18 +235,140 @@
 	export default {
 		name: 'App',
 		data() {
-			return{
-				user:{
-					phone:'',
-					password:''
+			return {
+				user: {
+					phone: '',
+					password: '',
+					name:''
 				},
-				categorys: []
+				categorys: [],
+				sendCode: true,
+				times: 0,
+				contactPhoneShow: false,
+				contactPhoneText: '',
+				phoneExitShow:true,
+				phoneExitText:'',
+				isSend: true,
+				loginbutton: true,
+				codes: '',
+				pe:0,
+				loginin:true,
+				registers:true,
+				registerin:true
 			}
+
 		},
 		created: function() {
 			this.loadecate();
+			this.Refresh();
 		},
-		methods:{
+		methods: {
+			Refresh:function(){
+				this.$http.get("http://localhost/user/Refresh").then(
+					
+					function(result){
+						this.Refresh = result.data;
+						if (this.Refresh==1) {
+							this.registers=false
+							this.loginbutton=false
+							
+						} else{
+							this.loginbutton=true
+							this.loginin = true;
+							this.registers = true;
+							this.registerin = true;
+						}
+					},
+					function(error){
+						alert("退出登录失败，请重试.")
+					}
+				)
+			},
+			//退出登录
+			logout:function(){
+				this.$http.get("http://localhost/user/logout").then(
+					function(result){
+						this.loginbutton = true;
+						this.loginin = true;
+						this.registers = true;
+						this.registerin = true;
+					},
+					function(error){
+						alert("退出登录失败，请重试.")
+					}
+				)
+			},
+			//注册
+			register:function(){
+				/*var _this = this;*/
+				this.$http.post("http://localhost/user/register",{//传参
+					"name":this.user.name,
+					"password":this.user.password,
+					"phone":this.user.phone,
+					"codes":this.codes
+				}).then(
+					function(result){
+						this.registers = false;
+						this.registerin = false
+					},
+					function(error){
+						alert("注册失败，请重试.")
+					}
+				)
+			},
+			//手机号规则
+			Phonerule() {
+				this.user.phone = this.user.phone.replace(/^1[34578]\d{9}$/, '')
+			},
+			rulePhoneTrue() {
+				var reg = new RegExp(/^1[34578]\d{9}$/)
+				if(!this.user.phone) {
+					this.contactPhoneShow = true
+					this.contactPhoneText = '手机号不能为空'
+					this.isSend = true
+				} else if(!reg.test(this.user.phone)) {
+					this.contactPhoneShow = true
+					this.contactPhoneText = '请输入正确的手机号'
+					this.isSend = true
+				} else {
+					this.contactPhoneShow = false
+					this.isSend = false
+				}
+			},
+			//发送code
+			getCode: function() {
+				this.$http.post("http://localhost/user/sendCode", { //传参
+					"phone": this.user.phone
+				}).then(
+					function(result) {
+						console.log("发送成功");
+						console.log(this.user.phone);
+						
+						this.pe = result.data;
+						if (this.pe>=1) {
+							this.phoneExitShow = true;
+							this.phoneExitText = '该手机号已注册,请前去登录界面'
+							this.isSend = true
+						} else{
+							this.isSend = false
+						}
+						console.log(this.pe);
+					},
+					function(error) {
+						console.log("发送失败");
+					}
+				)
+				this.sendCode = false;
+				//倒计时60s
+				this.times = 60;
+				var timetimer = setInterval(() => {
+					this.times--;
+					if(this.times <= 0) {
+						this.sendCode = true;
+						clearInterval(timetimer);
+					}
+				}, 1000);
+			},
 			//查找类别
 			loadecate: function() {
 				this.$http.get("http://localhost:80/cate/cates").then(
@@ -258,24 +389,21 @@
 				})
 			},
 			//登录
-			login:function(){
+			login: function() {
 				console.log(this.user.phone);
 				console.log(this.user.password);
-				
-				this.$http.post("http://localhost/user/login",{//传参
-					"phone":this.user.phone,
-					"password":this.user.password
+
+				this.$http.post("http://localhost/user/login", { //传参
+					"phone": this.user.phone,
+					"password": this.user.password
 				}).then(
-					function(result){
-						/*this.user = result.body;*/
-						
-						/*alert("登录成功.");*/
-						this.$router.push({
-							path:"/"//路径
-							})
+					function(result) {
+						this.registers = false;
+						this.loginbutton = false;
+						this.loginin = false;
 						
 					},
-					function(error){
+					function(error) {
 						alert("登录失败，请重新登录.")
 					}
 				)
