@@ -8,7 +8,7 @@
 				</h1>
 			</div>
 			<div class="recommended">
-				<div class="row">
+				<div class="row" style="width: 1266px;">
 					<div v-for="video in videos" class="col-md-3 my_video" >
 						<div class="thumbnail">
 							<a href=""><img  alt="300x200" :src="video.photourl" style="width: 294px;height: 220.5px;" /></a>
@@ -20,7 +20,7 @@
 								</p>
 								<p class="del-p">
 									<button class="btn btn-primary" @click="deleterVideo(video.id)">删除</button>
-									<a class="btn" href="#">上传时间：{{video.createtime}}</a>
+									<a class="btn" style="color: #9E9E9E;">上传时间：{{video.createtime}}</a>
 								</p>
 							</div>
 							</div>
@@ -97,6 +97,7 @@
 	    -webkit-box-align: center;
 	    -webkit-line-clamp:1;
 	    overflow: hidden;
+	    letter-spacing: 1.3px;
 	}
 	.del-p{
 		margin-top: 10px;

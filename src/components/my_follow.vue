@@ -7,14 +7,14 @@
 					People of concern <small>关注的人</small>
 				</h1>
 			</div>
-			<div class="media">
-				<h5>Tom Brown</h5>
+			<div class="media" v-for="Myfollow in Myfollows">
+				<h5>昵称：{{Myfollow.name}}</h5>
 				<div class="img-user col-md-1 column">
-					<a href="/solo_top"><img alt="140x140" src="../../static/img/noface.gif" class="img-circle" /></a>
+					<a href="" @click="selectAuthor(Myfollow.id)"><img alt="140x140" :src="Myfollow.photourl" class="img-circle" /></a>
 				</div>
 				<div class="media-body">
-					<p>Maecenas ultricies rhoncus tincidunt maecenas imperdiet ipsum id ex pretium hendrerit maecenas imperdiet ipsum id ex pretium hendrerit</p>
-					<span><a href="#"> 取消关注 </a></span>
+					<p>个性签名：{{Myfollow.signature}}</p>
+					<span><a href="#" @click="delFollow(Myfollow.id)"> 取消关注 </a></span>
 				</div>
 			</div>
 
@@ -27,9 +27,51 @@
 	import message_top from '@/components/message_top'
 	export default {
 		name: 'my_follow',
-		data() {},
+		data() {
+			return{
+				Myfollows:[]
+			}
+		},
 		components: {
 			message_top //组件私有注册
+		},
+		created(){
+			this.loadFollow();
+		},
+		methods:{
+			loadFollow(){
+				this.$http.get("http://localhost/Personal/selectMyFollow").then(
+					function(result){
+						this.Myfollows=result.body;
+				},function(error){
+					alert("查找关注失败");
+				})
+			},
+			delFollow(id){
+				var flag=confirm("确定要删除该关注？");
+				if(flag){
+					this.$http.get("http://localhost/Personal/deleterMyFollow",{
+					params:{
+						"toUid":id    //把关注的userid传过去
+					}
+				}).then(
+					function(result){
+						this.loadFollow();
+				},function(error){
+					alert("查找关注失败");
+				})
+				}
+				
+			},
+			selectAuthor:function(aid){//点击头像，跳转到这个页面，并携带着参数
+				this.$router.push({
+					path:"/solo_message",
+					query:{
+						"aid":aid
+					}
+				})
+			
+			}
 		}
 	}
 </script>
@@ -46,6 +88,15 @@
 		margin-left: 20px;*/
 	}
 	.page-header{
+		margin-top: 20px;
 		margin-left: 30px;
+	}
+	.media-body p{
+		display: -webkit-box;
+	    -webkit-box-orient: vertical;
+	    -webkit-box-pack: center;
+	   /* -webkit-box-align: center;*/
+	    -webkit-line-clamp:1;
+	    overflow: hidden;
 	}
 </style>

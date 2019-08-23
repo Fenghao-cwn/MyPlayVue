@@ -8,18 +8,25 @@
 				</h1>
 			</div>
 			<div class="recommended">
-				<div class="col-sm-7" style="width: 880px; margin-left:25px;margin-top: 20px;">
+				<div v-for="ueditor in ueditors" class="col-sm-7" style="width: 880px; margin-left:25px;margin-top: 20px;">
+					
 				<div class="panel panel-info">
-					<div class="panel-heading">
-						<div class="col-md-1 column">
-							<a href=""><img alt="140x140" src="../../static/img/noface.gif" class="img-circle" /></a>
-						</div>
-						<b style="font-size:medium;margin-left: -14px;">酉月未央 </b>
-
+					<div class="panel-heading" style="height: 1px;border-bottom: none;">
+					<img  style="margin-left: 810px;width:18px;height:18px;" src="../../static/img/del.png" class="upload_warp_img_div_del" @click="deleter(ueditor.id)">
 					</div>
-					<div class="panel-body">
-						<p>平日无事其乐融融</p>
-						<p>一朝犯险作鸟兽散</p>
+					<div class="panel-heading">
+						<div class="col-md-1 column" style="margin-top: -21px;">
+							<a href=""><img alt="140x140" :src="user.photourl" class="img-circle" /></a>
+						</div>
+						<div class="col-md-1 column" style="margin-top: -21px;">
+						<b  style="font-size:medium;margin-left: -21px;">{{user.name}} </b>
+						</div>
+					</div>
+					<div  class="panel-body ">
+						<b style="font-size:medium;margin-left: 340px;">标题：{{ueditor.title}}</b>
+						<a><span style="font-size: 12px;margin-left: 355px; color: #31708F;cursor:pointer">查看详情</span></a>
+						<p class="p-ueditor" style="line-height: 20px; font-size: 12px;text-indent:2em;">{{ueditor.content}}</p>
+						<p class="time-p" >{{ueditor.createtime}}</p>
 					</div>
 				</div>
 				
@@ -35,9 +42,56 @@
 	import message_top from '@/components/message_top'
 	export default {
 		name: 'my_ueditor',
-		data() {},
+		data() {
+			return{
+				ueditors:[],
+				user:{
+					name:'',
+					photourl:''
+				}
+			}
+		},
 		components: {
 			message_top //组件私有注册
+		},
+		mounted(){
+			this.loadUeditor();
+			this.loadUser();
+		},
+		methods:{
+			loadUeditor(){
+				this.$http.get("http://localhost/Personal/selectDynamicByUserId").then(
+					function(result){
+							this.ueditors=result.body;				
+				},function(error){
+					alert("请先登录！！！")
+				})
+			},
+			loadUser(){
+				this.$http.get("http://localhost/Personal/getUser").then(
+					function(result){
+						this.user=result.body;
+				},function(error){
+					alert("请先登录！！！")
+				})
+			},
+			deleter(id){
+				var flag=confirm("确定删除该条动态？");
+						if(flag){
+							this.$http.delete("http://localhost/Personal/deleteDynamicById",{
+								params:{
+									"id":id
+								}
+							}).then(
+						function(result){
+								this.loadUeditor();
+								this.loadUser();
+						},function(error){
+							alert("删除失败！！！")
+						})
+					}
+			
+			}
 		}
 	}
 </script>
@@ -58,7 +112,24 @@
 	}
 	.page-header{
 		margin-left: 30px;
+		margin-top: 20px;
 	}
-
-	
+	.p-ueditor{
+		display: -webkit-box;
+	    -webkit-box-orient: vertical;
+	   -webkit-box-pack: center;
+	    -webkit-box-align: center;
+	    -webkit-line-clamp:2;
+	    overflow: hidden;
+	    margin-top: 10px;
+	    letter-spacing:1.4px
+	    
+	}
+	.time-p{
+		font-size: 12px;
+		margin-left: 750px;
+		margin-top: 10px;
+		line-height: 20px;
+		color: #9E9E9E;
+	}
 </style>

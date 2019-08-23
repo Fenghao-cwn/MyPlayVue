@@ -28,7 +28,7 @@
 							<p class="author">
 								<a href="#" class="author">{{collection.name}}</a>
 							</p>
-							<p class="views" style=" margin-left: 55px;">{{collection.signature}}</p>
+							<p class="views" style=" margin-left: 55px;letter-spacing:1px">{{collection.signature}}</p>
 							</div><!--<button class=" butt" style="width: 50px;height: 20px;background-image: linear-gradient(#D7E3F1, #EEE0E8);">删除</button>-->
 						</div>
 					</div>
@@ -125,6 +125,8 @@
 	    -webkit-line-clamp:2;
 	    overflow: hidden;
 	        font-size: 12px;
+	      
+	        letter-spacing:1.6px
 	       
     
 	}
@@ -135,7 +137,9 @@
 	    -webkit-box-align: center;
 	    -webkit-line-clamp:1;
 	    overflow: hidden;
-	    width: 180px;
+	    width: 170px;
+	    letter-spacing:1.6px
+	   
 	   
 	}
 	.views{
