@@ -22,7 +22,7 @@ a.play-icon.popup-with-zoom-anim img:hover {
 	-ms-transition:0.5s all;
 }
 .rows{
-	  margin-top: -20px;
+	  margin-top: 20px;
 	  height: 100%;
 }
 /**

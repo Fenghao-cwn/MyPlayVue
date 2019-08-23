@@ -6,7 +6,7 @@
 			<div class="row clearfix rows">
 				<div class="col-md-12 column notice">
 					<blockquote class="system-notice1">
-						<p style="color:#21DEEF ;font-size: 24px; margin-top: -10px;">
+						<p style="color:#21DEEF ;font-size: 24px;  margin-left: 17px;">
 							 发件箱
 						</p> 
 					</blockquote>

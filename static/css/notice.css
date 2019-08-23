@@ -2,7 +2,7 @@ a{
 	text-decoration: none;
 	
 }
-blockquote{
+.blockquote{
 	border:0 ;
 	background-color: rgb(233,246,254,0.4);
 	border-radius: 4px;
@@ -52,8 +52,8 @@ blockquote{
     z-index: 10;
     border:0 ;;
 	border-radius: 4px;
-	margin: 10px;
-	width: 855px;
+    margin: 10px 10px 10px 0;
+    width: 866px;
 	min-width: 400px;
 }
 .system-notice1{
@@ -71,6 +71,7 @@ blockquote{
 }
 .content{
 	text-indent:2em;
+	padding: 1em;
 }
 .containers {
     width: 1138px;
