@@ -6,7 +6,7 @@
 			<div class="row clearfix rows">
 				<div class="col-md-12 column notice">
 					<blockquote class=" system-notice1">
-						<p style="color:#21DEEF ;font-size: 24px; margin-left: 17px;">
+						<p style="color:#21DEEF ;font-size: 24px; margin-top: -10px;">
 							 收件箱
 						</p> 
 					</blockquote>
@@ -15,7 +15,7 @@
 					
 					<div v-for="inbox in inboxs">
 						<div class="media well ">
-							 <div class="boxclose" @click="close">×</div>
+							 <div class="boxclose" @click="close(inbox.id)">×</div>
 							 <a href="#" class="pull-left  "><img   :src="inbox.photourl" class="media-object head-sculpture" alt='' /></a>
 							<div class="media-body">
 								<h3 class="media-heading">
@@ -61,16 +61,14 @@
 			this.getinbox();
 		},
 		methods:{
-			close:function(){//修改
+			close:function(id){//修改
 				this.$http.put("http://localhost/message/close",{//传参
-					"id":this.message.id
+					"id":this.inbox.id
 				}).then(
 					function(){
 						
 					},
-					function(){
-						
-					}
+					function(){}
 				)
 			},
 			getinbox:function(){
