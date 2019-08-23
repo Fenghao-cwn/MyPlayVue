@@ -14,23 +14,34 @@
 				<!--视频结束-->
 				<!--按钮开始-->
 				<div id="buttons">
-					<button type="button" class="btn btn-default buttons">
-					<span class="glyphicon glyphicon-thumbs-up">点赞</span>
-				</button>
-					<button type="button" class="btn btn-default buttons" @click="collection">
-					<span class="glyphicon glyphicon-star-empty">收藏</span>						
-				</button>
-					<button type="button" class="btn btn-default buttons">
-					<span class="glyphicon glyphicon-new-window">转发</span>
-				</button>
-					<button type="button" class="btn btn-default buttons">
-					<span class="glyphicon glyphicon-circle-arrow-down">下载</span>						
-				</button>
+					<button type="button" class="btn btn-default buttons" @click="thumbsup">
+						<span class="glyphicon glyphicon-thumbs-up">点赞{{good}}</span>
+					</button>
+					<button type="button" class="btn btn-default buttons" @click="thumbsdown">
+						<span class="glyphicon glyphicon-thumbs-down">踩一下{{bad}}</span>
+					</button>
+					<button type="button" class="btn btn-default buttons" @click="insertcollection">
+						<span class="glyphicon glyphicon-star-empty">{{collection}}</span>						
+					</button>
+					<a type="button" class="btn btn-default buttons" :href="'http://localhost/downloadVideo?fileName='+this.video.videourl">
+						<span class="glyphicon glyphicon-circle-arrow-down">下载</span>
+					</a>
+					<button style="padding: 0px;border:0px" type="button" class="btn btn-default buttons"><share :config="config"></share></button>
+
 				</div>
 				<!--按钮结束-->
 				<!--详情开始-->
 				<div id="videoDetail">
-					
+					<div id="detail">
+						<p class="details">视频平均分：</p>
+						<div class="details" id="avgmark"></div>
+						<p>视频详情：{{video.vediodetail}}</p>
+						<div>
+							<p class="details">请您为该视频打分：</p>
+							<div class="details" id="mark"></div>
+						</div>
+					</div>
+
 				</div>
 				<!--详情结束-->
 				<!--评论开始-->
@@ -55,7 +66,7 @@
 						</div>
 					</div>
 					<div class="media-grids">
-						
+
 						<div class="media" v-for="userComment in userComments">
 							<h5>{{userComment.name}}</h5>
 							<div class="media-left">
@@ -81,10 +92,10 @@
 					<div id="author-right">
 						<h4>{{author.name}}</h4>
 						<p>{{author.signature}}</p>
-						<button class="btn btn-default" @click="follow(author.id)">
-						<span class="glyphicon glyphicon-plus"></span>关注
+						<button class="btn btn-default" @click="insertfollow">
+						<span class="glyphicon glyphicon-plus"></span>{{follow}}
 					</button>
-						<button class="btn btn-default">
+						<button class="btn btn-default" @click="privateLetter(author.id)"> 
 						<span class="glyphicon glyphicon-envelope"></span>私信
 					</button>
 
@@ -92,16 +103,16 @@
 				</div>
 				<h3>向你推荐</h3>
 				<div class="single-grid-right">
-					<div class="single-right-grids">
+					<div v-for="recommendVideo in recommendVideos" class="single-right-grids">
 						<div class="col-md-4 single-right-grid-left">
-							<a href="single.html"><img src="images/r1.jpg" alt="" /></a>
+							<a class="author-video" href="#"><img :src="recommendVideo.photourl" /></a>
 						</div>
 						<div class="col-md-8 single-right-grid-right">
-							<a href="single.html" class="title"> Nullam interdum metus</a>
+							<a href="#" class="title"> {{recommendVideo.title}}</a>
 							<p class="author">
-								<a href="#" class="author">John Maniya</a>
+								<a href="#" class="author">{{recommendVideo.name}}</a>
 							</p>
-							<p class="views">2,114,200 views</p>
+							<p class="views">{{recommendVideo.showcount}}观看</p>
 						</div>
 						<div class="clearfix"> </div>
 					</div>
@@ -114,18 +125,30 @@
 </template>
 
 <script>
+	//Vue.http.options.withCredentials = true;//解决cookie丢失
 	export default {
 		name: 'videoShow',
 		data() {
 			return {
-				vid: 11,
-				content: '',
-				url:'',
-				pic:'',
+				vid: 1, //视频id
+				good: 0, //点赞数量
+				bad: 0, //点踩数量
+				rateValue: 3, //平均分
+				markValue: 0, //用户打分
+				collection: '收藏',
+				follow: '关注',
+				content: '', //评论内容
+				url: '',
+				pic: '',
 				msg: '',
-				userComments:[],
-				author:{},
-				video:{}
+				userComments: [],
+				author: {},
+				video: {},
+				recommendVideos: [],
+				config: {
+					sites: ['qq', 'weibo', 'wechat', 'douban'], // 启用的站点
+					disabled: ['google', 'facebook', 'twitter'] // 禁用的站点
+				}
 			}
 		},
 		methods: {
@@ -158,7 +181,7 @@
 						//视频地址
 						url: url,
 						//视频封面
-						pic:this.pic,
+						pic: this.pic,
 						// 缩略图
 						//thumbnails: 'demo.jpg',
 						//播放器类型
@@ -218,7 +241,7 @@
 			},
 			//发送评论
 			sendComment() {
-				this.$http.get("http://127.0.0.1/sendcomment", {
+				this.$http.get("http://localhost/sendcomment", {
 					params: {
 						vid: this.vid,
 						content: this.content
@@ -227,7 +250,7 @@
 					function(result) {
 						this.msg = result.bodyText;
 						alert(this.msg);
-						this.content='';
+						this.content = '';
 						this.getAllComments();
 					},
 					function(res) {
@@ -235,8 +258,12 @@
 					}
 				);
 			},
-			getAllComments(){
-				this.$http.get("http://127.0.0.1/allcomment").then(
+			getAllComments() {
+				this.$http.get("http://localhost/allcomment", {
+					params: {
+						vid: this.vid
+					}
+				}).then(
 					function(result) {
 						this.userComments = result.body;
 					},
@@ -245,81 +272,307 @@
 					}
 				);
 			},
-			getNewComment(){
-				this.$http.get("http://127.0.0.1/getNewComment").then(
-					function(result){
-					this.userComments = result.body;
-				},
-				function(error){
-					console.log(error);
-				});
+			getNewComment() {
+				this.$http.get("http://localhost/getNewComment", {
+					params: {
+						vid: this.vid
+					}
+				}).then(
+					function(result) {
+						this.userComments = result.body;
+					},
+					function(error) {
+						console.log(error);
+					});
 			},
-			getMyComment(){
-				this.$http.get("http://127.0.0.1/getMyComment").then(
-					function(result){
-					this.userComments = result.body;
-				},
-				function(error){
-					console.log(error);
-				});
+			getMyComment() {
+				this.$http.get("http://localhost/getMyComment", {
+					params: {
+						vid: this.vid
+					}
+				}).then(
+					function(result) {
+						this.userComments = result.body;
+					},
+					function(error) {
+						console.log(error);
+					});
 			},
-			loadResource(){
+			loadResource() {
 				//this.vid=this.$route.query.vid;
-				this.$http.post("http://127.0.0.1/loadVideo",{
-					id:this.vid
+				this.$http.post("http://localhost/loadVideo", {
+					id: this.vid
 				}).then(
-					function(result){
-					this.video = result.body;
-					this.url=result.body.videourl;
-					this.pic=result.body.photourl;
-					this.loadVideo();
-					this.loadAuthor();
-				},
-				function(error){
-					console.log(error);
+					function(result) {
+						this.video = result.body;
+						this.url = result.body.videourl;
+						this.pic = result.body.photourl;
+						this.loadVideo();
+						this.loadAuthor();
+						this.loadGood();
+						this.loadBad();
+						this.recommend();
+						this.loadFollowAndCollection();
+					},
+					function(error) {
+						console.log(error);
+					});
+			},
+			loadAuthor() {
+				this.$http.post("http://localhost/loadAuthor", {
+					id: this.video.userid
+				}).then(
+					function(result) {
+						this.author = result.body;
+					},
+					function(error) {
+						console.log(error);
+					});
+			},
+			loadFollowAndCollection() {
+				this.$http.post("http://localhost/loadFollowAndCollection", {
+					vid: this.vid
+				}).then(
+					function(result) {
+						if(result.bodyText == '加载关注收藏成功') {
+							this.follow = '已关注';
+							this.collection = '已收藏';
+						} else if(result.bodyText == '加载关注成功') {
+							this.follow = '已关注';
+						} else if(result.bodyText == '加载收藏成功') {
+							this.collection = '已收藏';
+						} else {
+
+						}
+					},
+					function(error) {
+						console.log(error);
+					});
+			},
+			insertfollow() {
+				if(this.follow == '已关注') {
+					this.$http.delete("http://localhost/follow", {
+						params: {
+							toUid: this.video.userid
+						}
+
+					}).then(
+						function(result) {
+							alert(result.bodyText);
+							this.follow = '关注';
+						},
+						function(error) {
+							console.log(error);
+						});
+				} else {
+					this.$http.get("http://localhost/follow", {
+						params: {
+							toUid: this.video.userid
+						}
+					}).then(
+						function(result) {
+							alert(result.bodyText);
+							this.follow = '已关注';
+						},
+						function(error) {
+							console.log(error);
+						});
+				}
+
+			},
+			insertcollection() {
+				if(this.collection == '已收藏') {
+					this.$http.delete("http://localhost/collection", {
+						params: {
+							vid: this.video.id
+						}
+					}).then(
+						function(result) {
+							alert(result.bodyText);
+							this.collection = '收藏';
+						},
+						function(error) {
+							console.log(error);
+						});
+				} else {
+					this.$http.post("http://localhost/collection", {
+						vid: this.video.id
+					}).then(
+						function(result) {
+							alert(result.bodyText);
+							this.collection = '已收藏';
+						},
+						function(error) {
+							console.log(error);
+						});
+				}
+			},
+			recommend() {
+				this.$http.post("http://localhost/recommend", {
+					cid: this.video.categoryid
+				}).then(
+					function(result) {
+						this.recommendVideos = result.body;
+					},
+					function(error) {
+						console.log(error);
+					});
+			},
+			thumbsup() {
+				this.$http.post("http://localhost/thumbsup", {
+					vid: this.video.id
+				}).then(
+					function(result) {
+						this.good = result.body;
+						this.loadGood();
+						this.loadBad();
+					},
+					function(error) {
+						console.log(error);
+					});
+			},
+			thumbsdown() {
+				this.$http.post("http://localhost/thumbsdown", {
+					vid: this.video.id
+				}).then(
+					function(result) {
+						this.bad = result.body;
+						this.loadGood();
+						this.loadBad();
+					},
+					function(error) {
+						console.log(error);
+					});
+			},
+			loadGood() {
+				this.$http.post("http://localhost/loadGood", {
+					vid: this.video.id
+				}).then(
+					function(result) {
+						this.good = result.body;
+					},
+					function(error) {
+						console.log(error);
+					});
+			},
+			loadBad() {
+				this.$http.post("http://localhost/loadBad", {
+					vid: this.video.id
+				}).then(
+					function(result) {
+						this.bad = result.body;
+					},
+					function(error) {
+						console.log(error);
+					});
+			},
+			loadRate() {
+				this.$http.get("http://localhost/loadRate", {
+					params: {
+						vid: this.vid
+					}
+				}).then(
+					function(result) {
+						if(result.body != null || result.body != '') {
+							this.rateValue = result.body;
+						}
+					},
+					function(error) {
+						console.log(error);
+					});
+				this.$http.get("http://localhost/loadMark").then(
+					function(result) {
+						if(result.body != null || result.body != '') {
+							this.markValue = result.body;
+							this.loadMark();
+						}
+					},
+					function(error) {
+						console.log(error);
+					});
+			},
+			loadMark() {
+				//获取平均分
+				layui.use('rate', function() {
+					var rate = layui.rate;
+					//渲染
+					var ins1 = rate.render({
+						elem: '#avgmark', //绑定元素
+						value: _this.rateValue,
+						half: true,
+						readonly: true,
+						text: true,
+						setText: function(value) {
+							this.span.text(value + "分");
+						}
+					});
+				});
+				//获取评分
+				var _this =this;
+				layui.use('rate', function() {
+					var rate = layui.rate;
+					//渲染
+					var ins1 = rate.render({
+						elem: '#mark', //绑定元素
+						value: _this.markValue,
+						half: true,
+						text: true,
+						setText: function(value) {
+							this.span.text(value + "分");
+						},
+						choose: function(value) {
+							alert(value);
+							_this.$http.get("http://localhost/makeMark", {
+								params: {
+									vcode: value,
+									vid:_this.vid
+								}
+							}).then(
+								function(result) {
+									alert(result.bodyText);
+									if(result.bodyText=='打分成功！'){
+										_this.markValue=value;
+									}
+								},
+								function(error) {
+									console.log(error);
+								});
+						}
+					});
 				});
 			},
-			loadAuthor(){
-				this.$http.post("http://127.0.0.1/loadAuthor",{
-					id:this.video.userid
-				}).then(
-					function(result){
-						console.log(result)
-					this.author=result.body;
-				},
-				function(error){
-					console.log(error);
+			privateLetter(id){
+				var _this=this;
+				layer.prompt({
+				  formType: 2,
+				  value: '请输入您想对up主的话',
+				  title: '私信',
+				  area: ['350px', '120px'] //自定义文本域宽高
+				}, function(value, index, elem){
+				  _this.$http.get("http://localhost/privateLetter", {
+								params: {
+									content:value,
+									'toUid':id
+								}
+							}).then(
+								function(result) {
+									
+								},
+								function(error) {
+									console.log(error);
+								});
+				  layer.close(index);
 				});
-			},
-			follow(id){
-				this.$http.post("http://127.0.0.1/follow",{
-					toUid:this.video.userid
-				}).then(
-					function(result){
-						alert(result.bodyText);
-				},
-				function(error){
-					console.log(error);
-				});
-			},
-			collection(){
-				this.$http.post("http://127.0.0.1/follow",{
-					vid:this.video.id
-				}).then(
-					function(result){
-						alert(result.bodyText);
-				},
-				function(error){
-					console.log(error);
-				});
+				  
 			}
 		},
-		created(){
+		created() {
 			this.loadResource();
 			this.getAllComments();
+			this.loadRate();
 		},
 		mounted() {
-			
+
 		}
 	}
 </script>
@@ -337,11 +590,11 @@
 	}
 	
 	#buttons {
-		margin: 0px 50px;
+		margin: 10px 10px;
 	}
 	
 	.buttons {
-		margin-left: 70px;
+		margin-left: 45px;
 	}
 	
 	#dplayer {
@@ -385,5 +638,14 @@
 	#author-right {
 		float: left;
 		margin: 10px;
+	}
+	
+	.author-video img {
+		width: 106px;
+		height: 80px;
+	}
+	
+	.details {
+		display: inline-block;
 	}
 </style>
