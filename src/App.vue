@@ -33,7 +33,7 @@
 							<div id="small-dialog3" class="mfp-hide" v-show="registerin">
 								<h3>创建账号</h3>
 								<div class="signup">
-									<div>
+									<form>
 										<input type="text" class="email" placeholder="昵称" v-model="user.name" required="required" />
 										
 										<input type="password" placeholder="密码" v-model="user.password" required="required" pattern=".{6,}" autocomplete="off" />
@@ -58,7 +58,7 @@
 										<div class="tologin">
 											<a href="#small-dialog" class="play-icon popup-with-zoom-anim">已有账号，直接登录></a>
 										</div>
-									</div>
+									</form>
 								</div>
 								<div class="clearfix"> </div>
 							</div>
@@ -118,8 +118,9 @@
 						</div>
 						<div class="signin">
 							<a href="#small-dialog" v-show="loginbutton" class="play-icon popup-with-zoom-anim">登录</a>
-							<a href="#" @click="logout" v-show="!loginbutton" class="play-icon popup-with-zoom-anim">退出登录</a>
+							<a  @click="logout" v-show="!loginbutton" class="play-icon popup-with-zoom-anim">退出登录</a>
 							<div id="small-dialog" class="mfp-hide" v-show="loginin">
+								<form>
 								<h3>Login</h3>
 								<div class="signup">
 										<input type="text" class="email" v-model="user.phone" placeholder="您的手机号" required="required" pattern=".{11,}" />
@@ -131,8 +132,8 @@
 											</a>
 											
 										</p>
-										
 								</div>
+								</form>
 								<div class="clearfix"> </div>
 							</div>
 						</div>
@@ -286,6 +287,9 @@
 			},
 			//退出登录
 			logout:function(){
+				this.$router.push({
+							path:"/"
+						}),
 				this.$http.get("http://localhost/user/logout").then(
 					function(result){
 						this.loginbutton = true;
