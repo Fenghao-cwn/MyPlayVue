@@ -7,7 +7,7 @@
 						<div class="recommended-grids english-grid">
 							<div class="recommended-info">
 								<div class="heading">
-									<h3>{{cname}}</h3>
+									<h3>&nbsp;{{cname}}&nbsp;</h3>
 								</div>
 								<div class="heading-right">
 									<a href="#small-dialog8" class="play-icon popup-with-zoom-anim">Subscribe</a>
@@ -56,20 +56,25 @@
 			return {
 				viedos: [],
 				cid: 0,
-				cname:""
+				cname:"视频"
 			}
 		},
 		beforeRouteUpdate(to,from,next){
 		    var cid=to.query.cid;
-		    this.selectByType(cid);
+		    var cname=to.query.cname;
+		    this.selectByType(cid,cname);	    
 		},
 		created: function() {
-			this.selectByType();
+			var cid = this.$route.query.cid
+			var cname=this.$route.query.cname;
+			this.selectByType(cid,cname);
+			
 		},
 		methods: {
-			selectByType: function(cid) {
+			selectByType: function(cid,name) {
 				//var cid = this.$route.query.cid;
 				//console.log(cid);
+				this.cname=name
 				this.$http.get("http://localhost:80/cate/videos", {
 					params: {
 						cid: cid,
