@@ -9,13 +9,13 @@
 					<div v-for="recom in recomms">
 						<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="margin-bottom: 50px;">
 							<div class="resent-grid-img recommended-grid-img">
-								<a href="toVideo(recom.id)"><img :src="recom.photourl" @click="toVideo(recom.id)" alt="" /></a>
+								<a @click="toVideo(recom.id)"><img :src="recom.photourl"  alt="" /></a>
 								<div class="clck movie-clock">
 									<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
 								</div>
 							</div>
 							<div class="resent-grid-info recommended-grid-info recommended-grid-movie-info">
-								<h5><a href="toVideo(video.id)" class="title">{{video.title}}</a></h5>
+								<h5><a @click="toVideo(recom.id)" class="title">{{recom.title}}</a></h5>
 								<ul>
 
 									<li class="right-list">
@@ -37,16 +37,16 @@
 						<div class="clearfix"> </div>
 					</div>
 					<!--视频循环-->
-					<div v-for="video in viedos">
+					<div v-for="video in videos">
 						<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="margin-bottom: 50px;">
 							<div class="resent-grid-img recommended-grid-img">
-								<a href="toVideo(video.id)"><img :src="video.photourl" @click="toVideo(video.id)" alt="" /></a>
+								<a @click="toVideo(video.id)"><img :src="video.photourl"  alt="" /></a>
 								<div class="clck movie-clock">
 									<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
 								</div>
 							</div>
 							<div class="resent-grid-info recommended-grid-info recommended-grid-movie-info">
-								<h5><a href="toVideo(video.id)" class="title">{{video.title}}</a></h5>
+								<h5><a @click="toVideo(video.id)" class="title">{{video.title}}</a></h5>
 								<ul>
 									<li>
 									</li>
@@ -57,7 +57,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="clearfix "> </div>
+					<!--<div class="clearfix "> </div>-->
 				</div>
 			</div>
 		</div>
@@ -88,7 +88,8 @@
 			},
 			selectAll: function() {
 				this.$http.get("http://localhost:80/cate/all").then(function(result) {
-					this.viedos = result.body;
+					this.videos = result.body;
+					console.log(this.videos);
 				}, function(error) {
 					alert("全部视频加载失败！！");
 				})
@@ -103,7 +104,6 @@
 	  			});
 	  			 this.$router.go(0);   
 			}
-
 		}
 	}
 </script>

@@ -5,7 +5,7 @@
 				<!--视频开始-->
 				<div>
 					<div class="Dplayer_box">
-						<h5>标题</h5>
+						<h5>{{video.title}}</h5>
 						<div class="player_av">
 							<div ref="dplayer" id="dplayer"></div>
 						</div>
@@ -91,7 +91,7 @@
 					</div>
 					<div id="author-right">
 						<h4>{{author.name}}</h4>
-						<p>{{author.signature}}</p>
+						<p class="signature">{{author.signature}}</p>
 						<button class="btn btn-default" @click="insertfollow">
 						<span class="glyphicon glyphicon-plus"></span>{{follow}}
 					</button>
@@ -105,12 +105,12 @@
 				<div class="single-grid-right">
 					<div v-for="recommendVideo in recommendVideos" class="single-right-grids">
 						<div class="col-md-4 single-right-grid-left">
-							<a class="author-video" href="#"><img :src="recommendVideo.photourl" /></a>
+							<p style="cursor: pointer;" class="author-video" @click="toVideo(recommendVideo.vid)"><img :src="recommendVideo.photourl" /></p>
 						</div>
 						<div class="col-md-8 single-right-grid-right">
-							<a href="#" class="title"> {{recommendVideo.title}}</a>
+							<a style="cursor: pointer;" @click="toVideo(recommendVideo.vid)" class="title"> {{recommendVideo.title}}</a>
 							<p class="author">
-								<a href="#" class="author">{{recommendVideo.name}}</a>
+								<a style="cursor: pointer;"  class="author">{{recommendVideo.name}}</a>
 							</p>
 							<p class="views">{{recommendVideo.showcount}}观看</p>
 						</div>
@@ -299,7 +299,7 @@
 					});
 			},
 			loadResource() {
-				//this.vid=this.$route.query.vid;
+				this.vid=this.$route.query.vid;
 				this.$http.post("http://localhost/loadVideo", {
 					id: this.vid
 				}).then(
@@ -475,23 +475,34 @@
 					function(result) {
 						if(result.body != null || result.body != '') {
 							this.rateValue = result.body;
+						}else{
+							this.rateValue =0;
 						}
 					},
 					function(error) {
-						console.log(error);
+						
+						this.rateValue =0;
 					});
-				this.$http.get("http://localhost/loadMark").then(
+				this.$http.get("http://localhost/loadMark",{
+					params:{
+						vid:this.vid
+					}
+				}).then(
 					function(result) {
 						if(result.body != null || result.body != '') {
 							this.markValue = result.body;
-							this.loadMark();
+						}else{
+							this.markValue =0;
 						}
+						this.loadMark();
 					},
 					function(error) {
-						console.log(error);
+						this.markValue =0;
+						this.loadMark();
 					});
 			},
 			loadMark() {
+				var _this =this;
 				//获取平均分
 				layui.use('rate', function() {
 					var rate = layui.rate;
@@ -508,7 +519,6 @@
 					});
 				});
 				//获取评分
-				var _this =this;
 				layui.use('rate', function() {
 					var rate = layui.rate;
 					//渲染
@@ -521,7 +531,6 @@
 							this.span.text(value + "分");
 						},
 						choose: function(value) {
-							alert(value);
 							_this.$http.get("http://localhost/makeMark", {
 								params: {
 									vcode: value,
@@ -529,13 +538,15 @@
 								}
 							}).then(
 								function(result) {
-									alert(result.bodyText);
 									if(result.bodyText=='打分成功！'){
 										_this.markValue=value;
+									}else{
+										alert(result.bodyText);
 									}
+									_this.loadRate();
 								},
 								function(error) {
-									console.log(error);
+									
 								});
 						}
 					});
@@ -556,14 +567,22 @@
 								}
 							}).then(
 								function(result) {
-									
+									alert(result.bodyText);
 								},
 								function(error) {
 									console.log(error);
 								});
 				  layer.close(index);
 				});
-				  
+			},
+			toVideo(vid){
+				this.$router.push({
+	  				path:'/videoShow',
+	  				query:{
+	  					vid:vid
+	  				}
+	  			});
+	  			 this.$router.go(0);   
 			}
 		},
 		created() {
@@ -647,5 +666,15 @@
 	
 	.details {
 		display: inline-block;
+	}
+	.signature{
+		width: 210px;
+		display: -webkit-box;
+	    -webkit-box-orient: vertical;
+	    -webkit-box-pack: center;
+	    -webkit-box-align: center;
+	    -webkit-line-clamp:1;
+	    overflow: hidden;
+
 	}
 </style>
