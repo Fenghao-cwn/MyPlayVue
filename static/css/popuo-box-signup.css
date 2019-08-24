@@ -108,10 +108,10 @@ button::-moz-focus-inner {
 }
 .note-button{
 	width: 130px;
-    height: 38px;
+    height: 36px;
     position: absolute;
     right: 29px;
-    top: 12px;
+    top: 11px;
     padding: 0 4px;
     overflow: hidden;
     text-overflow: ellipsis;

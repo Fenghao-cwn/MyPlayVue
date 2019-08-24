@@ -33,7 +33,7 @@
 							<div id="small-dialog3" class="mfp-hide" v-show="registerin">
 								<h3>创建账号</h3>
 								<div class="signup">
-									<form>
+									<div>
 										<input type="text" class="email" placeholder="昵称" v-model="user.name" required="required" />
 										
 										<input type="password" placeholder="密码" v-model="user.password" required="required" pattern=".{6,}" autocomplete="off" />
@@ -58,7 +58,7 @@
 										<div class="tologin">
 											<a href="#small-dialog" class="play-icon popup-with-zoom-anim">已有账号，直接登录></a>
 										</div>
-									</form>
+									</div>
 								</div>
 								<div class="clearfix"> </div>
 							</div>
@@ -264,7 +264,7 @@
 			this.Refresh();
 		},
 		methods: {
-			Refresh:function(){
+			Refresh:function(){//是否登录
 				this.$http.get("http://localhost/user/Refresh").then(
 					
 					function(result){
@@ -281,7 +281,7 @@
 						}
 					},
 					function(error){
-						
+						alert("刷新失败")
 					}
 				)
 			},
