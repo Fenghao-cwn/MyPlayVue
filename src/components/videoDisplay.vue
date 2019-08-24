@@ -61,17 +61,20 @@
 		},
 		beforeRouteUpdate(to,from,next){
 		    var cid=to.query.cid;
-		    this.selectByType(cid);
-		    this.cname=this.$route.query.cname;
+		    var cname=to.query.cname;
+		    this.selectByType(cid,cname);	    
 		},
 		created: function() {
-			this.selectByType();
-			this.cname=this.$route.query.cname;
+			var cid = this.$route.query.cid
+			var cname=this.$route.query.cname;
+			this.selectByType(cid,cname);
+			
 		},
 		methods: {
-			selectByType: function(cid) {
+			selectByType: function(cid,name) {
 				//var cid = this.$route.query.cid;
 				//console.log(cid);
+				this.cname=name
 				this.$http.get("http://localhost:80/cate/videos", {
 					params: {
 						cid: cid,
