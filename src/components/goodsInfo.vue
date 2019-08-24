@@ -21,7 +21,7 @@
 	                		</ul>
 	                	</div>
 	                	<div class="gcIpt">
-	                		<span class="guT" style="margin-left:5px;font-size: 25px;">数量</span>
+	                		<span class="guT" style="margin-left:5px;font-size: 25px;float: left;">数量</span>
 	                		<input id="sub"  type="button" value="-" @click="sub" />
 	                		<input id="text" type="text" readonly="readonly" v-model="num" style="width:50px; text-align: center; color: #0F0F0F;"/>
 	                		<input id="add"  type="button" value="+" @click="num++"/>
