@@ -78,6 +78,7 @@
 										}).then(
 											function(result){
 												this.getinbox();
+												this.$router.go(0)
 											},
 											function(error){
 											}

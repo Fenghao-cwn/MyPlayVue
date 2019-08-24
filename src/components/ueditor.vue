@@ -89,7 +89,7 @@
 			sub: function() {
 				var html = ue.getContent();
 				alert(html);
-				this.$http.post("http://localhost:80/ueditor/contents", {
+				this.$http.post("http://localhost:80/dy/dynamic", {
 					"content": html
 				}).then(
 					function() {

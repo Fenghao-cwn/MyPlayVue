@@ -7,7 +7,7 @@
 						<div class="recommended-grids english-grid">
 							<div class="recommended-info">
 								<div class="heading">
-									<h3>English</h3>
+									<h3>{{cname}}</h3>
 								</div>
 								<div class="heading-right">
 									<a href="#small-dialog8" class="play-icon popup-with-zoom-anim">Subscribe</a>
@@ -18,7 +18,7 @@
 							<div v-for="video in viedos">
 								<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="margin-bottom: 50px;">
 									<div class="resent-grid-img recommended-grid-img">
-										<a href="video.videourl"><img :src="video.photourl" alt="" /></a>
+										<a href="toVideo(video.id)"><img :src="video.photourl" @click="toVideo(video.id)" alt="" /></a>
 										<div class="time small-time show-time movie-time">
 											<p>7:34</p>
 										</div>
@@ -27,15 +27,13 @@
 										</div>
 									</div>
 									<div class="resent-grid-info recommended-grid-info recommended-grid-movie-info">
-										<h5><a href="single.html" class="title">{{video.title}}</a></h5>
+										<h5><a href="toVideo(video.id)" class="title">{{video.title}}</a></h5>
 										<ul>
 											<li>
-												<p class="author author-info">
-													<a href="#" class="author">John Maniya</a>
-												</p>
+											
 											</li>
 											<li class="right-list">
-												<p class="views views-info">2,114,200 views</p>
+												<p class="views views-info">{{video.showcount}} views</p>
 											</li>
 										</ul>
 									</div>
@@ -57,7 +55,8 @@
 		data() {
 			return {
 				viedos: [],
-				cid: 0
+				cid: 0,
+				cname:""
 			}
 		},
 		beforeRouteUpdate(to,from,next){
@@ -83,6 +82,15 @@
 					alert("加载数据失败！！");
 				})
 
+			},
+			toVideo(vid){
+				this.$router.push({
+	  				path:'/videoShow',
+	  				query:{
+	  					vid:vid
+	  				}
+	  			});
+	  			 this.$router.go(0);   
 			}
 
 		}
