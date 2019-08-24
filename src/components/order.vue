@@ -1,172 +1,185 @@
 <template>
   <div>
-	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-		<div class="page-shopping-cart" id="shopping-cart">
-			<h4 class="cart-title">购物清单</h4>
-			<div class="cart-product-title clearfix">
-				<div class="td-check fl">
-					<span class="check-span fl check-all" :class="{'check-true':isSelectAll}"></span>全选</div>
-				<div class="td-product fl">商品</div>
-				<div class="td-num fl">数量</div>
-				<div class="td-price fl">单价(元)</div>
-				<div class="td-total fl">金额(元)</div>
-				<div class="td-do fl">操作</div>
-			</div>
-			<div class="cart-product clearfix">
-				<table>
-					<tbody>
-						<tr v-for="(item,index) in productList">
-							<td class="td-check">
-								<span class="check-span" @click="item.select=!item.select" :class="{'check-true':item.select}">
-								</span>
-							</td>
-							<td class="td-product"><img :src="item.pro_img" width="98" height="98">
-								<div class="product-info">
-									<h6>{{item.pro_name}}</h6>
-									<p>品牌：{{item.pro_brand}}&nbsp;&nbsp;产地：{{item.pro_place}}</p>
-									<p>规格/纯度:{{item.pro_purity}}&nbsp;&nbsp;起定量：{{item.pro_min}}</p>
-									<p>配送仓储：{{item.pro_depot}}</p>
-								</div>
-								<div class="clearfix"></div>
-							</td>
-							<td class="td-num">
-								<div class="product-num">
-									<a href="javascript:;" class="num-reduce num-do fl" @click="sub(item)"><span></span></a>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <div class="page-shopping-cart" id="shopping-cart">
+        <h4 class="cart-title">购物清单</h4>
+        <div class="cart-product-title clearfix">
+
+          <div class="td-check fl">
 
 
-                  <input type="text" class="num-input" v-model="item.pro_num">
+
+          <label><input type="checkbox"  @click="check_all" :checked="check_goods.length == goodsList.length"/>全选</label>
+
+          </div>
+          <div class="td-product fl">商品</div>
+          <div class="td-num fl">数量</div>
+          <div class="td-price fl">单价(元)</div>
+          <div class="td-total fl">金额(元)</div>
+          <div class="td-do fl">操作</div>
+        </div>
+        <div class="cart-product clearfix">
+          <table>
+            <tbody>
+              <tr v-for="(item,index) in goodsList" :key=index>
+
+                <td class="td-check">
+
+                <input type="checkbox" :value="item" v-model="check_goods" />
 
 
-									<a href="javascript:;" class="num-add num-do fr" @click="item.pro_num++"><span></span></a>
-								</div>
-							</td>
-							<td class="td-price">
-								<p class="red-text">￥<span class="price-text">{{item.pro_price.toFixed(2)}}</span></p>
-							</td>
-							<td class="td-total">
-								<p class="red-text">￥<span class="total-text">{{item.pro_price*item.pro_num}}</span>.00</p>
-							</td>
-							<td class="td-do"><a href="javascript:;"
-							class="product-delect" @click="deleteOneProduct(index)">删除</a></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="cart-product-info">
-				<a class="delect-product" href="javascript:;"  @click="deleteProduct"><span></span>删除所选商品</a>
-				<a class="keep-shopping" href="#"><span></span>继续购物</a>
-				<a class="btn-buy fr" href="/list">去结算</a>
-				<p class="fr product-total">￥<span>{{getTotal.totalPrice}}</span></p>
-				<p class="fr check-num"><span>{{getTotal.totalNum}}</span>件商品总计（不含运费）：</p>
-			</div>
-			<div class="cart-worder clearfix">
-				<a href="javascript:;" class="choose-worder fl"><span></span>绑定跟单员</a>
-				<div class="worker-info fl">
-				</div>
-			</div>
-		</div>
-	</div>
+                </td>
+
+                <td class="td-product"><img :src="item.picture" width="98" height="98">
+                  <div class="product-info">
+                    <h6>{{item.id}}</h6>
+                    <p>品牌：&nbsp;&nbsp;产地：{{item.name}}</p>
+                    <p>规格/纯度:{{item.introduce}}</p>
+                  </div>
+                  <div class="clearfix"></div>
+                </td>
+                <td class="td-num">
+                  <div class="product-num">
+                    <a href="javascript:;" class="num-reduce num-do fl" @click="sub(item)"><span></span></a>
+
+
+                    <input type="text" class="num-input" v-model="item.num">
+
+
+                    <a href="javascript:;" class="num-add num-do fr" @click="item.num++"><span></span></a>
+                  </div>
+                </td>
+                <td class="td-price">
+                  <p class="red-text">￥<span class="price-text">{{item.price}}</span></p>
+                </td>
+                <td class="td-total">
+                  <p class="red-text">￥<span class="total-text">{{item.price*item.num}}</span></p>
+                </td>
+
+
+                <td class="td-do"><a href="javascript:;" class="product-delect" @click="deleteOneProduct(item)">删除</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="cart-product-info">
+          <!-- <a href="javascript:;" class="delete-product" @click='deleteProduct'><span></span>删除所选商品</a> -->
+
+
+
+
+          <a href="#" class="keep-shopping"><span></span>继续购物</a>
+          <a href="javascript:;" class="fr btn-buy">去结算</a>
+         <a href="javascript:;" class="fr product-total">￥<span>{{total_price}}</span></a>
+          <a href="javascript:;" class="fr check-num"><span>{{total_num}}</span>件商品总计（不含运费）:</a>
+        </div>
+
+        <div class="cart-worder clearfix">
+          <a href="javascript:;" class="choose-worder fl"><span></span>绑定跟单员</a>
+          <div class="worker-info fl">
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-	export default {
-		name: 'order',
+  export default {
+    name: 'order',
 
-		data() {
+    data() {
 
-      return{
-        productList: [{
-        	'pro_name': '【斯文】甘油 | 丙三醇', //产品名称
-        	'pro_brand': 'skc', //品牌名称
-        	'pro_place': '韩国', //产地
-        	'pro_purity': '99.7%', //规格
-        	'pro_min': "215千克", //最小起订量
-        	'pro_depot': '上海仓海仓储', //所在仓库
-        	'pro_num': 3, //数量
-        	'pro_img': 'static/images/goods2.jpg', //图片链接
-        	'pro_price': 800 //单价
-        },
-        {
-        	'pro_name': '【斯文】甘油 | 丙三醇', //产品名称
-        	'pro_brand': 'skc', //品牌名称
-        	'pro_place': '韩国', //产地
-        	'pro_purity': '99.7%', //规格
-        	'pro_min': "215千克", //最小起订量
-        	'pro_depot': '上海仓海仓储', //所在仓库
-        	'pro_num': 3, //数量
-        	'pro_img': 'static/images/goods2.jpg', //图片链接
-        	'pro_price': 800 //单价
-        }
-        ]
-      }
+      return {
+        goodsList: [{
+          'id': '', //产品id
+          'name': '', //产品名
+          'introduce': '', //产品介绍
+          'num': '', //数量
+          'picture': '', //图片链接
+          'price': '' //单价
+        }, ],
+        check_goods: [] //已选择的商品
+         }
+      },
 
-		},
+
     computed: {
-    	//检测是否全选
-    	isSelectAll: function() {
-    		//如果productList中每一条数据的select都为true，返回true，否则返回false;
-    		return this.productList.every(function(val) {
-    			return val.select
-    		});
-    	},
-    	//获取总价和产品总件数
-    	getTotal: function() {
-    		//获取productList中select为true的数据。
-    		var _proList = this.productList.filter(function(val) {
-    				return val.select
-    			}),
-    			totalPrice = 0;
-    		for (var i = 0, len = _proList.length; i < len; i++) {
-    			//总价累加
-    			totalPrice += _proList[i].pro_num * _proList[i].pro_price;
-    		}
-    		//选择产品的件数就是_proList.length，总价就是totalPrice
-    		return {
-    			totalNum: _proList.length,
-    			totalPrice: totalPrice
-    		}
-    	}
+      total_price() {
+              let price = 0 　　　　　　　　　　　　　　　　　　　　　　　　
+              this.check_goods.forEach(item => {
+//                      总价 = 价格 * 数量
+                  price += Number(item.price) * Number(item.num)
+              })
+              return price
+          },
+//              数量
+          total_num() {
+              let t_num = 0;
+              this.check_goods.forEach(item => {
+                  t_num += Number(item.num);
+              })
+              return t_num
+                    }
+    },
+    //钩子函数
+    created: function() {
+      this.addcart();
     },
     methods: {
-      sub:function(item){
 
-        if (item.pro_num>1){
-          item.pro_num--
-        }
-        else{
-          item.pro_num=1
+      check_all:function() {
+          if (this.check_goods.length >0) {
+              this.check_goods = []
+          } else {
+              this.goodsList.forEach(item => {
+                  this.check_goods.push(item)
+              })
+          }
+      },
+
+
+      addcart: function() {
+        var id = this.$route.query.id;
+        console.log(id);
+
+        this.$http.get("http://localhost:80/goods/addcart", {
+          params: {
+            id: id,
+          }
+        }).then(function(result) {
+
+          this.goodsList = result.body;
+          console.log(this.goodsList);
+        })
+      },
+
+
+      //数量改变函数
+      sub: function(item) {
+        if (item.num > 1) {
+          item.num--
+        } else {
+          item.num = 1
         }
       },
-    	 //全选与取消全选
-    	    selectProduct:function(_isSelect){
-    	        //遍历productList，全部取反
-    	        for (var i = 0, len = this.productList.length; i < len; i++) {
-    	            this.productList[i].select = !_isSelect;
-    	        }
-    	    },
-    		//删除已经选中(select=true)的产品
-    		deleteProduct:function () {
-    		    this.productList=this.productList.filter(function (item) {return !item.select})
-    		},
-    		//删除单条产品
-    		deleteOneProduct:function (index) {
-    		    //根据索引删除productList的记录
-    		    this.productList.splice(index,1);
-    		}
+
+
+
+      //删除单条产品
+      deleteOneProduct: function(item) {
+        //根据索引删除goodsList的记录
+        this.check_goods.splice(this.check_goods.indexOf(item),1);
+        this.goodsList.splice(this.goodsList.indexOf(item), 1);
+
+      }
 
     },
-    mounted: function() {
-    	//为productList添加select（是否选中）字段，初始值为true
-    	var _this = this;
-    	//为productList添加select（是否选中）字段，初始值为true
-    	this.productList.map(function(item) {
-    		_this.$set(item, 'select', true);
-    	})
-    	//要像上面这样写双向绑定才能起效，下面的写法是有问题的，双向绑定不起效的！
-    	//this.productList.map(function (item) {item.select=true})
-    }
-	}
+
+
+
+  }
 </script>
 
 
@@ -236,7 +249,7 @@
 		  width:70px;
 		}
 		.page-shopping-cart .td-product{
-		  width:380px;
+		  width:460px;
 		}
 		.page-shopping-cart .td-num, .page-shopping-cart .td-price, .page-shopping-cart .td-total{
 		  width:160px;
@@ -436,7 +449,7 @@
 		    right: 16px;
 		    width: 10px;
 		    height: 10px;
-		    background: url("../../static/images/../../static/images/shopping_cart.png") no-repeat -80px 0; }
+		    background: url("../../static/images/shopping_cart.png") no-repeat -80px 0; }
 		.choose-worker-box .box-title a:hover {
 		    background: url("../../static/images/shopping_cart.png") no-repeat -80px -22px; }
 		.choose-worker-box .worker-list {
