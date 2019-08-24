@@ -169,7 +169,7 @@
 					</li>
 					<!--电影分类-->
 					<ul class="cl-effect-2" v-for="category in categorys">
-						<li @click="select(category.id)">
+						<li @click="select(category.id,category.name)">
 							<a class="menu1">{{category.name}}</a>
 						</li>
 
@@ -395,11 +395,12 @@
 					}
 				)
 			},
-			select: function(cid) {
+			select: function(cid,cname) {
 				this.$router.push({
 					path: "/videoDisplay",
 					query: {
-						cid: cid
+						cid: cid,
+						cname:cname
 					}
 				})
 			},

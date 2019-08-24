@@ -9,20 +9,17 @@
 					<div v-for="recom in recomms">
 						<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="margin-bottom: 50px;">
 							<div class="resent-grid-img recommended-grid-img">
-								<a href="recom.videourl"><img :src="recom.photourl" alt="" /></a>
-								<div class="time small-time show-time movie-time">
-									<p>7:34</p>
-								</div>
+								<a href="toVideo(recom.id)"><img :src="recom.photourl" @click="toVideo(recom.id)" alt="" /></a>
 								<div class="clck movie-clock">
 									<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
 								</div>
 							</div>
 							<div class="resent-grid-info recommended-grid-info recommended-grid-movie-info">
-								<h5><a href="recom.videourl" class="title">{{recom.title}}</a></h5>
+								<h5><a href="toVideo(video.id)" class="title">{{video.title}}</a></h5>
 								<ul>
 
 									<li class="right-list">
-										<p class="views views-info">2,114,200 views</p>
+										<p class="views views-info">{{recom.showcount}} views</p>
 									</li>
 								</ul>
 							</div>
@@ -43,21 +40,18 @@
 					<div v-for="video in viedos">
 						<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="margin-bottom: 50px;">
 							<div class="resent-grid-img recommended-grid-img">
-								<a href="video.videourl"><img :src="video.photourl" alt="" /></a>
-								<div class="time small-time show-time movie-time">
-									<p>7:34</p>
-								</div>
+								<a href="toVideo(video.id)"><img :src="video.photourl" @click="toVideo(video.id)" alt="" /></a>
 								<div class="clck movie-clock">
 									<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
 								</div>
 							</div>
 							<div class="resent-grid-info recommended-grid-info recommended-grid-movie-info">
-								<h5><a href="single.html" class="title">{{video.title}}</a></h5>
+								<h5><a href="toVideo(video.id)" class="title">{{video.title}}</a></h5>
 								<ul>
 									<li>
 									</li>
 									<li class="right-list">
-										<p class="views views-info">2,114,200 views</p>
+										<p class="views views-info">{{video.showcount}} views</p>
 									</li>
 								</ul>
 							</div>
@@ -89,16 +83,25 @@
 					this.recomms = result.body;
 					console.log(this.recomms);
 				}, function(error) {
-					alert("推荐加载失败！！ ");
+					alert("推荐视频加载失败！！ ");
 				})
 			},
 			selectAll: function() {
 				this.$http.get("http://localhost:80/cate/all").then(function(result) {
 					this.viedos = result.body;
 				}, function(error) {
-					alert("加载数据失败！！");
+					alert("全部视频加载失败！！");
 				})
 
+			},
+			toVideo(vid){
+				this.$router.push({
+	  				path:'/videoShow',
+	  				query:{
+	  					vid:vid
+	  				}
+	  			});
+	  			 this.$router.go(0);   
 			}
 
 		}
