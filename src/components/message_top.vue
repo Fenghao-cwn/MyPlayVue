@@ -52,7 +52,7 @@
 
 <style scoped>
 	.img-top {
-		margin-top: -19px;
+		margin-top: -23px;
 		/*width: 1267px;*/
 		height: 200px;
 		background-image: url(../../static/img/cb1c3ef50e22b6096fde67febe863494caefebad.png);

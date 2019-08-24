@@ -44,7 +44,7 @@
 					function(result){
 						this.Myfollows=result.body;
 				},function(error){
-					alert("查找关注失败");
+					
 				})
 			},
 			delFollow(id){
@@ -58,7 +58,7 @@
 					function(result){
 						this.loadFollow();
 				},function(error){
-					alert("查找关注失败");
+					
 				})
 				}
 				
