@@ -57,7 +57,7 @@
 							</div>
 						</div>
 					</div>
-					<!--<div class="clearfix "> </div>-->
+					
 				</div>
 				<div v-for="video in videos">
 					<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="margin-bottom: 50px;">
@@ -79,6 +79,7 @@
 						</div>
 					</div>
 				</div>
+				<div class="clearfix "> </div>
 			</div>
 		</div>
 	</div>
