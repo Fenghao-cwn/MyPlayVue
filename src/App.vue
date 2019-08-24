@@ -209,7 +209,7 @@
 					</li>
 					<ul class="cl-effect-3">
 						<li>
-							<a href="/inbox">收件箱</a>
+							<a href="/inbox">收件箱<span class="looks">{{nums}}</span></a>
 						</li>
 						<li>
 							<a href="/outbox">发件箱</a>
@@ -255,15 +255,26 @@
 				pe:0,
 				loginin:true,
 				registers:true,
-				registerin:true
+				registerin:true,
+				nums:0
 			}
 
 		},
 		created: function() {
 			this.loadecate();
 			this.Refresh();
+			this.inboxnolook();
 		},
 		methods: {
+			inboxnolook:function(){
+				this.$http.get("http://localhost/message/inboxnolook").then(
+					function(result){
+						this.nums = result.data;
+					},
+					function(error){
+					}
+				)
+			},
 			Refresh:function(){//是否登录
 				this.$http.get("http://localhost/user/Refresh").then(
 					
@@ -416,5 +427,18 @@
 	}
 </script>
 <style>
-
+.looks{
+	display: inline-block;
+	font-size: 12px;
+	transform: scale(.85);
+	color: #fff;
+	margin-left: 2px;
+    font-weight: 500;
+	background-color: #ffafc9;
+	border-radius: 4px;
+	line-height: 13px;
+	max-width: 30px;
+	padding: 1px 3px;
+	font-family: sans-serif,sans-serifsans-serif,Calibri,Arial,Helvetica;
+}
 </style>

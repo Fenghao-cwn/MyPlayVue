@@ -2,9 +2,9 @@
 	<div  class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 	<div class="container containers">
 	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<div class="jumbotron">
-				
+		<div class="col-md-12 column" >
+			<a href="/inbox" class="goback">back:收件箱 </a>
+			<div class="jumbotron" style="margin-top: 10px;">
 				<p class="contenti contentis">
 					To: {{message.toname}}
 				 
@@ -67,5 +67,11 @@
 <style scoped>
 .contentis{
 	font-weight: 400;
+}
+.goback{
+	text-decoration:none;
+	color: #21deef;
+	font-size: 18px;
+	margin: 15px;
 }
 </style>
