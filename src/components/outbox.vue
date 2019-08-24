@@ -19,7 +19,7 @@
 						    <a href="#" class="pull-left  "><img  :src="outbox.photourl"  class="media-object head-sculpture" alt='' /></a>
 							<div class="media-body">
 								<h3 class="media-heading">
-									<a href="#">{{outbox.toname}}</a><span>| {{outbox.createdate}}</span>
+									<a href="#">{{outbox.toname}}</a><span>&nbsp;&nbsp;{{outbox.createdate}}</span>
 								</h3>
 								<div class="medias" @click="getcontent(outbox.id)">
 									<div class="media-body qwqw">
