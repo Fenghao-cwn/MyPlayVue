@@ -30,9 +30,7 @@
 										<h5><a href="single.html" class="title">{{video.title}}</a></h5>
 										<ul>
 											<li>
-												<p class="author author-info">
-													<a href="#" class="author">John Maniya</a>
-												</p>
+											
 											</li>
 											<li class="right-list">
 												<p class="views views-info">2,114,200 views</p>
