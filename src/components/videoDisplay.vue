@@ -62,6 +62,7 @@
 		beforeRouteUpdate(to,from,next){
 		    var cid=to.query.cid;
 		    this.selectByType(cid);
+		    this.cname=this.$route.query.cname;
 		},
 		created: function() {
 			this.selectByType();
