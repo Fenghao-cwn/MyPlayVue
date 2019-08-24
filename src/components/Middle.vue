@@ -9,7 +9,7 @@
 					<div v-for="recom in recomms">
 						<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="margin-bottom: 50px;">
 							<div class="resent-grid-img recommended-grid-img">
-								<a @click="toVideo(recom.id)"><img :src="recom.photourl" alt="" /></a>
+								<a @click="toVideo(recom.id)"><img width="261px" height="163px" :src="recom.photourl" alt="" /></a>
 								<div class="clck movie-clock">
 									<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
 								</div>
@@ -37,10 +37,11 @@
 						<div class="clearfix"> </div>
 					</div>
 					<!--视频循环-->
+					
 					<div v-for="video in videos">
 						<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="margin-bottom: 50px;">
 							<div class="resent-grid-img recommended-grid-img">
-								<a @click="toVideo(video.id)"><img :src="video.photourl" alt="" /></a>
+								<a @click="toVideo(video.id)"><img width="261px" height="163px" :src="video.photourl" alt="" /></a>
 								<div class="clck movie-clock">
 									<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
 								</div>
@@ -59,27 +60,7 @@
 					</div>
 					
 				</div>
-				<div v-for="video in videos">
-					<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="margin-bottom: 50px;">
-						<div class="resent-grid-img recommended-grid-img">
-							<a @click="toVideo(video.id)"><img :src="video.photourl" alt="" /></a>
-							<div class="clck movie-clock">
-								<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-							</div>
-						</div>
-						<div class="resent-grid-info recommended-grid-info recommended-grid-movie-info">
-							<h5><a @click="toVideo(video.id)" class="title">{{video.title}}</a></h5>
-							<ul>
-								<li>
-								</li>
-								<li class="right-list">
-									<p class="views views-info">{{video.showcount}} views</p>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="clearfix"> </div>
+				
 			</div>
 		</div>
 	</div>
