@@ -2,8 +2,12 @@
 	<div>
 		<div class="img-top">
 			<div class="img-user col-md-1 column">
-				<a href="" @click="toUpdate" data-toggle="tooltip" data-placement="top" title="修改个人信息"><img alt="140x140" :src="user.photourl" class="img-circle" /></a>
+				<a href="" @click="toUpdate" data-toggle="tooltip" data-placement="top" title="修改个人信息">
+					<img alt="140x140" :src="user.photourl" class="img-circle" />
+					<span class="looks">{{user.sex}}</span>
+				</a>
 			</div>
+			<span class="looks">{{user.sex}}</span>
 			<div class="col-md-8 column ">
 				<h3 class="user-name">{{user.name}}</h3>
 				<h6 class="user-text">{{user.signature}}</h6>
@@ -21,7 +25,8 @@
 				user:{
 					name:'',
 					signature:'',
-					photourl:''
+					photourl:'',
+					sex:''
 				}
 			}
 		},
@@ -36,6 +41,7 @@
 						this.user.name=result.body.name;
 						this.user.signature=result.body.signature;
 						this.user.photourl=result.body.photourl;
+						this.user.sex=result.body.sex;
 				},function(error){
 						
 				})
@@ -75,4 +81,19 @@
 		margin-left: -10px;
 		color: white;
 	}
+	.looks{
+	display: inline-block;
+	font-size: 12px;
+	transform: scale(.85);
+	color: #fff;
+	margin-left: -880px;
+	margin-top: 170px;
+    font-weight: 500;
+	background-color: #ffafc9;
+	border-radius: 4px;
+	line-height: 13px;
+	max-width: 30px;
+	padding: 1px 3px;
+	font-family: sans-serif,sans-serifsans-serif,Calibri,Arial,Helvetica;
+}
 </style>
