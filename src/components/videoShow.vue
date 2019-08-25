@@ -87,7 +87,7 @@
 				<h3>关于作者</h3>
 				<div id="author">
 					<div id="author-left">
-						<a><img :src="author.photourl" /></a>
+						<a style="cursor: pointer;" @click="selectAuthor(author.id)"><img :src="author.photourl" /></a>
 					</div>
 					<div id="author-right">
 						<h4>{{author.name}}</h4>
@@ -376,7 +376,6 @@
 							console.log(error);
 						});
 				}
-
 			},
 			insertcollection() {
 				if(this.collection == '已收藏') {
@@ -581,6 +580,15 @@
 	  				}
 	  			});
 	  			 this.$router.go(0);   
+			},
+			selectAuthor:function(aid){//点击头像，跳转到这个页面，并携带着参数
+				this.$router.push({
+					path:"/solo_message",
+					query:{
+						"aid":aid
+					}
+				})
+			
 			}
 		},
 		created() {

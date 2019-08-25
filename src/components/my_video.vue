@@ -11,10 +11,10 @@
 				<div class="row" style="width: 1266px;">
 					<div v-for="video in videos" class="col-md-3 my_video" >
 						<div class="thumbnail">
-							<a href=""><img  alt="300x200" :src="video.photourl" style="width: 294px;height: 220.5px;" /></a>
+							<a style="cursor: pointer;" @click="toVideo(video.id)"><img  alt="300x200" :src="video.photourl" style="width: 294px;height: 220.5px;" /></a>
 							<div class="resent-grid-info recommended-grid-info">
 							<div class="caption">
-								<h5><a href="" class="title">{{video.title}}</a></h5>
+								<h5><a style="cursor: pointer;" @click="toVideo(video.id)" class="title">{{video.title}}</a></h5>
 								<p class="video-my">
 									{{video.vediodetail}}
 								</p>
@@ -75,6 +75,15 @@
 				})
 				}
 				
+			},
+			toVideo(vid){
+				this.$router.push({
+	  				path:'/videoShow',
+	  				query:{
+	  					vid:vid
+	  				}
+	  			});
+	  			 this.$router.go(0);   
 			}
 		}
 		

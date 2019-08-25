@@ -18,7 +18,7 @@
 							<div v-for="video in viedos">
 								<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="margin-bottom: 50px;">
 									<div class="resent-grid-img recommended-grid-img">
-										<a href="toVideo(video.id)"><img :src="video.photourl" @click="toVideo(video.id)" alt="" /></a>
+										<a style="cursor: pointer;" @click="toVideo(video.id)"><img :src="video.photourl" alt="" /></a>
 										<div class="time small-time show-time movie-time">
 											<p>7:34</p>
 										</div>
