@@ -341,9 +341,7 @@
 							this.follow = '已关注';
 						} else if(result.bodyText == '加载收藏成功') {
 							this.collection = '已收藏';
-						} else {
-
-						}
+						} else {}
 					},
 					function(error) {
 						console.log(error);
