@@ -8,10 +8,10 @@
 				<h3 class="user-name">{{author.name}}</h3>
 				<h6 class="user-text">{{author.signature}}</h6>
 			</div>
-			<button class="btn btn-default  button-g">
-				<span class="glyphicon glyphicon-plus"></span>关注
+			<button class="btn btn-default  button-g" @click="insertfollow">
+				<span class="glyphicon glyphicon-plus"></span>{{follow}}
 			</button>
-			<button class="btn btn-default btn-info button-g">
+			<button class="btn btn-default btn-info button-g" @click="privateLetter(author.id)">
 					<span class="glyphicon glyphicon-envelope"></span>私信
 			</button>
 
@@ -25,11 +25,8 @@
 		name: 'solo_top',
 		data() {
 			return{
-				author:{
-					name:'',
-					signature:'',
-					photourl:''
-				}
+				follow:'关注',
+				author:{}
 				
 			}
 		},
@@ -46,9 +43,75 @@
 				}).then(
 					function(result){
 						this.author=result.body;
+						this.loadFollow();
 				},function(error){
-					alert("失败")
+					alert("失败");
 				})
+			},
+			privateLetter(id){
+				var _this=this;
+				layer.prompt({
+				  formType: 2,
+				  value: '请输入您想对up主的话',
+				  title: '私信',
+				  area: ['350px', '120px'] //自定义文本域宽高
+				}, function(value, index, elem){
+				  _this.$http.get("http://localhost/privateLetter", {
+								params: {
+									content:value,
+									'toUid':id
+								}
+							}).then(
+								function(result) {
+									alert(result.bodyText);
+								},
+								function(error) {
+									console.log(error);
+								});
+				  layer.close(index);
+				});
+			},
+			insertfollow() {
+				if(this.follow == '已关注') {
+					this.$http.delete("http://localhost/follow", {
+						params: {
+							toUid: this.author.id
+						}
+					}).then(
+						function(result) {
+							alert(result.bodyText);
+							this.follow = '关注';
+						},
+						function(error) {
+							console.log(error);
+						});
+				} else {
+					this.$http.get("http://localhost/follow", {
+						params: {
+							toUid: this.author.id
+						}
+					}).then(
+						function(result) {
+							alert(result.bodyText);
+							this.follow = '已关注';
+						},
+						function(error) {
+							console.log(error);
+						});
+				}
+			},
+			loadFollow(){
+				this.$http.get("http://localhost/loadFollow", {
+						params: {
+							toUid: this.author.id
+						}
+					}).then(
+						function(result) {
+							this.follow = '已关注';
+						},
+						function(error) {
+							console.log(error);
+						});
 			}
 		}
 	}

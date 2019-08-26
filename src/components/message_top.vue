@@ -2,10 +2,11 @@
 	<div>
 		<div class="img-top">
 			<div class="img-user col-md-1 column">
-				<a href="" @click="toUpdate" data-toggle="tooltip" data-placement="top" title="修改个人信息"><img alt="140x140" :src="user.photourl" class="img-circle" /></a>
+				<a href="" @click="toUpdate" data-toggle="tooltip" data-placement="top" title="修改个人信息"><img alt="140x140" :src="user.photourl" class="img-circle" />
+				</a>
 			</div>
 			<div class="col-md-8 column ">
-				<h3 class="user-name">{{user.name}}</h3>
+				<h3 class="user-name">{{user.name}}<span v-if="user.sex=='男'" id="boy">{{user.sex}}</span><span v-if="user.sex=='女'" id="girl">{{user.sex}}</span></h3>
 				<h6 class="user-text">{{user.signature}}</h6>
 			</div>
 			
@@ -18,11 +19,7 @@
 		name: 'message_top',
 		data() {
 			return{
-				user:{
-					name:'',
-					signature:'',
-					photourl:''
-				}
+				user:{}
 			}
 		},
 		created(){
@@ -31,11 +28,9 @@
 		methods:{
 			loadUser(){
 				this.$http.get("http://localhost/Personal/getUser").then(
-					function(result){
+					function(result){					
+						this.user=result.body;
 						
-						this.user.name=result.body.name;
-						this.user.signature=result.body.signature;
-						this.user.photourl=result.body.photourl;
 				},function(error){
 						
 				})
@@ -74,5 +69,31 @@
 	.user-text {
 		margin-left: -10px;
 		color: white;
+	}
+	#boy{
+	display: inline-block;
+	font-size: 12px;
+	color: #fff;
+	margin-left: 4px;
+    font-weight: 500;
+	background-color: #75AFEF;
+	border-radius: 4px;
+	line-height: 12px;
+	max-width: 30px;
+	padding: 1px 3px;
+	font-family: sans-serif,sans-serifsans-serif,Calibri,Arial,Helvetica;
+	}
+	#girl{
+    display: inline-block;
+    font-size: 12px;
+    color: #fff;
+    margin-left: 4px;
+    font-weight: 500;
+    background-color: #ffafc9;
+    border-radius: 4px;
+    line-height: 12px;
+    max-width: 30px;
+    padding: 1px 3px;
+    font-family: sans-serif,sans-serifsans-serif,Calibri,Arial,Helvetica;
 	}
 </style>

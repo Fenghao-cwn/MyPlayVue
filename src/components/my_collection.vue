@@ -12,11 +12,11 @@
 					<div v-for="collection in collections" class="col-md-2 resent-grid recommended-grid show-video-grid img-coll">				
 						<div class="resent-grid-img recommended-grid-img">
 							<img src="../../static/img/del.png" class="upload_warp_img_div_del" @click="deleter(collection.cid)">
-							<a href=""><img style="width: 200px;height: 150px;" :src="collection.vphoto" alt="" /></a>
+							<a style="cursor: pointer;" @click="toVideo(collection.vid)" ><img style="width: 200px;height: 150px;" :src="collection.vphoto" alt="" /></a>
 						</div>
 						<div style="width: 200px;height: 123px;" class="resent-grid-info recommended-grid-info">
 							<div class="col-title">
-								<h5 style=" height: 25px;"><a href="" class="title">{{collection.title}}</a></h5>
+								<h5 style=" height: 25px;"><a style="cursor: pointer;" @click="toVideo(collection.vid)" class="title">{{collection.title}}</a></h5>
 								<p class="solo-p">
 										{{collection.vediodetail}}
 									</p>
@@ -93,6 +93,15 @@
 					}
 				})
 			
+			},
+			toVideo(vid){
+				this.$router.push({
+	  				path:'/videoShow',
+	  				query:{
+	  					vid:vid
+	  				}
+	  			});
+	  			 this.$router.go(0);   
 			}
 		}
 	}

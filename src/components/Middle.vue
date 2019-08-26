@@ -9,13 +9,13 @@
 					<div v-for="recom in recomms">
 						<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="margin-bottom: 50px;">
 							<div class="resent-grid-img recommended-grid-img">
-								<a @click="toVideo(recom.id)"><img width="261px" height="163px" :src="recom.photourl" alt="" /></a>
+								<a style="cursor: pointer;" @click="toVideo(recom.id)"><img width="261px" height="163px" :src="recom.photourl" alt="" /></a>
 								<div class="clck movie-clock">
 									<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
 								</div>
 							</div>
 							<div class="resent-grid-info recommended-grid-info recommended-grid-movie-info">
-								<h5><a @click="toVideo(recom.id)" class="title">{{recom.title}}</a></h5>
+								<h5><a style="cursor: pointer;" @click="toVideo(recom.id)" class="title">{{recom.title}}</a></h5>
 								<ul>
 
 									<li class="right-list">
