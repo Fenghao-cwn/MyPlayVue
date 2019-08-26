@@ -12,16 +12,16 @@
 				<div class="recommended-grids img-big">
 					<div v-for="video in videos" class="col-md-2 resent-grid recommended-grid show-video-grid img-coll">
 						<div class="resent-grid-img recommended-grid-img">
-							<a href=""><img :src="video.photourl" style="width: 200px;height: 150px;" alt="" /></a>
+							<a style="cursor: pointer;" @click="toVideo(video.id)" ><img :src="video.photourl" style="width: 200px;height: 150px;" alt="" /></a>
 						</div>
-						<div style="width: 200px;height: 95px;" class="resent-grid-info recommended-grid-info">
+						<div style="width: 200px;height: 115px;" class="resent-grid-info recommended-grid-info">
 							<div class="caption">
-								<h5 style="margin-top: -5px;"><a href="#" style="margin-top: 3px;" class="title">{{video.title}}</a></h5>
+								<h5 style="margin-top: -5px;"><a @click="toVideo(video.id)" style="margin-top: 3px;cursor: pointer;" class="title">{{video.title}}</a></h5>
 								<p class="solo-p">
 									{{video.vediodetail}}
 								</p>
 								<p>	
-									<a  href="#" style="display: block;margin-top: 7px;margin-left: 30px;color: #9E9E9E;">上传时间：{{video.createtime}}</a>
+									<a  style="display: block;margin-left: 7px;margin-top:10px;color: #9E9E9E;">上传时间：{{video.createtime}}</a>
 								</p>
 							</div>
 						</div>
@@ -40,11 +40,11 @@
 				<div class="recommended-grids img-big">
 					<div v-for="AuthorCollection in AuthorCollections" class="col-md-2 resent-grid recommended-grid show-video-grid img-coll">
 						<div class="resent-grid-img recommended-grid-img">
-							<a href=""><img :src="AuthorCollection.vphoto" style="width: 200px;height: 150px;" alt="" /></a>
+							<a style="cursor: pointer;" @click="toVideo(AuthorCollection.vid)"><img :src="AuthorCollection.vphoto" style="width: 200px;height: 150px;" alt="" /></a>
 						</div>
 						<div style="width: 200px;height: 130px;" class="resent-grid-info recommended-grid-info">
 							<div class="p-title">
-								<h5><a class="title">{{AuthorCollection.title}}</a></h5>
+								<h5><a style="cursor: pointer;" @click="toVideo(AuthorCollection.vid)" class="title">{{AuthorCollection.title}}</a></h5>
 								<p class="solo-p">
 										{{AuthorCollection.vediodetail}}
 									</p>
@@ -56,7 +56,7 @@
 								<p class="author">
 									<a href="#" class="author">{{AuthorCollection.name}}</a>
 								</p>
-								<p class="views" style="margin-left: 40px; width: 100px;">{{AuthorCollection.signature}}</p>
+								<p class="views" style="margin-left: 50px; width: 100px;">{{AuthorCollection.signature}}</p>
 							</div>
 						</div>
 					</div>
@@ -176,6 +176,15 @@
 				},function(error){
 					alert("失败")
 				})
+			},
+			toVideo(vid){
+				this.$router.push({
+	  				path:'/videoShow',
+	  				query:{
+	  					vid:vid
+	  				}
+	  			});
+	  			 this.$router.go(0);   
 			}
 		}
 	}
@@ -211,7 +220,6 @@
 	    -webkit-box-align: center;
 	    -webkit-line-clamp:2;
 	    overflow: hidden;
-	    height: 27.2px;
 	    width: 170px;
 	    margin-top: -5px;
 	     letter-spacing:1.6px;
@@ -232,7 +240,7 @@
 	   
 	}
 	.div-user{
-		margin-top: 16px;
+		margin-top: 20px;
 		width: 200px;
 		height: 80px;
 	}
