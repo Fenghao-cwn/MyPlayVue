@@ -5,7 +5,7 @@
 				<a href=""><img alt="140x140" :src="author.photourl" class="img-circle" /></a>
 			</div>
 			<div class="col-md-8 column ">
-				<h3 class="user-name">{{author.name}}</h3>
+				<h3 class="user-name">{{author.name}}<span v-if="user.sex=='男'" id="boy">{{user.sex}}</span><span v-if="user.sex=='女'" id="girl">{{user.sex}}</span></h3>
 				<h6 class="user-text">{{author.signature}}</h6>
 			</div>
 			<button class="btn btn-default  button-g" @click="insertfollow">
@@ -145,5 +145,31 @@
 	.button-g{
 		margin-top: 140px;
 		margin-left: 20px;
+	}
+	#boy{
+	display: inline-block;
+	font-size: 12px;
+	color: #fff;
+	margin-left: 4px;
+    font-weight: 500;
+	background-color: #75AFEF;
+	border-radius: 4px;
+	line-height: 12px;
+	max-width: 30px;
+	padding: 1px 3px;
+	font-family: sans-serif,sans-serifsans-serif,Calibri,Arial,Helvetica;
+	}
+	#girl{
+    display: inline-block;
+    font-size: 12px;
+    color: #fff;
+    margin-left: 4px;
+    font-weight: 500;
+    background-color: #ffafc9;
+    border-radius: 4px;
+    line-height: 12px;
+    max-width: 30px;
+    padding: 1px 3px;
+    font-family: sans-serif,sans-serifsans-serif,Calibri,Arial,Helvetica;
 	}
 </style>

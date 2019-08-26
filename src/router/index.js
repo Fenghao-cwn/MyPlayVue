@@ -26,6 +26,7 @@ import my_ueditor from '@/components/my_ueditor'
 import solo_message from '@/components/solo_message'
 
 import ueditor_detail from '@/components/ueditor_detail'
+import  He_ueditor_detail from '@/components/He_ueditor_detail'
 
 Vue.use(Router)
 
@@ -135,6 +136,11 @@ export default new Router({
       path: '/ueditor_detail',
       name: 'ueditor_detail',
       component: ueditor_detail
+    },
+    {
+      path: '/He_ueditor_detail',
+      name: 'He_ueditor_detail',
+      component: He_ueditor_detail
     }
 	
 		

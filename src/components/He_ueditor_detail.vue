@@ -1,14 +1,14 @@
 <template>
 	<div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<message_top></message_top>
+			<solo_top></solo_top>
 			<div class="page-header">
 				<h1>
 					Details of Her/His Tidings <small>她/他的动态详情</small>
 				</h1>
 			</div>
 			<div class="recommended">
-				<div  class="col-sm-7" style="width: 880px; margin-left:25px;margin-top: 20px;">
+				<div   style="width: 880px; margin-left:25px;margin-top: 20px;">
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<div class="col-md-1 column">
@@ -23,33 +23,68 @@
 						<p class="time-p" >{{dynamic.createtime}}</p>
 					</div>
 				</div>
+				<div id="edi">
+
+							<script id="editor" type="text/plain" style=" width:870px;height:120px;margin-top: 20px;">
+
+							</script>
+				</div>
 				
 			</div>		
 			</div>
-
-		</div>
-		<div class="media">
-			<div class="media-body">
+			
+			<div  class="page-header" style=" width: 860PX;">
+						<h2 >
+							 <small style="margin-top: 50px;">评论</small>
+						</h2>
+					</div>
+					
 				<div class="media">
-					<h5>昵称：</h5>
+					<h5>昵称:</h5>
 					<div class="img-user col-md-1 column">
 						<a href=""><img alt="140x140" src="../../static/img/noface.gif" class="img-circle" /></a>
 					</div>
 					<div class="media-body">
-						<p>个性签名：</p>
-						<span><a href="#" @click="delFollow(Myfollow.id)"> 删除评论 </a></span>
+						<p>jjjjjjjj</p>
+						<span><a href="#" > 删除评论 </a></span>
 					</div>
 				</div>
-			</div>
+
 		</div>
+		
+		
+	
+				
 
 	</div>
 </template>
 
 <script>
-	import message_top from '@/components/message_top'
+	import solo_top from '@/components/solo_top'
+	var ue = UE.getEditor('editor', {
+		toolbars: [
+			[ //工具条
+				'anchor', //锚点
+				'undo', //撤销
+				'bold', //加粗
+				'snapscreen', //截图
+				'selectall', //全选
+				'time', //时间
+				'date', //日期	
+				'simpleupload', //单图上传
+				'insertimage', //多图上传
+				'emotion', //表情
+				'imagecenter', //居中
+				'removeformat', //清除格式
+				'cleardoc', //清空文档
+				'backcolor', //背景色
+				'autotypeset', //自动排版 
+			]
+		]
+	});
+	
 	export default {
-		name: 'ueditor_detail',
+		name: 'He_ueditor_detail',
 		data() {
 			return {
 				user:{
@@ -64,7 +99,7 @@
 			}
 		},
 		components: {
-			message_top //组件私有注册
+			solo_top //组件私有注册
 		},
 		created() {
 			this.loadUeditor();
@@ -130,7 +165,7 @@
 	
 		.media{
 		border-bottom: 1px solid gainsboro;
-		margin-left: 97px;
+		
 	}
 .img-circle {
 		width: 60px;
@@ -138,5 +173,11 @@
 		/*margin-top: 125px;
 		margin-left: 20px;*/
 	}
-	
+		#edi {
+		width: 870px;
+		height: 170px;
+		margin-left: 10px;
+		margin-top: 30px;
+		box-shadow: 2px 2px 8px 6PX black;
+	}
 </style>
