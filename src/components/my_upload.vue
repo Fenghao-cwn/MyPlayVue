@@ -2,7 +2,7 @@
 	<div>
 		<!--<div class="container">-->
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<div class="row clearfix">
+			<div style="margin-right: 0px;" class="row clearfix">
 				<div class="page-header">
 					<h1>
 					Upload My Video <small>上传我的视频</small>
@@ -12,21 +12,22 @@
 					
 						<div class="form-group">
 							<label for="exampleInputEmail1">标题：</label>
-							<input type="text" name="title" v-model="title" class="form-control" id="exampleInputEmail1" />
+							<input type="text" name="title" v-model="title" class="form-control" placeholder="标题" id="exampleInputEmail1" />
 						</div>
 
 						<div class="form-group">
 							<label for="exampleInputEmail1">类别：</label>
 							<select name="categoryid" class="form-control" v-model="categoryid">
+								<option value="">--请选择--</option>
 								<option :value="category.id" v-for="category in categorys"  >{{category.name}}</option>
 							</select>
 						</div>
 						<div class="form-group">
 							<label for="name" >视频描述:</label>
-							<textarea class="form-control" v-model="vediodetail" name="vediodetail" rows="3"></textarea>
+							<textarea class="form-control" v-model="vediodetail" placeholder="请描述一下视频" name="vediodetail" rows="3"></textarea>
 						</div>
 						<div class="form-group">
-							<label for="lastname">上传视频和视频封面:</label>
+							<label for="lastname">上传视频和视频封面:      <span style="color: red;">(注：一个视频和一张图片)</span></label>
 
 							<upload @func="synImg"></upload>
 
@@ -86,6 +87,7 @@
 
 					},
 					function(error) {
+						
 						alert("上传失败！！！");
 					})
 			},
