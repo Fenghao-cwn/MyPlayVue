@@ -11,7 +11,7 @@
 	                	</div>
 	            		<div class="txt">
 	            			<span class="nowprice">￥{{good.price}}.00</a></span>
-
+	            			
 	            		</div>
 	                	<div class="txt-h">
 	                		<span class="tex-o" style="font-size: 25px;">分类</span>
@@ -21,17 +21,17 @@
 	                		</ul>
 	                	</div>
 	                	<div class="gcIpt">
-	                		<span class="guT" style="margin-left:5px;font-size: 25px;float: left;">数量</span>
-	                		<input id="sub"  type="button" value="-" @click="sub" />
-	                		<input id="text" type="text" readonly="readonly" v-model="num" style="width:50px; text-align: center; color: #0F0F0F;"/>
+	                		<span class="guT" style="margin-left:5px;font-size: 25px; float: left;">数量</span>
+	                		<input id="sub"  type="button" value="-" @click="sub" />  
+	                		<input id="text" type="text" readonly="readonly" v-model="num" style="width:50px; text-align: center; color: #0F0F0F;"/>  
 	                		<input id="add"  type="button" value="+" @click="num++"/>
 	                	</div>
 	                	<div class="nobdr-btns">
-	                		<button class="addcart yh" @click="addcart(good.id)">立即购买</button>
+	                		<button class="addcart yh" @click="nowBuy()">立即购买</button>
 	                	</div>
             	</div>
             </div>
-        </div>
+        </div>	
 	</div>
 </template>
 
@@ -58,11 +58,11 @@
 		created(){
 			var id = this.$route.query.id;
 			this.getGood(id);
-
+			
 		},
 		methods:{
 			getGood:function(id){
-
+				
 				this.$http.get("http://localhost/goods/selectById",{
 					params:{
 						id:id
@@ -73,7 +73,7 @@
 						this.good = result.body;
 						this.getType();
 					},function(){
-
+						
 					})
 			},
 			getType:function(){
@@ -86,35 +86,48 @@
 						console.log(result.body);
 						this.type=result.body;
 					},function(){
-
+						
 					})
 			},
 			sub:function(){
 				if(this.num>1){
-					this.num--;
+					this.num--;		
 				}
 				this.num=1;
-			},
-      addcart:function(id){
-      				this.$router.push({
-      					path:'/order',
-      					query:{
-                  id:id,
-
-      					}
-      				})
-      			}
+			}
 		}
 	}
 </script>
+<!--<script>
+	window.onload = function(){
+		var add = document.getElementById("add");
+		var i = document.getElementById("text").value;
+		console.log(add+"***********")
+		console.log(i+"------")
+		var sub = document.getElementById("sub");
+		add.onclick = function(){			
+			i++;
+			alert (num);
+		}
+		sub.onclick = function(){
+			if (i>1) {
+				i--;
+				document.getElementById("text").value = i;
+			} else{
+				i=1;
+				document.getElementById("text").value = i;
+			}
+		}				
+	}	
 
+</script>-->
 
 <style>
 	#app{margin-left:340px; margin-top:100px;width:1000px;}
-
+	
 	.showbot #img{float: left;}
 	.showall #showsum{padding-left:20px; width:400px;height: 400px;float: left;}
-	.showall
+	.showall 
 	.tr-nobdr{margin-top: 20px;padding-bottom: 10px;}
 	.tr-nobdr h3{color: #171717;font-size: 28px;font-weight:400;}
 	.txt{width: 400px;height: 70px; overflow: hidden;background: #f8f8f8;font-size: 36px;color: #f73a3a;}
@@ -137,7 +150,7 @@
 	.tyu{
 		border: none;
 	}
-
+	
 	.tex-o{
 		float: left;
 		font-size: 14px;

@@ -4,15 +4,15 @@
 			<div class="main-grids">
 				<div class="recommended">
 					<div class="recommended-grids">
-						<div id="top" class="callbacks_container" v-for="type in typeList ">
+						<div id="top" class="callbacks_container"  v-for="type in typeList ">
 							<div class="recommended-info" style="margin-top: 2em;">
 								<h3>{{type.typeName}}</h3>
-								
 							</div>
-							<ul class="rslides callbacks callbacks1" id="slider3">
+							
+							<ul class="rslides callbacks callbacks1" id="slider3" v-for="(goodlist,index) in goodsList"  >
 								<li id="callbacks1_s0" style="display: block; float: left; position: relative; opacity: 1; z-index: 2; transition: opacity 500ms ease-in-out 0s;"
 								 class="callbacks1_on">
-									<div class="animated-grids" v-for="(item,index) in goodList" v-if="item.typeId == type.id">
+									<div class="animated-grids" v-for="(item,index) in goodlist.list" v-if="item.typeId == type.id">
 										<div class="col-md-3 resent-grid recommended-grid slider-first">
 											<div class="resent-grid-img recommended-grid-img">
 												<a href="single.html"><img :src="item.picture" alt=""></a>
@@ -30,12 +30,24 @@
 											</div>
 										</div>
 
-
+											
 									</div>
+									
+									
 								</li>
-
+								
+								
 							</ul>
-							<br>
+							<template v-for="(goodlist,index) in goodsList" v-if="goodlist.list[0].typeId==type.id">							 									
+										<ul class="pagination">
+											<li><a  class="btn" v-bind:class="{disabled:goodlist.pageNum==1}" @click="prePage(goodlist.pageNum,type.id)" href="javascript:void(0)">上一页</a></li>
+											<template v-for="num in goodlist.navigatepageNums">
+												<li v-bind:class="{active:goodlist.pageNum==num}"><a  @click="goPage(num,type.id)" href="javascript:void(0)">{{num}}</a></li>
+											</template>										
+											<li><a class="btn" v-bind:class="{disabled:goodlist.pageNum==goodlist.pages}" @click="nextPage(goodlist.pageNum,type.id)" href="javascript:void(0)">下一页</a></li>
+									   </ul>						   
+						   </template>
+							
 						</div>
 					</div>
 				</div>
@@ -52,45 +64,54 @@
 		name: 'shop',
 		data() {
 			return {
-				typeList: [{
-						'id':'' ,
-						'typeName': ''
-					}],
-
-			goodList: [{
-					'id': '', //商品id
-					'name': "", //商品名
-					'picture': '', //图片链接
-					'price': '', //单价
-					'introduce': "",
-					'typeId':''
-				}]
+				typeList: [],
+				goodsList:[],
+				pageinfo:{
+					pageNum:'1',
+					
+				}
+				
 			}
 		},
-		created:function(){
-			this.shoplist();
-			this.type()
+		created:function(){			
+			this.shoplist();			
 		},
 		methods:{
-			type:function(){
+						
+			shoplist:function(){
 				this.$http.get("http://localhost:80/goodsType/selectType").then(
 					function(result){
+						console.log(result);
 						this.typeList=result.body;
-					},function(){
+						//alert(typeof this.typeList)
+						//-----------------
+						for(var i=0;i<this.typeList.length;i++){
+						//alert(i);
+						var id = this.typeList[i].id;
 						
+						this.$http.get("http://localhost:80/goods/select",{
+						params:{
+							pageNum:this.pageinfo.pageNum,
+							typeId:id
+						}
+					}).then(
+						function(result){
+							console.log(result.body);
+							this.goodsList.push(result.body);						
+					   },function(error){
+					   	  alert("加载失败")
+					   })
+				}
+				
+						
+						
+						
+						
+					},function(error){
+						alert("error")
 					}
 				)
-			},
-			
-			shoplist:function(){
-				this.$http.get("http://localhost:80/goods/select").then(
-					function(result){
-						console.log(result.body);
-						this.goodList=result.body;
-					
-				   },function(){
-				   	
-				   })
+				
 			},
 			goumai:function(id){
 				console.log("传之前："+id);
@@ -100,7 +121,65 @@
 						id:id
 					}
 				})
+			},
+			goPage:function(num,typeId){
+				this.$http.get("http://localhost:80/goods/select",{
+						params:{
+							pageNum:num,
+							typeId:typeId
+						}
+					}).then(function(result){
+						console.log("成功：");
+						console.log(result.body)
+						for(var i=0;i<this.goodsList.length;i++){
+							if(this.goodsList[i].list[0].typeId==result.body.list[0].typeId){
+								this.goodsList.splice(i,1);
+							}
+						}
+						this.goodsList.push(result.body);	
+					},function(error){
+						alert("error")
+					})
+			},
+			prePage:function(pageNum,typeId){
+				this.$http.get("http://localhost:80/goods/select",{
+						params:{
+							pageNum:pageNum-1,
+							typeId:typeId
+						}
+					}).then(function(result){
+						console.log("成功：");
+						console.log(result.body)
+						for(var i=0;i<this.goodsList.length;i++){
+							if(this.goodsList[i].list[0].typeId==result.body.list[0].typeId){
+								this.goodsList.splice(i,1);
+							}
+						}
+						this.goodsList.push(result.body);	
+					},function(error){
+						alert("error")
+					})
+			},
+			nextPage:function(pageNum,typeId){
+				this.$http.get("http://localhost:80/goods/select",{
+						params:{
+							pageNum:pageNum+1,
+							typeId:typeId
+						}
+					}).then(function(result){
+						console.log("成功：");
+						console.log(result.body)
+						for(var i=0;i<this.goodsList.length;i++){
+							if(this.goodsList[i].list[0].typeId==result.body.list[0].typeId){
+								this.goodsList.splice(i,1);
+							}
+						}
+						this.goodsList.push(result.body);	
+					},function(error){
+						alert("error")
+					})
 			}
+			
 		}
 	}
 </script>
