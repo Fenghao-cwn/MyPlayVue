@@ -14,14 +14,21 @@
 				<!--视频结束-->
 				<!--按钮开始-->
 				<div id="buttons">
-					<button type="button" class="btn btn-default buttons" @click="thumbsup">
+					<button type="button" v-if="goodFlag==false" class="btn btn-default buttons" @click="thumbsup">
 						<span class="glyphicon glyphicon-thumbs-up">点赞{{good}}</span>
 					</button>
-					<button type="button" class="btn btn-default buttons" @click="thumbsdown">
+					<button type="button" v-if="goodFlag==true" class="btn btn-info buttons" @click="thumbsup">
+						<span class="glyphicon glyphicon-thumbs-up">点赞{{good}}</span>
+					</button>
+					<button type="button" v-if="badFlag==false" class="btn btn-default buttons" @click="thumbsdown">
+						<span class="glyphicon glyphicon-thumbs-down">踩一下{{bad}}</span>
+					</button>
+					<button type="button" v-if="badFlag==true" class="btn btn-danger buttons" @click="thumbsdown">
 						<span class="glyphicon glyphicon-thumbs-down">踩一下{{bad}}</span>
 					</button>
 					<button type="button" class="btn btn-default buttons" @click="insertcollection">
-						<span class="glyphicon glyphicon-star-empty">{{collection}}</span>						
+						<span v-if="this.collection=='收藏'" class="glyphicon glyphicon-star-empty">{{collection}}</span>	
+						<span v-if="this.collection=='已收藏'" class="glyphicon glyphicon-star">{{collection}}</span>		
 					</button>
 					<a type="button" class="btn btn-default buttons" :href="'http://localhost/downloadVideo?fileName='+this.video.videourl">
 						<span class="glyphicon glyphicon-circle-arrow-down">下载</span>
@@ -90,12 +97,12 @@
 						<a style="cursor: pointer;" @click="selectAuthor(author.id)"><img :src="author.photourl" /></a>
 					</div>
 					<div id="author-right">
-						<h4>{{author.name}}</h4>
-						<p class="signature">{{author.signature}}</p>
+						<h4 style="line-height: 1.5em;">{{author.name}}</h4>
+						<p style="line-height: 2.3em;" class="signature">{{author.signature}}</p>
 						<button class="btn btn-default" @click="insertfollow">
 						<span class="glyphicon glyphicon-plus"></span>{{follow}}
 					</button>
-						<button class="btn btn-default" @click="privateLetter(author.id)"> 
+						<button style="margin-left: 20px;" class="btn btn-default" @click="privateLetter(author.id)"> 
 						<span class="glyphicon glyphicon-envelope"></span>私信
 					</button>
 
@@ -133,6 +140,8 @@
 				vid: 1, //视频id
 				good: 0, //点赞数量
 				bad: 0, //点踩数量
+				goodFlag:false,//判断点赞点踩
+				badFlag:false,//判断点赞点踩
 				rateValue: 3, //平均分
 				markValue: 0, //用户打分
 				collection: '收藏',
@@ -311,6 +320,8 @@
 						this.loadAuthor();
 						this.loadGood();
 						this.loadBad();
+						this.loadMyGood();
+						this.loadMyBad();
 						this.recommend();
 						this.loadFollowAndCollection();
 					},
@@ -423,6 +434,8 @@
 						this.good = result.body;
 						this.loadGood();
 						this.loadBad();
+						this.loadMyGood();
+						this.loadMyBad();
 					},
 					function(error) {
 						console.log(error);
@@ -436,6 +449,8 @@
 						this.bad = result.body;
 						this.loadGood();
 						this.loadBad();
+						this.loadMyGood();
+						this.loadMyBad();
 					},
 					function(error) {
 						console.log(error);
@@ -588,7 +603,37 @@
 						"aid":aid
 					}
 				})
-			
+			},
+			loadMyGood(){
+				this.$http.post("http://localhost/loadMyGood", {
+					vid: this.video.id
+				}).then(
+					function(result) {
+						if(result.bodyText=='存在'){
+							this.goodFlag=true;
+						}else{
+							this.goodFlag=false;
+						}
+						
+					},
+					function(error) {
+						this.goodFlag=false;//说明没有登录
+					});
+			},
+			loadMyBad(){
+				this.$http.post("http://localhost/loadMyBad", {
+					vid: this.video.id
+				}).then(
+					function(result) {
+						if(result.bodyText=='存在'){
+							this.badFlag=true;
+						}else{
+							this.badFlag=false;
+						}
+					},
+					function(error) {
+						this.badFlag=false;
+					});
 			}
 		},
 		created() {

@@ -8,7 +8,7 @@
 				</h1>
 			</div>
 			<div class="recommended">
-				<div  class="col-sm-7" style="width: 880px; margin-left:25px;margin-top: 20px;">
+				<div   style="width: 880px; margin-left:25px;margin-top: 20px;">
 				<div class="panel panel-info" style="margin-bottom: 30px;">
 					<div class="panel-heading">
 						<div class="col-md-1 column">
@@ -26,10 +26,7 @@
 				
 			</div>		
 			</div>
-
-		</div>
-		<div>
-					<div  class="page-header" style="margin-left: 290px; margin-bottom: 20px; width: 860PX;">
+			<div  class="page-header" style=" margin-bottom: 20px; width: 860PX;">
 						<h2>
 							 <small>我的评论</small>
 						</h2>
@@ -46,7 +43,9 @@
 					</div>
 				</div>
 			
+
 		</div>
+		
 
 	</div>
 </template>
@@ -167,7 +166,7 @@
 	
 		.media{
 		border-bottom: 0.2px solid gainsboro;
-		margin-left: 240px;
+		
 		width: 910PX;
 	}
 .img-circle {
