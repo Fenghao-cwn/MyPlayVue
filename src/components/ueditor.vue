@@ -1,9 +1,9 @@
 <template>
 	<div id="main_u">
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<div  class="form-group">
+			<div class="form-group">
 				<div>
-					
+
 					<div class="col-sm-7">
 						<!--<textarea class=" form-control" rows="15"></textarea>-->
 						<div id="edi">
@@ -85,23 +85,25 @@
 			}
 		},
 		methods: {
-		
+
 			sub: function() {
 				var html = ue.getContent();
-				alert(html);
-				this.$http.post("http://localhost:80/dy/dynamic", {
-					"content": html
-				}).then(
-					function() {
-						this.ue.getContent = {
-							content: ''
+				if(html != null && html != "") {
+					this.$http.post("http://localhost:80/dy/dynamic", {
+						"content": html
+					}).then(
+						function() {
+							ue.setContent('');
+							alert("发布成功！");
+						},
+						function() {
+							alert("发布失败！");
 						}
-						alert("success！");
-					},
-					function() {
-						alert("新增雇员失败，请稍后重试！！");
-					}
-				)
+					)
+				} else {
+					alert("不能为空")
+				}
+
 			}
 		}
 	}
