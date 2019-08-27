@@ -24,25 +24,21 @@
 
 			</div>
 			<!--动态展示-->
-			<div class="col-sm-7" style="width: 880px; margin-left:120px;margin-top: 40px;">
-				<div class="panel panel-info">
-					<div class="panel-heading">
-						<a><img style="width: 30px;height: 30px;" src="../../static/images/ys.png" /><b style="font-size:medium;">酉月未央 </b></a>
+			<div v-for="dynamic in dynamics">
+				<div class="col-sm-7" style="width: 880px; margin-left:120px;margin-top: 40px;">
+					
+					<div class="panel panel-info">
+						
+						<div class="panel-heading">
+							<div class="col-md-1 column">
+								<a href=""><img alt="140x140" :src="dynamic.photourl" class="img-circle" /></a>
+							</div>
+							<b style="font-size:medium;margin-left: -14px;">{{dynamic.name}} </b>
+						</div>
 
-					</div>
-					<div class="panel-body">
-						<p>平日无事其乐融融</p>
-						<p>一朝犯险作鸟兽散</p>
-					</div>
-				</div>
-				<div class="panel panel-info">
-					<div class="panel-heading">
-						<a><img style="width: 30px;height: 30px;" src="../../static/images/ys.png" /><b style="font-size:medium;">酉月未央 </b></a>
-
-					</div>
-					<div class="panel-body">
-						<p>真正的同情就是耐心对待别人的痛苦</p>
-
+						<div class="panel-body">
+							{{dynamic.content}}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -80,12 +76,15 @@
 			return {
 				ue: {
 					content: '',
-				}
+				},
+				dynamics: []
 
 			}
 		},
+		created: function() {
+			this.loaddynamic();
+		},
 		methods: {
-
 			sub: function() {
 				var html = ue.getContent();
 				if(html != null && html != "") {
@@ -103,6 +102,17 @@
 				} else {
 					alert("不能为空")
 				}
+			},
+			loaddynamic: function() {
+				this.$http.get("http://localhost:80/dy/dynamic").then(
+					function(result) {
+						this.dynamics = result.body;
+						console.log(this.dynamics);
+					},
+					function(error) {
+						alert("动态获取失败！");
+					}
+				)
 
 			}
 		}
