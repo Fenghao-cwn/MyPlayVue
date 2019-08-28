@@ -25,7 +25,7 @@
 					<div  class="panel-body ">
 						<b style="font-size:medium;margin-left: 340px;">标题：{{ueditor.title}}</b>
 						<a href="" @click="detail(ueditor.id)"><span style="font-size: 12px;margin-left: 325px; color: #31708F;cursor:pointer">查看详情</span></a>
-						<p class="p-ueditor" style="line-height: 20px; font-size: 12px;text-indent:2em;">{{ueditor.content}}</p>
+						<p class="p-ueditor" style="line-height: 20px; font-size: 12px;text-indent:2em;"><div v-html="ueditor.content"></div></p>
 						<p class="time-p" >{{ueditor.createtime}}</p>
 					</div>
 				</div>
