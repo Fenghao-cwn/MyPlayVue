@@ -18,8 +18,8 @@
 
 					</div>
 					<div  class="panel-body ">
-						<b style="font-size:medium;margin-left: 340px;">标题：{{dynamic.title}}</b>
-						<p class="p-ueditor" style="line-height: 20px; font-size: 12px;text-indent:2em;">{{dynamic.content}}</p>
+						<div v-html="dynamic.content"></div>
+						<p class="p-ueditor" style="line-height: 20px; font-size: 12px;text-indent:2em;"></p>
 						<p class="time-p" >{{dynamic.createtime}}</p>
 					</div>
 				</div>
@@ -38,7 +38,8 @@
 						<a href=""><img alt="140x140" :src="DynamicComment.photourl" class="img-circle" /></a>
 					</div>
 					<div class="media-body">
-						<p>{{DynamicComment.content}}</p>
+						<div v-html="DynamicComment.content"></div>
+						
 						<span><a href="#" @click="deleteDynamicComment(DynamicComment.id)"> 删除评论 </a></span>
 					</div>
 				</div>
@@ -110,6 +111,20 @@
 				},function(error){
 					
 				})
+			},
+			loadUeditor() {
+				var did = this.$route.query.did;
+				this.$http.get("http://localhost/Personal/selectDynamic", {
+					params: {
+						"did": did
+					}
+				}).then(
+					function(result) {
+						this.dynamic = result.body;
+					},
+					function(error) {
+
+					})
 			},
 			deleteDynamicComment(id){
 				var flag=confirm("确定要删除该条评论？");

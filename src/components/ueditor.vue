@@ -24,21 +24,23 @@
 
 			</div>
 			<!--动态展示-->
-			<div v-for="dynamic in dynamics">
-				<div class="col-sm-7" style="width: 880px; margin-left:120px;margin-top: 40px;">
-					
+
+			<div class="col-sm-7" style="width: 880px; margin-left:120px;margin-top: 40px;">
+				<div v-for="dynamic in dynamics">
 					<div class="panel panel-info">
-						
 						<div class="panel-heading">
 							<div class="col-md-1 column">
-								<a href=""><img alt="140x140" :src="dynamic.photourl" class="img-circle" /></a>
+								<a href=""  @click="selectAuthor(dynamic.uid)"><img alt="140x140" :src="dynamic.photourl" class="img-circle" /></a>
 							</div>
-							<b style="font-size:medium;margin-left: -14px;">{{dynamic.name}} </b>
+							<b style="font-size:medium;margin-left: -14px;">昵称:<a style="cursor: pointer;" @click="selectAuthor(dynamic.uid)">{{dynamic.name}}</a></b>
 						</div>
+						<a style="cursor: pointer;" @click="tody_Detail(dynamic.id,dynamic.id_u)">
+							<div class="panel-body">
 
-						<div class="panel-body">
-							{{dynamic.content}}
-						</div>
+								<div v-html="dynamic.content"></div>
+
+							</div>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -72,7 +74,6 @@
 	export default {
 		name: 'ueditor',
 		data() {
-			console.log(isHidden)
 			return {
 				ue: {
 					content: '',
@@ -81,7 +82,10 @@
 
 			}
 		},
-		created: function() {
+		//				beforeRouteUpdate(to, from, next) {
+		//					this.loaddynamic();
+		//				},
+		mounted() {
 			this.loaddynamic();
 		},
 		methods: {
@@ -114,6 +118,25 @@
 					}
 				)
 
+			},
+			tody_Detail: function(did, uid) {
+				this.$router.push({
+					path: '/He_ueditor_detail',
+					query: {
+						did: did,
+						uid: uid
+					}
+				});
+				this.$router.go(0);
+			},
+			selectAuthor: function(aid) { //点击头像，跳转到这个页面，并携带着参数
+				this.$router.push({
+					path: "/solo_message",
+					query: {
+						"aid": aid
+					}
+				})
+
 			}
 		}
 	}
@@ -135,6 +158,6 @@
 	#but {
 		margin-left: 1000px;
 		position: absolute;
-		top: 240px;
+		top: 250px;
 	}
 </style>

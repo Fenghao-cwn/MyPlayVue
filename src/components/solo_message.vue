@@ -84,8 +84,8 @@
 					</div>
 					<div  class="panel-body ">
 						<b style="font-size:medium;margin-left: 340px;">标题：{{AuthorDynamic.title}}</b>
-						<a><span style="font-size: 12px;margin-left: 355px; color: #31708F;cursor:pointer">查看详情</span></a>
-						<p class="p-ueditor" style="line-height: 20px; font-size: 12px;text-indent:2em;">{{AuthorDynamic.content}}</p>
+						<a><span style="font-size: 12px;margin-left: 355px; color: #31708F;cursor:pointer;" @click="tody_Detail(AuthorDynamic.id,author.id)" >查看详情</span></a>
+						<p class="p-ueditor" style="line-height: 20px; font-size: 12px;text-indent:2em;"><div v-html="AuthorDynamic.content"></div></p>
 						<p class="time-p" >{{AuthorDynamic.createtime}}</p>
 					</div>
 				</div>
@@ -185,6 +185,16 @@
 	  				}
 	  			});
 	  			 this.$router.go(0);   
+			},
+			tody_Detail: function(did, uid) {
+				this.$router.push({
+					path: '/ueditor_detail2',
+					query: {
+						did: did,
+						uid: uid
+					}
+				});
+				this.$router.go(0);
 			}
 		}
 	}

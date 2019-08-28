@@ -97,7 +97,6 @@
 	  			});
 	  			 this.$router.go(0);   
 			}
-
 		}
 	}
 </script>
