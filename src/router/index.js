@@ -28,7 +28,7 @@ import solo_message from '@/components/solo_message'
 import ueditor_detail from '@/components/ueditor_detail'
 import ueditor_detail2 from '@/components/ueditor_detail2'
 import  He_ueditor_detail from '@/components/He_ueditor_detail'
-
+import orderlist from '@/components/orderlist'
 Vue.use(Router)
 
 export default new Router({
@@ -147,7 +147,12 @@ export default new Router({
       path: '/He_ueditor_detail',
       name: 'He_ueditor_detail',
       component: He_ueditor_detail
-    }
+    },
+       {
+          path: '/orderlist',
+          name: 'orderlist',
+          component: orderlist
+        }
 	
 		
 

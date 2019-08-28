@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+    <div class="col-sm-9  col-md-10 ">
       <div class="page-shopping-cart" id="shopping-cart">
         <h4 class="cart-title">购物清单</h4>
         <div class="cart-product-title clearfix">
@@ -9,7 +9,7 @@
 
 
 
-          <label><input type="checkbox"  @click="check_all" :checked="check_goods.length == goodsList.length"/>全选</label>
+            <label><input type="checkbox" @click="check_all" :checked="check_goods.length == goodsList.length" />全选</label>
 
           </div>
           <div class="td-product fl">商品</div>
@@ -24,9 +24,9 @@
               <tr v-for="(item,index) in goodsList" :key=index>
 
                 <td class="td-check">
-
-                <input type="checkbox" :value="item" v-model="check_goods" />
-
+                  <label>
+                    <input type="checkbox" :value="item" v-model="check_goods" @click="select(item)" />
+                  </label>
 
                 </td>
 
@@ -70,8 +70,8 @@
 
 
           <a href="#" class="keep-shopping"><span></span>继续购物</a>
-          <a href="javascript:;" class="fr btn-buy">去结算</a>
-         <a href="javascript:;" class="fr product-total">￥<span>{{total_price}}</span></a>
+          <a href="javascript:;" class="fr btn-buy" @click="addorder(selects)">去结算</a>
+          <a href="javascript:;" class="fr product-total">￥<span>{{total_price}}</span></a>
           <a href="javascript:;" class="fr check-num"><span>{{total_num}}</span>件商品总计（不含运费）:</a>
         </div>
 
@@ -82,7 +82,7 @@
         </div>
       </div>
     </div>
-  </div>
+
 </template>
 
 <script>
@@ -100,49 +100,57 @@
           'picture': '', //图片链接
           'price': '' //单价
         }, ],
-        check_goods: [] //已选择的商品
-         }
-      },
+        check_goods: [], //已选择的商品
+        selects: []
+      }
+    },
 
 
     computed: {
       total_price() {
-              let price = 0 　　　　　　　　　　　　　　　　　　　　　　　　
-              this.check_goods.forEach(item => {
-//                      总价 = 价格 * 数量
-                  price += Number(item.price) * Number(item.num)
-              })
-              return price
-          },
-//              数量
-          total_num() {
-              let t_num = 0;
-              this.check_goods.forEach(item => {
-                  t_num += Number(item.num);
-              })
-              return t_num
-                    }
+        let price = 0
+        this.check_goods.forEach(item => {
+          //                      总价 = 价格 * 数量
+          price += Number(item.price) * Number(item.num)
+        })
+        return price
+      },
+      //              数量
+      total_num() {
+        let t_num = 0;
+        this.check_goods.forEach(item => {
+          t_num += Number(item.num);
+        })
+        return t_num
+      }
     },
     //钩子函数
     created: function() {
       this.addcart();
+
     },
     methods: {
+      select: function(item) {
+        // if this.check_goods==true;
+        this.selects.push(item);
 
-      check_all:function() {
-          if (this.check_goods.length >0) {
-              this.check_goods = []
-          } else {
-              this.goodsList.forEach(item => {
-                  this.check_goods.push(item)
-              })
-          }
+        // console.log('select方法中的 selects'+this.selects);
+      },
+
+      check_all: function() {
+        if (this.check_goods.length > 0) {
+          this.check_goods = []
+        } else {
+          this.goodsList.forEach(item => {
+            this.check_goods.push(item)
+          })
+        }
       },
 
 
       addcart: function() {
         var id = this.$route.query.id;
-        console.log(id);
+        //         console.log(id);
 
         this.$http.get("http://localhost:80/goods/addcart", {
           params: {
@@ -151,10 +159,23 @@
         }).then(function(result) {
 
           this.goodsList = result.body;
-          console.log(this.goodsList);
+          // console.log(this.goodsList);
         })
       },
 
+      addorder: function(selects) {
+
+        // alert('购物车传参'+this.selects);
+        console.log(12333);
+        console.log(this.selects);
+        this.$router.push({
+          path: '/list',
+
+          query: {
+            selects: selects
+          },
+        })
+      },
 
       //数量改变函数
       sub: function(item) {
@@ -170,7 +191,8 @@
       //删除单条产品
       deleteOneProduct: function(item) {
         //根据索引删除goodsList的记录
-        this.check_goods.splice(this.check_goods.indexOf(item),1);
+        this.check_goods.splice(this.check_goods.indexOf(item), 1);
+        console.log(this.check_goods.item.id);
         this.goodsList.splice(this.goodsList.indexOf(item), 1);
 
       }
@@ -185,293 +207,366 @@
 
 
 <style scoped>
-.fl{
-		  float: left;
-		}
-		.fr{
-		  float: right;
-		}
-		blockquote, body, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, img, input, li, ol, p, table, td, textarea, th, ul {
-		  margin: 0;
-		  padding: 0;
-		}
-		.clearfix{
-		  zoom: 1;
-		}
-		.clearfix:after {
-		  clear: both;
-		}
-		.clearfix:after {
-		  content: '.';
-		  display: block;
-		  overflow: hidden;
-		  visibility: hidden;
-		  font-size: 0;
-		  line-height: 0;
-		  width: 0;
-		  height: 0;
-		}
-		a{
-		  text-decoration: none;
-		  color: #333;
-		}
-		img{vertical-align: middle;}
-		.page-shopping-cart{
-		  width: 70vw;
-		  margin: 50px 0 auto 20vw;
-		  font-size: 14px;
-		  border:1px solid #e3e3e3;
-		  border-top:2px solid #317ee7;
-		}
-		.page-shopping-cart .cart-title{
-		  color:#317ee7;
-		  font-size: 16px;
-		  text-align: left;
-		  padding-left: 20px;
-		  line-height: 68px;
-		}
-		.page-shopping-cart .red-text {
-		  color: #e94826;
-		}
-		.page-shopping-cart .check-span{
-		  display: block;
-		  width: 24px;
-		  height: 20px;
-		  margin-top: 9px;
-		  background: url("../../static/images/cartBg.png") no-repeat 0 0;
-		}
+  .fl {
+    float: left;
+  }
 
-		/* 点击时改变勾选 */
-		.page-shopping-cart .check-span.check-true{
-		  background: url('../../static/images/cartBg.png') no-repeat 0 -22px;
-		}
-		.page-shopping-cart .td-check{
-		  width:70px;
-		}
-		.page-shopping-cart .td-product{
-		  width:460px;
-		}
-		.page-shopping-cart .td-num, .page-shopping-cart .td-price, .page-shopping-cart .td-total{
-		  width:160px;
-		}
-		.page-shopping-cart .td-do{
-		  width:150px;
-		}
-		.cart-product-title{
-		  text-align: center;
-		  height: 38px;
-		  line-height: 38px;
-		  padding: 0 20px;
-		  background-color: #f7f7f7;
-		  border-top: 1px solid #e3e3e3;
-		  border-bottom: 1px solid #e3e3e3;
-		}
-		.cart-product-title .td-product{
-		  text-align: center;
-		  font-size: 14px;
-		}
-		.cart-product-title .td-check{
-		  text-align: left;
-		}
-		.cart-product-title .td-check .check-span .check-span{
-		  margin:9px 6px 0 0;
-		}
+  .fr {
+    float: right;
+  }
+  .clearfix {
+    zoom: 1;
+  }
 
-		/* 内容开始 */
-		.cart-product{
-		  padding: 0 20px;
-		  text-align: center;
-		}
-		.cart-product table{
-		  width: 100%;
-		  text-align: center;
-		  font-size: 14px;
-		}
-		.cart-product table td{
-		  padding: 20px 0;
-		}
-		.cart-product table tr{
-		  border-bottom:1px dashed #e3e3e3;
-		}
-		.cart-product table tr:last-child{
-		  border-bottom:none;
-		}
-		.cart-product table .product-num{
-		  border: 1px solid #e3e3e3;
-		  display: inline-block;
-		  text-align: center;
-		}
-		.cart-product table .product-num .num-do{
-		  width: 24px;
-		  height: 28px;
-		  background: #f7f7f7;
-		  display: block;
-		}
-		.cart-product table .product-num .num-reduce span{
-		  display: block;
-		  width: 6px;
-		  height: 2px;
-		  margin:13px auto 0 auto;
-		  background: url("../../static/images/cartBg.png") no-repeat -40px -22px;
-		}
-		.cart-product table .product-num .num-add span{
-		  display: block;
-		  width: 8px;
-		  height: 8px;
-		  margin:10px auto 0 auto;
-		  background: url("../../static/images/cartBg.png") no-repeat -60px -22px;
-		}
-		.cart-product table .product-num .num-input{
-		  width: 42px;
-		  height: 28px;
-		  line-height:28px;
-		  border:none;
-		  text-align: center;
-		}
-		.cart-product table .td-product{
-		  text-align: center;
-		  font-size: 12px;
-		  line-height: 20px;
-		}
-		.cart-product table .td-product img{
-		  border:1px solid #e3e3e3;
-		  margin-right: 10px;
-		}
-		.cart-product table .td-product .product-info{
-		  display: inline-block;
-		  vertical-align: middle;
-		  text-align: left;
-		}
-		.cart-product table .td-do{
-		  font-size: 12px;
-		}
+  .clearfix:after {
+    clear: both;
+  }
 
-		/* 最后一行统计 */
+  .clearfix:after {
+    content: '.';
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    font-size: 0;
+    line-height: 0;
+    width: 0;
+    height: 0;
+  }
 
-		.cart-product-info{
-		  height:50px;
-		  line-height: 50px;
-		  background: #f7f7f7;
-		  padding-left: 20px;
-		}
-		.cart-product-info .delete-product{
-		  color:#666;
-		}
-		.cart-product-info .delete-product span{
-		  display: inline-block;
-		  vertical-align: top;
-		  margin:18px 8px 0 0;
-		  width:13px;
-		  height: 15px;
-		  background: url("../../static/images/cartBg.png") no-repeat -60px 0;
-		}
-		.cart-product-info .product-total{
-		  font-size: 14px;
-		  color:#e94826;
-		}
-		.cart-product-info .product-total span{
-		  font-size: 20px;
-		}
-		.cart-product-info .check-num{
-		  color:#333;
-		}
-		.cart-product-info .check-num span{
-		  color: #e94826;
-		}
-		.cart-product-info .keep-shopping{
-		  color: #666;
-		  margin-left: 40px;
-		}
-		.cart-product-info .keep-shopping span{
-		  display: inline-block;
-		  vertical-align: top;
-		  margin:18px 8px 0 0;
-		  width: 15px;
-		  height: 15px;
-		  background: url("../../static/images/cartBg.png") no-repeat -40px 0;
-		}
-		.cart-product-info .btn-buy{
-		  height: 50px;
-		  color: #fff;
-		  font-size: 20px;
-		  display: block;
-		  width: 110px;
-		  background: #ff7700;
-		  text-align: center;
-		  margin-left: 30px;
-		}
+  a {
+    text-decoration: none;
+    color: #333;
+  }
+
+  img {
+    vertical-align: middle;
+  }
+
+  .page-shopping-cart {
+    width: 70vw;
+   /* margin: 50px 0 auto 20vw; */
+    font-size: 14px;
+    border: 1px solid #e3e3e3;
+    border-top: 2px solid #317ee7;
+  }
+
+  .page-shopping-cart .cart-title {
+    color: #317ee7;
+    font-size: 16px;
+    text-align: left;
+    padding-left: 20px;
+    line-height: 68px;
+  }
+
+  .page-shopping-cart .red-text {
+    color: #e94826;
+  }
+
+  .page-shopping-cart .check-span {
+    display: block;
+    width: 24px;
+    height: 20px;
+    margin-top: 9px;
+    background: url("../../static/images/cartBg.png") no-repeat 0 0;
+  }
+
+  /* 点击时改变勾选 */
+  .page-shopping-cart .check-span.check-true {
+    background: url('../../static/images/cartBg.png') no-repeat 0 -22px;
+  }
+
+  .page-shopping-cart .td-check {
+    width: 70px;
+  }
+
+  .page-shopping-cart .td-product {
+    width: 460px;
+  }
+
+  .page-shopping-cart .td-num,
+  .page-shopping-cart .td-price,
+  .page-shopping-cart .td-total {
+    width: 160px;
+  }
+
+  .page-shopping-cart .td-do {
+    width: 150px;
+  }
+
+  .cart-product-title {
+    text-align: center;
+    height: 38px;
+    line-height: 38px;
+    padding: 0 20px;
+    background-color: #f7f7f7;
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+  }
+
+  .cart-product-title .td-product {
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .cart-product-title .td-check {
+    text-align: left;
+  }
+
+  .cart-product-title .td-check .check-span .check-span {
+    margin: 9px 6px 0 0;
+  }
+
+  /* 内容开始 */
+  .cart-product {
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  .cart-product table {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .cart-product table td {
+    padding: 20px 0;
+  }
+
+  .cart-product table tr {
+    border-bottom: 1px dashed #e3e3e3;
+  }
+
+  .cart-product table tr:last-child {
+    border-bottom: none;
+  }
+
+  .cart-product table .product-num {
+    border: 1px solid #e3e3e3;
+    display: inline-block;
+    text-align: center;
+  }
+
+  .cart-product table .product-num .num-do {
+    width: 24px;
+    height: 28px;
+    background: #f7f7f7;
+    display: block;
+  }
+
+  .cart-product table .product-num .num-reduce span {
+    display: block;
+    width: 6px;
+    height: 2px;
+    margin: 13px auto 0 auto;
+    background: url("../../static/images/cartBg.png") no-repeat -40px -22px;
+  }
+
+  .cart-product table .product-num .num-add span {
+    display: block;
+    width: 8px;
+    height: 8px;
+    margin: 10px auto 0 auto;
+    background: url("../../static/images/cartBg.png") no-repeat -60px -22px;
+  }
+
+  .cart-product table .product-num .num-input {
+    width: 42px;
+    height: 28px;
+    line-height: 28px;
+    border: none;
+    text-align: center;
+  }
+
+  .cart-product table .td-product {
+    text-align: center;
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .cart-product table .td-product img {
+    border: 1px solid #e3e3e3;
+    margin-right: 10px;
+  }
+
+  .cart-product table .td-product .product-info {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+  }
+
+  .cart-product table .td-do {
+    font-size: 12px;
+  }
+
+  /* 最后一行统计 */
+
+  .cart-product-info {
+    height: 50px;
+    line-height: 50px;
+    background: #f7f7f7;
+    padding-left: 20px;
+  }
+
+  .cart-product-info .delete-product {
+    color: #666;
+  }
+
+  .cart-product-info .delete-product span {
+    display: inline-block;
+    vertical-align: top;
+    margin: 18px 8px 0 0;
+    width: 13px;
+    height: 15px;
+    background: url("../../static/images/cartBg.png") no-repeat -60px 0;
+  }
+
+  .cart-product-info .product-total {
+    font-size: 14px;
+    color: #e94826;
+  }
+
+  .cart-product-info .product-total span {
+    font-size: 20px;
+  }
+
+  .cart-product-info .check-num {
+    color: #333;
+  }
+
+  .cart-product-info .check-num span {
+    color: #e94826;
+  }
+
+  .cart-product-info .keep-shopping {
+    color: #666;
+    margin-left: 40px;
+  }
+
+  .cart-product-info .keep-shopping span {
+    display: inline-block;
+    vertical-align: top;
+    margin: 18px 8px 0 0;
+    width: 15px;
+    height: 15px;
+    background: url("../../static/images/cartBg.png") no-repeat -40px 0;
+  }
+
+  .cart-product-info .btn-buy {
+    height: 50px;
+    color: #fff;
+    font-size: 20px;
+    display: block;
+    width: 110px;
+    background: #ff7700;
+    text-align: center;
+    margin-left: 30px;
+  }
 
 
 
-		/* cart-worder */
+  /* cart-worder */
 
-		.page-shopping-cart .cart-worder {
-		    padding: 20px; }
-		.page-shopping-cart .cart-worder .choose-worder {
-		    color: #fff;
-		    display: block;
-		    background: #39e;
-		    width: 140px;
-		    height: 40px;
-		    line-height: 40px;
-		    border-radius: 4px;
-		    text-align: center;
-		    margin-right: 20px; }
-		.page-shopping-cart .cart-worder .choose-worder span {
-		    display: inline-block;
-		    vertical-align: top;
-		    margin: 9px 10px 0 0;
-		    width: 22px;
-		    height: 22px;
-		    background: url("../../static/images/cartBg.png") no-repeat -92px 0; }
-		.page-shopping-cart .cart-worder .worker-info {
-		    color: #666; }
-		.page-shopping-cart .cart-worder .worker-info img {
-		    border-radius: 100%;
-		    margin-right: 10px; }
-		.page-shopping-cart .cart-worder .worker-info span {
-		    color: #000; }
+  .page-shopping-cart .cart-worder {
+    padding: 20px;
+  }
 
-		.choose-worker-box {
-		    width: 620px;
-		    background: #fff; }
-		.choose-worker-box .box-title {
-		    height: 40px;
-		    line-height: 40px;
-		    background: #F7F7F7;
-		    text-align: center;
-		    position: relative;
-		    font-size: 14px; }
-		.choose-worker-box .box-title a {
-		    display: block;
-		    position: absolute;
-		    top: 15px;
-		    right: 16px;
-		    width: 10px;
-		    height: 10px;
-		    background: url("../../static/images/shopping_cart.png") no-repeat -80px 0; }
-		.choose-worker-box .box-title a:hover {
-		    background: url("../../static/images/shopping_cart.png") no-repeat -80px -22px; }
-		.choose-worker-box .worker-list {
-		    padding-top: 30px;
-		    height: 134px;
-		    overflow-y: auto; }
-		.choose-worker-box .worker-list li {
-		    float: left;
-		    width: 25%;
-		    text-align: center;
-		    margin-bottom: 30px; }
-		.choose-worker-box .worker-list li p {
-		    margin-top: 8px; }
-		.choose-worker-box .worker-list li.cur a {
-		    color: #f70; }
-		.choose-worker-box .worker-list li.cur a img {
-		    border: 1px solid #f70; }
-		.choose-worker-box .worker-list li a:hover {
-		    color: #f70; }
-		.choose-worker-box .worker-list li a:hover img {
-		    border: 1px solid #f70; }
-		.choose-worker-box .worker-list li img {
-		    border: 1px solid #fff;
-		    border-radius: 100%; }
+  .page-shopping-cart .cart-worder .choose-worder {
+    color: #fff;
+    display: block;
+    background: #39e;
+    width: 140px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 4px;
+    text-align: center;
+    margin-right: 20px;
+  }
+
+  .page-shopping-cart .cart-worder .choose-worder span {
+    display: inline-block;
+    vertical-align: top;
+    margin: 9px 10px 0 0;
+    width: 22px;
+    height: 22px;
+    background: url("../../static/images/cartBg.png") no-repeat -92px 0;
+  }
+
+  .page-shopping-cart .cart-worder .worker-info {
+    color: #666;
+  }
+
+  .page-shopping-cart .cart-worder .worker-info img {
+    border-radius: 100%;
+    margin-right: 10px;
+  }
+
+  .page-shopping-cart .cart-worder .worker-info span {
+    color: #000;
+  }
+
+  .choose-worker-box {
+    width: 620px;
+    background: #fff;
+  }
+
+  .choose-worker-box .box-title {
+    height: 40px;
+    line-height: 40px;
+    background: #F7F7F7;
+    text-align: center;
+    position: relative;
+    font-size: 14px;
+  }
+
+  .choose-worker-box .box-title a {
+    display: block;
+    position: absolute;
+    top: 15px;
+    right: 16px;
+    width: 10px;
+    height: 10px;
+    background: url("../../static/images/shopping_cart.png") no-repeat -80px 0;
+  }
+
+  .choose-worker-box .box-title a:hover {
+    background: url("../../static/images/shopping_cart.png") no-repeat -80px -22px;
+  }
+
+  .choose-worker-box .worker-list {
+    padding-top: 30px;
+    height: 134px;
+    overflow-y: auto;
+  }
+
+  .choose-worker-box .worker-list li {
+    float: left;
+    width: 25%;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .choose-worker-box .worker-list li p {
+    margin-top: 8px;
+  }
+
+  .choose-worker-box .worker-list li.cur a {
+    color: #f70;
+  }
+
+  .choose-worker-box .worker-list li.cur a img {
+    border: 1px solid #f70;
+  }
+
+  .choose-worker-box .worker-list li a:hover {
+    color: #f70;
+  }
+
+  .choose-worker-box .worker-list li a:hover img {
+    border: 1px solid #f70;
+  }
+
+  .choose-worker-box .worker-list li img {
+    border: 1px solid #fff;
+    border-radius: 100%;
+  }
 </style>
