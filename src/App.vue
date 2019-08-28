@@ -210,9 +210,6 @@
 							<a href="/outbox">发件箱</a>
 						</li>
 						<li>
-							<a href="#">收到的赞</a>
-						</li>
-						<li>
 							<a href="/notice">系统通知</a>
 						</li>
 
