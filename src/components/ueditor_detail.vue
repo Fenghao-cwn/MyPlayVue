@@ -19,7 +19,7 @@
 					</div>
 					<div  class="panel-body ">
 						<div v-html="dynamic.content"></div>
-						<p class="p-ueditor" style="line-height: 20px; font-size: 12px;text-indent:2em;"></p>
+		
 						<p class="time-p" >{{dynamic.createtime}}</p>
 					</div>
 				</div>
@@ -111,20 +111,6 @@
 				},function(error){
 					
 				})
-			},
-			loadUeditor() {
-				var did = this.$route.query.did;
-				this.$http.get("http://localhost/Personal/selectDynamic", {
-					params: {
-						"did": did
-					}
-				}).then(
-					function(result) {
-						this.dynamic = result.body;
-					},
-					function(error) {
-
-					})
 			},
 			deleteDynamicComment(id){
 				var flag=confirm("确定要删除该条评论？");
