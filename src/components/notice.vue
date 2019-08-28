@@ -12,91 +12,16 @@
 					</blockquote>
 					<div style="height: 42px;margin-bottom: 23px;">
 					</div>
-					<blockquote >
-						<p >
-							<strong>B站马上十岁啦！十终有你一路同行</strong>
-						</p>
-						<p class="content">	如果世界末日即将来临，导致地球毁灭的原因是什么？你又该如何生存呢？根据世界末日主题脑补一段故事来参加<全开!脑洞君>活动，就有机会抽取大会员、B币券和百元贝壳等奖品哟！活动戳>>https://www.bilibili.com/blackboard/activity-mayday2019-m.html?msource=xttz</p>
-					</blockquote>
+					<div v-for="notic in notices">
+						<blockquote >
+							<p >
+								<strong>{{notic.title}}  </strong><span class="timen">{{notic.createTime}}</span>
+							</p>
+							<p class="content">{{notic.content}}</p>
+						</blockquote>
+					</div>
 					
-					<blockquote >
-						<p >
-							<strong>B站马上十岁啦！十终有你一路同行</strong>
-						</p>
-						<p>	&nbsp;&nbsp;&nbsp;&nbsp;如果世界末日即将来临，导致地球毁灭的原因是什么？你又该如何生存呢？根据世界末日主题脑补一段故事来参加<全开!脑洞君>活动，就有机会抽取大会员、B币券和百元贝壳等奖品哟！活动戳>>https://www.bilibili.com/blackboard/activity-mayday2019-m.html?msource=xttz</p>
-					</blockquote>
-					<blockquote >
-						<p >
-							<strong>B站马上十岁啦！十终有你一路同行</strong>
-						</p>
-						<p>	&nbsp;&nbsp;&nbsp;&nbsp;如果世界末日即将来临，导致地球毁灭的原因是什么？你又该如何生存呢？根据世界末日主题脑补一段故事来参加<全开!脑洞君>活动，就有机会抽取大会员、B币券和百元贝壳等奖品哟！活动戳>>https://www.bilibili.com/blackboard/activity-mayday2019-m.html?msource=xttz</p>
-					</blockquote>
-					<blockquote  >
-						<p >
-							<strong>B站马上十岁啦！十终有你一路同行</strong>
-						</p>
-						<p>	&nbsp;&nbsp;&nbsp;&nbsp;如果世界末日即将来临，导致地球毁灭的原因是什么？你又该如何生存呢？根据世界末日主题脑补一段故事来参加<全开!脑洞君>活动，就有机会抽取大会员、B币券和百元贝壳等奖品哟！活动戳>>https://www.bilibili.com/blackboard/activity-mayday2019-m.html?msource=xttz</p>
-					</blockquote>
-					<blockquote  >
-						<p >
-							<strong>B站马上十岁啦！十终有你一路同行</strong>
-						</p>
-						<p>	&nbsp;&nbsp;&nbsp;&nbsp;如果世界末日即将来临，导致地球毁灭的原因是什么？你又该如何生存呢？根据世界末日主题脑补一段故事来参加<全开!脑洞君>活动，就有机会抽取大会员、B币券和百元贝壳等奖品哟！活动戳>>https://www.bilibili.com/blackboard/activity-mayday2019-m.html?msource=xttz</p>
-					</blockquote>
-					<blockquote  >
-						<p >
-							<strong>B站马上十岁啦！十终有你一路同行</strong>
-						</p>
-						<p>	&nbsp;&nbsp;&nbsp;&nbsp;如果世界末日即将来临，导致地球毁灭的原因是什么？你又该如何生存呢？根据世界末日主题脑补一段故事来参加<全开!脑洞君>活动，就有机会抽取大会员、B币券和百元贝壳等奖品哟！活动戳>>https://www.bilibili.com/blackboard/activity-mayday2019-m.html?msource=xttz</p>
-					</blockquote>
-					<blockquote  >
-						<p >
-							<strong>B站马上十岁啦！十终有你一路同行</strong>
-						</p>
-						<p>	&nbsp;&nbsp;&nbsp;&nbsp;如果世界末日即将来临，导致地球毁灭的原因是什么？你又该如何生存呢？根据世界末日主题脑补一段故事来参加<全开!脑洞君>活动，就有机会抽取大会员、B币券和百元贝壳等奖品哟！活动戳>>https://www.bilibili.com/blackboard/activity-mayday2019-m.html?msource=xttz</p>
-					</blockquote>
-					<blockquote  >
-						<p >
-							<strong>B站马上十岁啦！十终有你一路同行</strong>
-						</p>
-						<p>	&nbsp;&nbsp;&nbsp;&nbsp;如果世界末日即将来临，导致地球毁灭的原因是什么？你又该如何生存呢？根据世界末日主题脑补一段故事来参加<全开!脑洞君>活动，就有机会抽取大会员、B币券和百元贝壳等奖品哟！活动戳>>https://www.bilibili.com/blackboard/activity-mayday2019-m.html?msource=xttz</p>
-					</blockquote>
-					<blockquote  >
-						<p >
-							<strong>B站马上十岁啦！十终有你一路同行</strong>
-						</p>
-						<p>	&nbsp;&nbsp;&nbsp;&nbsp;如果世界末日即将来临，导致地球毁灭的原因是什么？你又该如何生存呢？根据世界末日主题脑补一段故事来参加<全开!脑洞君>活动，就有机会抽取大会员、B币券和百元贝壳等奖品哟！活动戳>>https://www.bilibili.com/blackboard/activity-mayday2019-m.html?msource=xttz</p>
-					</blockquote>
-					<blockquote  >
-						<p >
-							<strong>B站马上十岁啦！十终有你一路同行</strong>
-						</p>
-						<p>	&nbsp;&nbsp;&nbsp;&nbsp;如果世界末日即将来临，导致地球毁灭的原因是什么？你又该如何生存呢？根据世界末日主题脑补一段故事来参加<全开!脑洞君>活动，就有机会抽取大会员、B币券和百元贝壳等奖品哟！活动戳>>https://www.bilibili.com/blackboard/activity-mayday2019-m.html?msource=xttz</p>
-					</blockquote>
-					<blockquote  >
-						<p >
-							<strong>B站马上十岁啦！十终有你一路同行</strong>
-						</p>
-						<p>	&nbsp;&nbsp;&nbsp;&nbsp;如果世界末日即将来临，导致地球毁灭的原因是什么？你又该如何生存呢？根据世界末日主题脑补一段故事来参加<全开!脑洞君>活动，就有机会抽取大会员、B币券和百元贝壳等奖品哟！活动戳>>https://www.bilibili.com/blackboard/activity-mayday2019-m.html?msource=xttz</p>
-					</blockquote>
-					<blockquote  >
-						<p >
-							<strong>B站马上十岁啦！十终有你一路同行</strong>
-						</p>
-						<p>	&nbsp;&nbsp;&nbsp;&nbsp;如果世界末日即将来临，导致地球毁灭的原因是什么？你又该如何生存呢？根据世界末日主题脑补一段故事来参加<全开!脑洞君>活动，就有机会抽取大会员、B币券和百元贝壳等奖品哟！活动戳>>https://www.bilibili.com/blackboard/activity-mayday2019-m.html?msource=xttz</p>
-					</blockquote>
-					<blockquote  >
-						<p >
-							<strong>B站马上十岁啦！十终有你一路同行</strong>
-						</p>
-						<p>	&nbsp;&nbsp;&nbsp;&nbsp;如果世界末日即将来临，导致地球毁灭的原因是什么？你又该如何生存呢？根据世界末日主题脑补一段故事来参加<全开!脑洞君>活动，就有机会抽取大会员、B币券和百元贝壳等奖品哟！活动戳>>https://www.bilibili.com/blackboard/activity-mayday2019-m.html?msource=xttz</p>
-					</blockquote>
-					<blockquote  >
-						<p >
-							<strong>B站马上十岁啦！十终有你一路同行</strong>
-						</p>
-						<p>	&nbsp;&nbsp;&nbsp;&nbsp;如果世界末日即将来临，导致地球毁灭的原因是什么？你又该如何生存呢？根据世界末日主题脑补一段故事来参加<全开!脑洞君>活动，就有机会抽取大会员、B币券和百元贝壳等奖品哟！活动戳>>https://www.bilibili.com/blackboard/activity-mayday2019-m.html?msource=xttz</p>
-					</blockquote>
+				
 				</div>
 			</div>
 		</div>
@@ -111,10 +36,36 @@
 <script>
 	export default {
 		name: 'notice',
-		data() {}
+		data() {
+			return{
+				notices:[]
+			}
+			
+		},
+		created:function(){
+			this.getnotices();
+		},
+		methods:{
+		getnotices:function(){
+			this.$http.get("http://localhost/message/getNotice").then(
+				function(result){
+					this.notices = result.body;
+				},
+				function(error){
+					alert("........")
+				}
+			)
+		}
 	}
+	}
+	
 </script>
  
 <style scoped>
+.timen{
+	font-size: 15px;
+    margin-left: 20px;
+    color: #ca9393;
+}
 
 </style>
