@@ -158,9 +158,7 @@
 					<li class="active">
 						<a href="/" class="home-icon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>主站</a>
 					</li>
-					<li>
-						<a href="shows.html" class="user-icon"><span class="glyphicon glyphicon-home glyphicon-blackboard" aria-hidden="true"></span>电视台</a>
-					</li>
+				
 					<li>
 						<a href="/ueditor" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-hourglass" aria-hidden="true"></span>动态</a>
 					</li>
@@ -178,10 +176,7 @@
 					<!-- script-for-menu -->
 
 					<li>
-						<a href="movies.html" class="song-icon"><span class="glyphicon glyphicon-music" aria-hidden="true"></span>Songs</a>
-					</li>
-					<li>
-						<a href="/shop" class="news-icon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>会员购</a>
+						<a href="/shop" class="news-icon"><span class="glyphicon glyphicon-shopping-cart glyphicon-envelope" aria-hidden="true"></span>会员购</a>
 					</li>
 					<li>
 						<a href="#" class="menu"><span class="glyphicon glyphicon-film glyphicon-king" aria-hidden="true"></span>个人中心<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
@@ -205,7 +200,7 @@
 						</li>
 					</ul>
 					<li>
-						<a href="#" class="menu2"><span class="glyphicon glyphicon-film glyphicon-queen" aria-hidden="true"></span>消息中心<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
+						<a href="#" class="menu2"><span class="glyphicon glyphicon-film glyphicon-comment" aria-hidden="true"></span>消息中心<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
 					</li>
 					<ul class="cl-effect-3">
 						<li>
