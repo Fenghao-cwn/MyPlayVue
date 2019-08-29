@@ -12,7 +12,7 @@ blockquote{
 
 .notice {
 	width: 80%;
-	height: 534px;
+	height: 528px;
 	overflow-x: hidden;
 	overflow-y: auto;
 }
@@ -53,7 +53,7 @@ blockquote{
     border:0 ;;
 	border-radius: 4px;
 	margin: 10px;
-	width: 860px;
+	width: 849px;
 	min-width: 400px;
 }
 .system-notice1{
@@ -65,7 +65,7 @@ blockquote{
     border:0 ;;
 	border-radius: 4px;
 	margin: 10px;
-	 width: 876px;;
+	 width: 870px;;
 	margin-left: -1px;
 	min-width: 400px;
 }
@@ -73,7 +73,7 @@ blockquote{
 	text-indent:2em;
 }
 .containers {
-    width: 1138px;
+    width: 1124px;;
 }
 .well{
 	background-color: rgb(233,246,254,0.4);
