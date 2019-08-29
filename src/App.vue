@@ -196,7 +196,7 @@
 							<a href="/my_video">视频管理</a>
 						</li>
 						<li>
-							<a href="/order">我的订单</a>
+							<a href="/orderlist">我的订单</a>
 						</li>
 					</ul>
 					<li>

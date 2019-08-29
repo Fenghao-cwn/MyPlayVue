@@ -1,209 +1,98 @@
 <template>
 
-    <div class="col-sm-9  col-md-10 ">
-      <div class="page-shopping-cart" id="shopping-cart">
-        <h4 class="cart-title">购物清单</h4>
-        <div class="cart-product-title clearfix">
 
-          <div class="td-check fl">
+  <div class="col-sm-9 col-md-10 "style=" margin: 50px 0 auto 20vw;">
+    <div class="page-shopping-cart " id="shopping-cart" >
+      <h4 class="cart-title">我的订单</h4>
+      <table class="table table-striped table-bordered">
+        <thead class="bg-info">
+          <tr>
+            <th>订单号</th>
+            <th>商品数量</th>
+            <th>价格</th>
+            <th>下单时间</th>
+            <th>用户id</th>
+            <th>收件人</th>
+            <th>电话</th>
+            <th>状态</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in order_list">
+            <td>2019-08{{item.id}}</td>
+            <td>{{item.amount}}</td>
+            <td>{{item.totalPrice}}</td>
+            <td>{{item.time}}</td>
+            <td>{{item.uid}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.phone}}</td>
+            <td v-if="item.status == 1">待发货
+            </td>
+            <td v-else="item.status == 2">已发货
+            </td>
 
-
-
-            <label><input type="checkbox" @click="check_all" :checked="check_goods.length == goodsList.length" />全选</label>
-
-          </div>
-          <div class="td-product fl">商品</div>
-          <div class="td-num fl">数量</div>
-          <div class="td-price fl">单价(元)</div>
-          <div class="td-total fl">金额(元)</div>
-          <div class="td-do fl">操作</div>
-        </div>
-        <div class="cart-product clearfix">
-          <table>
-            <tbody>
-              <tr v-for="(item,index) in goodsList" :key=index>
-
-                <td class="td-check">
-                  <label>
-                    <input type="checkbox" :value="item" v-model="check_goods" @click="select(item)" />
-                  </label>
-
-                </td>
-
-                <td class="td-product"><img :src="item.picture" width="98" height="98">
-                  <div class="product-info">
-                    <h6>{{item.id}}</h6>
-                    <p>品牌：&nbsp;&nbsp;产地：{{item.name}}</p>
-                    <p>规格/纯度:{{item.introduce}}</p>
-                  </div>
-                  <div class="clearfix"></div>
-                </td>
-                <td class="td-num">
-                  <div class="product-num">
-                    <a href="javascript:;" class="num-reduce num-do fl" @click="sub(item)"><span></span></a>
-
-
-                    <input type="text" class="num-input" v-model="item.num">
-
-
-                    <a href="javascript:;" class="num-add num-do fr" @click="item.num++"><span></span></a>
-                  </div>
-                </td>
-                <td class="td-price">
-                  <p class="red-text">￥<span class="price-text">{{item.price}}</span></p>
-                </td>
-                <td class="td-total">
-                  <p class="red-text">￥<span class="total-text">{{item.price*item.num}}</span></p>
-                </td>
-
-
-                <td class="td-do"><a href="javascript:;" class="product-delect" @click="deleteOneProduct(item)">删除</a></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="cart-product-info">
-          <!-- <a href="javascript:;" class="delete-product" @click='deleteProduct'><span></span>删除所选商品</a> -->
-
-
-
-
-          <a href="#" class="keep-shopping"><span></span>继续购物</a>
-          <a href="javascript:;" class="fr btn-buy" @click="addorder(selects)">去结算</a>
-          <a href="javascript:;" class="fr product-total">￥<span>{{total_price}}</span></a>
-          <a href="javascript:;" class="fr check-num"><span>{{total_num}}</span>件商品总计（不含运费）:</a>
-        </div>
-
-        <div class="cart-worder clearfix">
-          <a href="javascript:;" class="choose-worder fl"><span></span>绑定跟单员</a>
-          <div class="worker-info fl">
-          </div>
-        </div>
-      </div>
+          </tr>
+        </tbody>
+      </table>
     </div>
+
+
+
+ </div>
 
 </template>
 
 <script>
   export default {
-    name: 'order',
+    name: 'orderlist',
 
     data() {
-
       return {
-        goodsList: [{
-          'id': '', //产品id
-          'name': '', //产品名
-          'introduce': '', //产品介绍
-          'num': '', //数量
-          'picture': '', //图片链接
-          'price': '' //单价
+        order_list: [{
+          'id': '',
+          'totalPrice': '',
+          'amount': '',
+          'status': '',
+          'time': '',
+          'uid': '',
+          'phone': '',
+          'name': ''
         }, ],
-        check_goods: [], //已选择的商品
-        selects: []
-      }
-    },
 
 
-    computed: {
-      total_price() {
-        let price = 0
-        this.check_goods.forEach(item => {
-          //                      总价 = 价格 * 数量
-          price += Number(item.price) * Number(item.num)
-        })
-        return price
-      },
-      //              数量
-      total_num() {
-        let t_num = 0;
-        this.check_goods.forEach(item => {
-          t_num += Number(item.num);
-        })
-        return t_num
+
       }
     },
     //钩子函数
     created: function() {
-      this.addcart();
-
+      this.loadlist();
     },
+
     methods: {
-      select: function(item) {
-        // if this.check_goods==true;
-        this.selects.push(item);
+      loadlist: function() {
+        this.$http.get("http://localhost:80/order/selectAll").then(
+          function(result) {
+            this.order_list = result.body;
+            console.log(result.body);
 
-        // console.log('select方法中的 selects'+this.selects);
-      },
-
-      check_all: function() {
-        if (this.check_goods.length > 0) {
-          this.check_goods = []
-        } else {
-          this.goodsList.forEach(item => {
-            this.check_goods.push(item)
-          })
-        }
-      },
-
-
-      addcart: function() {
-        var id = this.$route.query.id;
-        //         console.log(id);
-
-        this.$http.get("http://localhost:80/goods/addcart", {
-          params: {
-            id: id,
-          }
-        }).then(function(result) {
-
-          this.goodsList = result.body;
-          // console.log(this.goodsList);
-        })
-      },
-
-      addorder: function(selects) {
-
-        // alert('购物车传参'+this.selects);
-        // console.log(12333);
-        // console.log(this.selects);
-        this.$router.push({
-          path: '/list',
-
-          query: {
-            selects: selects
           },
-        })
-      },
+          function(error) {
 
-      //数量改变函数
-      sub: function(item) {
-        if (item.num > 1) {
-          item.num--
-        } else {
-          item.num = 1
-        }
-      },
-
-
-
-      //删除单条产品
-      deleteOneProduct: function(item) {
-        //根据索引删除goodsList的记录
-        this.check_goods.splice(this.check_goods.indexOf(item), 1);
-        console.log(this.check_goods.item.id);
-        this.goodsList.splice(this.goodsList.indexOf(item), 1);
-
+          })
       }
 
     },
 
+    computed: {
 
 
+    },
+
+    mounted: function() {
+
+    },
   }
 </script>
-
 
 
 <style scoped>
@@ -214,6 +103,35 @@
   .fr {
     float: right;
   }
+
+  blockquote,
+  body,
+  dd,
+  div,
+  dl,
+  dt,
+  fieldset,
+  form,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  img,
+  input,
+  li,
+  ol,
+  p,
+  table,
+  td,
+  textarea,
+  th,
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
   .clearfix {
     zoom: 1;
   }
@@ -244,7 +162,7 @@
 
   .page-shopping-cart {
     width: 70vw;
-   /* margin: 50px 0 auto 20vw; */
+    /* margin: 50px 0 auto 20vw; */
     font-size: 14px;
     border: 1px solid #e3e3e3;
     border-top: 2px solid #317ee7;
@@ -280,13 +198,13 @@
   }
 
   .page-shopping-cart .td-product {
-    width: 460px;
+    width: 420px;
   }
 
   .page-shopping-cart .td-num,
   .page-shopping-cart .td-price,
   .page-shopping-cart .td-total {
-    width: 160px;
+    width: 260px;
   }
 
   .page-shopping-cart .td-do {
@@ -457,7 +375,7 @@
     font-size: 20px;
     display: block;
     width: 110px;
-    background: #ff7700;
+    background: #ff0000;
     text-align: center;
     margin-left: 30px;
   }
@@ -525,7 +443,7 @@
     right: 16px;
     width: 10px;
     height: 10px;
-    background: url("../../static/images/shopping_cart.png") no-repeat -80px 0;
+    background: url("../../static/images/../../static/images/shopping_cart.png") no-repeat -80px 0;
   }
 
   .choose-worker-box .box-title a:hover {
@@ -568,5 +486,9 @@
   .choose-worker-box .worker-list li img {
     border: 1px solid #fff;
     border-radius: 100%;
+  }
+
+  .form-horizontal .form-group {
+    margin: 10px 0px 10px 0px;
   }
 </style>

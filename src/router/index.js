@@ -27,86 +27,87 @@ import solo_message from '@/components/solo_message'
 
 import ueditor_detail from '@/components/ueditor_detail'
 import ueditor_detail2 from '@/components/ueditor_detail2'
-import  He_ueditor_detail from '@/components/He_ueditor_detail'
+import He_ueditor_detail from '@/components/He_ueditor_detail'
 import orderlist from '@/components/orderlist'
+
 Vue.use(Router)
 
 export default new Router({
- mode:'history',
-  routes: [
-    {
+  mode: 'history',
+  routes: [{
       path: '/',
       name: 'Middle',
       component: Middle
     },
-     {
+    {
       path: '/videoDisplay',
       name: 'videoDisplay',
       component: videoDisplay
     },
-     {
+    {
       path: '/upload',
       name: 'upload',
       component: upload
     },
-     {
+    {
       path: '/updateUser',
       name: 'updateUser',
       component: updateUser
     },
-     {
+    {
       path: '/my_follow',
       name: 'my_follow',
       component: my_follow
     },
-     {
+    {
       path: '/my_collection',
       name: 'my_collection',
       component: my_collection
     },
-     {
+    {
       path: '/my_video',
       name: '/my_video',
       component: my_video
     },
-     {
+    {
       path: '/my_upload',
       name: '/my_upload',
       component: my_upload
     },
-     {
+    {
       path: '/ueditor',
       name: 'ueditor',
       component: ueditor
-    },{
-    	path: '/videoShow',
-      	name: 'videoShow',
-      	component: videoShow
+    },
+    {
+      path: '/videoShow',
+      name: 'videoShow',
+      component: videoShow
     },
     {
       path: '/notice',
       name: 'notice',
       component: notice
     },
-     {
+    {
       path: '/inbox',
       name: 'inbox',
       component: inbox
     },
-     {
+    {
       path: '/outbox',
       name: 'outbox',
       component: outbox
     },
-     {
-      path:'/order',
-      name:'order',
-      component:order
+    {
+      path: '/order',
+      name: 'order',
+      component: order
     },
     {
-      path:'/list',
-      name:'list',
-      component:list
+      path: '/list',
+      name: 'list',
+      component: list
     },
     {
       path: '/shop',
@@ -148,13 +149,13 @@ export default new Router({
       name: 'He_ueditor_detail',
       component: He_ueditor_detail
     },
-       {
-          path: '/orderlist',
-          name: 'orderlist',
-          component: orderlist
-        }
-	
-		
+    {
+      path: '/orderlist',
+      name: 'orderlist',
+      component: orderlist
+    }
+
+
 
   ]
 })
