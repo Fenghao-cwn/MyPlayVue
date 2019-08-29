@@ -124,7 +124,8 @@
 					path: '/He_ueditor_detail',
 					query: {
 						did: did,
-						uid: uid
+						uid: uid,
+						aid:uid
 					}
 				});
 				this.$router.go(0);

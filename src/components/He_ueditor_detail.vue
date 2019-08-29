@@ -49,7 +49,7 @@
 				<div class="media">
 					<h5>昵称:{{comm.name}}</h5>
 					<div class="img-user col-md-1 column">
-						<a href="" style="cursor: pointer;" @click="selectAuthor(comm.uid)" ><img alt="140x140" src="../../static/img/noface.gif" class="img-circle" /></a>
+						<a href="" style="cursor: pointer;" @click="selectAuthor(comm.uid)" ><img alt="140x140" :src="comm.photourl" class="img-circle" /></a>
 					</div>
 					<div class="media-body">
 						<div v-html="comm.content"></div>

@@ -18,10 +18,8 @@
 							<div v-for="video in viedos">
 								<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="margin-bottom: 50px;">
 									<div class="resent-grid-img recommended-grid-img">
-										<a style="cursor: pointer;" @click="toVideo(video.id)"><img :src="video.photourl" alt="" /></a>
-										<div class="time small-time show-time movie-time">
-											<p>7:34</p>
-										</div>
+										<a style="cursor: pointer;" @click="toVideo(video.id)"><img width="211px" height="132px" :src="video.photourl" alt="" /></a>
+										
 										<div class="clck movie-clock">
 											<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
 										</div>
