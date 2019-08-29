@@ -53,7 +53,6 @@
 					</div>
 					<div class="media-body">
 						<div v-html="comm.content"></div>
-						<span><a href="#" > 删除评论 </a></span>
 					</div>
 				</div>
 			</div>

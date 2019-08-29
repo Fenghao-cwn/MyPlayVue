@@ -5,7 +5,7 @@
 				<a href=""><img alt="140x140" :src="author.photourl" class="img-circle" /></a>
 			</div>
 			<div class="col-md-8 column ">
-				<h3 class="user-name">{{author.name}}<span v-if="user.sex=='男'" id="boy">{{user.sex}}</span><span v-if="user.sex=='女'" id="girl">{{user.sex}}</span></h3>
+				<h3 class="user-name">{{author.name}}<span v-if="author.sex=='男'" id="boy">{{author.sex}}</span><span v-if="author.sex=='女'" id="girl">{{author.sex}}</span></h3>
 				<h6 class="user-text">{{author.signature}}</h6>
 			</div>
 			<button class="btn btn-default  button-g" @click="insertfollow">

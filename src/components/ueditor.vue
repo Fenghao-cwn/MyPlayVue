@@ -30,7 +30,7 @@
 					<div class="panel panel-info">
 						<div class="panel-heading">
 							<div class="col-md-1 column">
-								<a href=""  @click="selectAuthor(dynamic.uid)"><img alt="140x140" :src="dynamic.photourl" class="img-circle" /></a>
+								<a href=""  @click="selectAuthor(dynamic.uid)"><img style="width: 40px;height: 40px;margin-top: -8px;margin-left: -17px;" alt="140x140"  :src="dynamic.photourl" class="img-circle" /></a>
 							</div>
 							<b style="font-size:medium;margin-left: -14px;">昵称:<a style="cursor: pointer;" @click="selectAuthor(dynamic.uid)">{{dynamic.name}}</a></b>
 						</div>
