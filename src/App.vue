@@ -118,7 +118,7 @@
 						</div>
 						<div class="signin">
 							<a href="#small-dialog" v-show="loginbutton" class="play-icon popup-with-zoom-anim">登录</a>
-							<a  @click="logout" v-show="!loginbutton" class="play-icon popup-with-zoom-anim">退出登录</a>
+							<a  @click="logout" v-show="!loginbutton" class="play-icon popup-with-zoom-anim" id="logout">退出登录</a>
 							<div id="small-dialog" class="mfp-hide" v-show="loginin">
 								<form>
 								<h3>Login</h3>
@@ -433,5 +433,8 @@
 	max-width: 30px;
 	padding: 1px 3px;
 	font-family: sans-serif,sans-serifsans-serif,Calibri,Arial,Helvetica;
+}
+#logout{
+	cursor: pointer;
 }
 </style>
