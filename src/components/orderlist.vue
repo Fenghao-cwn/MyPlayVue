@@ -1,7 +1,7 @@
 <template>
 
 
-  <div class="col-sm-9 col-md-10 "style=" margin: 50px 0 auto 20vw;">
+  <div class="col-sm-9 col-md-10 ">
     <div class="page-shopping-cart " id="shopping-cart" >
       <h4 class="cart-title">我的订单</h4>
       <table class="table table-striped table-bordered">
@@ -11,7 +11,7 @@
             <th>商品数量</th>
             <th>价格</th>
             <th>下单时间</th>
-            <th>用户id</th>
+            <!-- <th>用户id</th> -->
             <th>收件人</th>
             <th>电话</th>
             <th>状态</th>
@@ -19,11 +19,11 @@
         </thead>
         <tbody>
           <tr v-for="item in order_list">
-            <td>2019-08{{item.id}}</td>
+            <td>{{item.id}}</td>
             <td>{{item.amount}}</td>
             <td>{{item.totalPrice}}</td>
             <td>{{item.time}}</td>
-            <td>{{item.uid}}</td>
+            <!-- <td>{{item.uid}}</td> -->
             <td>{{item.name}}</td>
             <td>{{item.phone}}</td>
             <td v-if="item.status == 1">待发货
@@ -104,29 +104,6 @@
     float: right;
   }
 
-  blockquote,
-  body,
-  dd,
-  div,
-  dl,
-  dt,
-  fieldset,
-  form,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  img,
-  input,
-  li,
-  ol,
-  p,
-  table,
-  td,
-  textarea,
-  th,
   ul {
     margin: 0;
     padding: 0;

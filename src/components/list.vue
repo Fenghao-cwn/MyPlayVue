@@ -28,24 +28,27 @@
 
       <div class="page-shopping-cart" id="shopping-cart" style="border-top: 1px solid #e3e3e3;margin-top: 20px;">
         <h4 class="cart-title">购物清单</h4>
-        <div class="cart-product-title clearfix">
-          <div class="td-product fl">商品</div>
-          <div class="td-num fl">数量</div>
-          <div class="td-price fl">单价(元)</div>
-          <div class="td-total fl">金额(元)</div>
-
-        </div>
+         
         <div class="cart-product clearfix">
           <table>
+            <thead class="bg-info">
+              <tr>
+              	<td>商品</td>
+                <td>数量</td>
+                <td>单价(元)</td>
+                <td>金额(元)</td>
+              </tr>
+            </thead>
             <tbody>
               <tr v-for="item in goodsList">
 
-                <td class="td-product"><img :src="item.picture" width="98" height="98">
+                <td class="td-product">
+                  <img :src="item.picture" width="98" height="98">
                   <div class="product-info">
                     <h6>{{item.name}}</h6>
-                    <p>品牌：{{item.id}}&nbsp;&nbsp;产地：{{item.introduce}}</p>
-                    <p>规格/纯度:&nbsp;&nbsp;起定量：</p>
-                    <p>配送仓储：</p>
+                    <p>编号：{{item.id}}&nbsp;&nbsp;</p>
+                    <p style="width: 100px; display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;overflow: hidden;">简介：{{item.introduce}}</p>
+
                   </div>
                   <div class="clearfix"></div>
                 </td>

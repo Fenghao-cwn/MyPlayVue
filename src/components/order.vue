@@ -1,87 +1,79 @@
 <template>
 
-    <div class="col-sm-9  col-md-10 ">
-      <div class="page-shopping-cart" id="shopping-cart">
-        <h4 class="cart-title">购物清单</h4>
-        <div class="cart-product-title clearfix">
+  <div class="col-sm-9  col-md-10 ">
+    <div class="page-shopping-cart" id="shopping-cart">
+      <h4 class="cart-title">购物清单</h4>
 
-          <div class="td-check fl">
+      <div class="cart-product clearfix">
+        <table>
+          <thead class="bg-info">
+            <tr>
+              <td><label><input type="checkbox" @click="check_all" :checked="check_goods.length == goodsList.length" />全选</label></td>
+              <td>商品</td>
+              <td>数量</td>
+              <td>单价(元)</td>
+              <td>金额(元)</td>
+              <td>操作</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item,index) in goodsList" :key=index>
 
+              <td class="td-check">
+                <label>
+                  <input type="checkbox" :value="item" v-model="check_goods" @click="select(item)" />
+                </label>
 
+              </td>
 
-            <label><input type="checkbox" @click="check_all" :checked="check_goods.length == goodsList.length" />全选</label>
-
-          </div>
-          <div class="td-product fl">商品</div>
-          <div class="td-num fl">数量</div>
-          <div class="td-price fl">单价(元)</div>
-          <div class="td-total fl">金额(元)</div>
-          <div class="td-do fl">操作</div>
-        </div>
-        <div class="cart-product clearfix">
-          <table>
-            <tbody>
-              <tr v-for="(item,index) in goodsList" :key=index>
-
-                <td class="td-check">
-                  <label>
-                    <input type="checkbox" :value="item" v-model="check_goods" @click="select(item)" />
-                  </label>
-
-                </td>
-
-                <td class="td-product"><img :src="item.picture" width="98" height="98">
-                  <div class="product-info">
-                    <h6>{{item.id}}</h6>
-                    <p>品牌：&nbsp;&nbsp;产地：{{item.name}}</p>
-                    <p>规格/纯度:{{item.introduce}}</p>
-                  </div>
-                  <div class="clearfix"></div>
-                </td>
-                <td class="td-num">
-                  <div class="product-num">
-                    <a href="javascript:;" class="num-reduce num-do fl" @click="sub(item)"><span></span></a>
+              <td class="td-product"><img :src="item.picture" width="98" height="98">
+                <div class="product-info">
+                  <h6>{{item.name}}</h6>
+                  <p>编号：{{item.id}}&nbsp;&nbsp;</p>
+                  <p style="width: 100px; display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;overflow: hidden;">简介：{{item.introduce}}</p>
+                </div>
+                <div class="clearfix"></div>
+              </td>
+              <td class="td-num">
+                <div class="product-num">
+                  <a href="javascript:;" class="num-reduce num-do fl" @click="sub(item)"><span></span></a>
 
 
-                    <input type="text" class="num-input" v-model="item.num">
+                  <input type="text" class="num-input" v-model="item.num">
 
 
-                    <a href="javascript:;" class="num-add num-do fr" @click="item.num++"><span></span></a>
-                  </div>
-                </td>
-                <td class="td-price">
-                  <p class="red-text">￥<span class="price-text">{{item.price}}</span></p>
-                </td>
-                <td class="td-total">
-                  <p class="red-text">￥<span class="total-text">{{item.price*item.num}}</span></p>
-                </td>
+                  <a href="javascript:;" class="num-add num-do fr" @click="item.num++"><span></span></a>
+                </div>
+              </td>
+              <td class="td-price">
+                <p class="red-text">￥<span class="price-text">{{item.price}}</span></p>
+              </td>
+              <td class="td-total">
+                <p class="red-text">￥<span class="total-text">{{item.price*item.num}}</span></p>
+              </td>
 
 
-                <td class="td-do"><a href="javascript:;" class="product-delect" @click="deleteOneProduct(item)">删除</a></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="cart-product-info">
-          <!-- <a href="javascript:;" class="delete-product" @click='deleteProduct'><span></span>删除所选商品</a> -->
-
-
-
-
-          <a href="#" class="keep-shopping"><span></span>继续购物</a>
-          <a href="javascript:;" class="fr btn-buy" @click="addorder(selects)">去结算</a>
-          <a href="javascript:;" class="fr product-total">￥<span>{{total_price}}</span></a>
-          <a href="javascript:;" class="fr check-num"><span>{{total_num}}</span>件商品总计（不含运费）:</a>
-        </div>
-
-        <div class="cart-worder clearfix">
-          <a href="javascript:;" class="choose-worder fl"><span></span>绑定跟单员</a>
-          <div class="worker-info fl">
-          </div>
-        </div>
+              <td class="td-do"><a href="javascript:;" class="product-delect" @click="deleteOneProduct(item)">删除</a></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+
+      <div class="cart-product-info">
+        <!-- <a href="javascript:;" class="delete-product" @click='deleteProduct'><span></span>删除所选商品</a> -->
+
+
+
+
+        <a href="/shop" class="keep-shopping"><span></span>继续购物</a>
+        <a href="javascript:;" class="fr btn-buy" @click="addorder(selects)">去结算</a>
+        <a href="javascript:;" class="fr product-total">￥<span>{{total_price}}</span></a>
+        <a href="javascript:;" class="fr check-num"><span>{{total_num}}</span>件商品总计（不含运费）:</a>
+      </div>
+
+
     </div>
+  </div>
 
 </template>
 
@@ -192,7 +184,7 @@
       deleteOneProduct: function(item) {
         //根据索引删除goodsList的记录
         this.check_goods.splice(this.check_goods.indexOf(item), 1);
-        console.log(this.check_goods.item.id);
+        // console.log(this.check_goods.item.id);
         this.goodsList.splice(this.goodsList.indexOf(item), 1);
 
       }
@@ -214,6 +206,7 @@
   .fr {
     float: right;
   }
+
   .clearfix {
     zoom: 1;
   }
@@ -244,7 +237,7 @@
 
   .page-shopping-cart {
     width: 70vw;
-   /* margin: 50px 0 auto 20vw; */
+    /* margin: 50px 0 auto 20vw; */
     font-size: 14px;
     border: 1px solid #e3e3e3;
     border-top: 2px solid #317ee7;

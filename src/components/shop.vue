@@ -15,15 +15,15 @@
                   <div class="animated-grids" v-for="(item,index) in goodlist.list" v-if="item.typeId == type.id">
                     <div class="col-md-3 resent-grid recommended-grid slider-first">
                       <div class="resent-grid-img recommended-grid-img">
-                        <a href="single.html"><img :src="item.picture" alt=""></a>
+                        <a @click="goumai(item.id)"><img :src="item.picture" alt=""></a>
                       </div>
                       <div class="resent-grid-info recommended-grid-info" style="padding: 1em 3em 3em 1em">
                         <div style="float: left;">
-                          <h3 style="float: left;">
+                          <a style="float: left;font-size: large; width: 150px; overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
                             {{item.name}}
-                          </h3>
+                          </a><br />
 
-                          <h4 style="color: #B93335;font-weight: normal; float: left;">￥{{item.price}}.00</h4>
+                          <a style="font-weight: normal; float: left;">￥{{item.price}}</a>
                         </div>
 
 
@@ -188,14 +188,25 @@
 </script>
 
 <style scoped>
+  a:hover{
+    cursor: pointer;
+    text-decoration: none;
+  }
   .callbacks1_on {
     margin-top: 2em;
-
   }
 
   .resent-grid a img {
     width: 100%;
     height: 210px;
+    cursor: pointer;
+    transition: all 0.5s;
+    /* 所有的属性变化在0.5s的时间段内完成 */
+  }
+
+  .resent-grid a img:hover {
+    transform: scale(1.1);
+    /* 鼠标放到图片上的时候图片按比例放大   */
   }
 
   .resent-grid {
