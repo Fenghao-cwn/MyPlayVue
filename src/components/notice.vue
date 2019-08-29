@@ -52,7 +52,6 @@
 					this.notices = result.body;
 				},
 				function(error){
-					alert("........")
 				}
 			)
 		}
