@@ -71,6 +71,7 @@ blockquote{
 }
 .content{
 	text-indent:2em;
+    margin-top: 7px;
 }
 .containers {
     width: 1124px;;
