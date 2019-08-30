@@ -2,7 +2,7 @@
 
 
   <div class="col-sm-9 col-md-10 ">
-    <div class="page-shopping-cart " id="shopping-cart" >
+    <div class="page-shopping-cart " id="shopping-cart">
       <h4 class="cart-title">我的订单</h4>
       <table class="table table-striped table-bordered">
         <thead class="bg-info">
@@ -38,14 +38,11 @@
 
 
 
- </div>
+  </div>
 
 </template>
-<script>
-window.location.reload();
-</script>
-<script>
 
+<script>
   export default {
     name: 'orderlist',
 
@@ -69,7 +66,6 @@ window.location.reload();
     //钩子函数
     created: function() {
       this.loadlist();
-      this.Refresh();
     },
 
     methods: {
@@ -90,9 +86,9 @@ window.location.reload();
     },
 
     computed: {
-    function(){
-     window.location.reload();
-    }
+      function() {
+        window.location.reload();
+      }
 
     },
 

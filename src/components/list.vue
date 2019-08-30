@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="col-sm-9  col-md-10  ">
-      <div class="page-shopping-cart" id="shopping-cart" >
+      <div class="page-shopping-cart" id="shopping-cart">
         <div class="form-horizontal">
           <h4 class="cart-title">收货地址</h4>
           <div class="form-group">
@@ -28,12 +28,12 @@
 
       <div class="page-shopping-cart" id="shopping-cart" style="border-top: 1px solid #e3e3e3;margin-top: 20px;">
         <h4 class="cart-title">购物清单</h4>
-         
+
         <div class="cart-product clearfix">
           <table>
             <thead class="bg-info">
               <tr>
-              	<td>商品</td>
+                <td>商品</td>
                 <td>数量</td>
                 <td>单价(元)</td>
                 <td>金额(元)</td>
@@ -88,77 +88,41 @@
     data() {
       return {
         order: {
-            'id':'',
-            'total_price':'',
-            'amount':'',
-            'status':'',
-            'time':'',
-            'uid':'',
-            'phone':'',
-            'name':''
-          },
+          'id': '',
+          'total_price': '',
+          'amount': '',
+          'status': '',
+          'time': '',
+          'uid': '',
+          'phone': '',
+          'name': ''
+        },
         goodsList: [],
-
-
       }
     },
     //钩子函数
     created: function() {
       // console.log( this.$route.query.selects);
       this.goodsList = this.$route.query.selects;
+      // create_oder();
     },
 
     methods: {
       create_oder: function() {
-        // order:{
-        //       "id":'123',
-        //       "total_price":this.goodsList.total_price,
-        //       "amount":this.total_num,
-        // 			"status":'1',
-        //       "time":new Date(),
-        // 			"phone":this.order.phone,
-        //       "uid":'123',
-        //       "name":this.order.name,
-        //       },
-        // console.log(order);
         this.$http.get("http://localhost:80/order/add", {
           params: {
 
-            "id":'',
+            "id": '',
             "totalPrice": this.total_price,
-            "amount":this.total_num,
+            "amount": this.total_num,
             "status": '1',
             "time": '',
-            "uid": '123',
+            "uid": '',
             "phone": this.order.phone,
             "name": this.order.name,
           }
-        }).then(
-
-          function() {
-            // this.order = {
-            //   'id': '',
-            //   'total_price': '',
-            //   'amount': '',
-            //   'status': '',
-            //   'time': '',
-            //   'uid': '',
-            //   'phone': '',
-            //   'name': ''
-            // }
-            alert("支付成功");
-            this.$router.push({
-            	path:'/orderlist',
-            	// query:{
-            	// 	this.$http.get("http://localhost:80/order/selectAll")
-            	// }
-            })
-
-          },
-          function() {
-            alert("支付失败");
-          })
-      }
+        }).then(this.$router.push('/orderlist'))
+      },
 
     },
 
@@ -257,7 +221,7 @@
 
   .page-shopping-cart {
     width: 70vw;
-    /* margin: 50px 0 auto 20vw; */
+    /*   margin: 50px 0 auto 20vw; */
     font-size: 14px;
     border: 1px solid #e3e3e3;
     border-top: 2px solid #317ee7;

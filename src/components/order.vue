@@ -123,10 +123,7 @@
     },
     methods: {
       select: function(item) {
-        // if this.check_goods==true;
         this.selects.push(item);
-
-        // console.log('select方法中的 selects'+this.selects);
       },
 
       check_all: function() {
@@ -142,8 +139,6 @@
 
       addcart: function() {
         var id = this.$route.query.id;
-        //         console.log(id);
-
         this.$http.get("http://localhost:80/goods/addcart", {
           params: {
             id: id,
@@ -154,12 +149,7 @@
           // console.log(this.goodsList);
         })
       },
-
       addorder: function(selects) {
-
-        // alert('购物车传参'+this.selects);
-        // console.log(12333);
-        // console.log(this.selects);
         this.$router.push({
           path: '/list',
 
@@ -168,7 +158,6 @@
           },
         })
       },
-
       //数量改变函数
       sub: function(item) {
         if (item.num > 1) {
@@ -182,11 +171,21 @@
 
       //删除单条产品
       deleteOneProduct: function(item) {
-        //根据索引删除goodsList的记录
-        this.check_goods.splice(this.check_goods.indexOf(item), 1);
-        // console.log(this.check_goods.item.id);
-        this.goodsList.splice(this.goodsList.indexOf(item), 1);
 
+        //根据索引删除goodsList的记录
+        // this.check_goods.splice(this.check_goods.indexOf(item), 1);
+        // // console.log(this.check_goods.item.id);
+        // this.goodsList.splice(this.goodsList.indexOf(item), 1);
+        this.$http.get("http://localhost:80/goods/remove", {
+            params: {
+              id: item.id
+            }
+          })
+          .then(function(result) {
+
+            this.goodsList = result.body;
+            // console.log(this.goodsList);
+          })
       }
 
     },
