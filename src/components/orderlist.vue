@@ -41,8 +41,11 @@
  </div>
 
 </template>
-
 <script>
+window.location.reload();
+</script>
+<script>
+
   export default {
     name: 'orderlist',
 
@@ -66,6 +69,7 @@
     //钩子函数
     created: function() {
       this.loadlist();
+      this.Refresh();
     },
 
     methods: {
@@ -79,12 +83,16 @@
           function(error) {
 
           })
-      }
+
+      },
+
 
     },
 
     computed: {
-
+    function(){
+     window.location.reload();
+    }
 
     },
 
@@ -139,7 +147,7 @@
 
   .page-shopping-cart {
     width: 70vw;
-    /* margin: 50px 0 auto 20vw; */
+    margin: 80px 0 auto 20vw;
     font-size: 14px;
     border: 1px solid #e3e3e3;
     border-top: 2px solid #317ee7;
