@@ -90,9 +90,11 @@
 			
 			sub:function(){
 				var formdata = new FormData();
-				for(var i = 0; i < this.imgList.length; i++) { //遍历传的文件
-					formdata.append("file", this.imgList[i].file);
-				}
+					if( this.imgList!=null){
+						for(var i = 0; i < this.imgList.length; i++) { //遍历传的文件	
+							formdata.append("file", this.imgList[i].file);
+						}
+					}
 					formdata.append("name",this.user.name);
 					formdata.append("phone",this.user.phone);
 					formdata.append("sex",this.user.sex);
