@@ -35,7 +35,7 @@
 								<div class="signup">
 									<div>
 										<input type="text" class="email" placeholder="昵称" v-model="user.name" required="required" />
-										
+
 										<input type="password" placeholder="密码" v-model="user.password" required="required" pattern=".{6,}" autocomplete="off" />
 										<!-- @keyup.native vue element-ui注册当键盘键被松开时的事件，@blur 注册失去焦点事件，@input 注册当用户输入时触发事件，maxlength 限制input框输入的最大长度 -->
 										<input type="text" class="email" @keyup.native="Phonerule" @blur="rulePhoneTrue" placeholder="请填写常用手机号" v-model="user.phone" maxlength="11" pattern="^1[34578]\d{9}$" />
@@ -118,21 +118,21 @@
 						</div>
 						<div class="signin">
 							<a href="#small-dialog" v-show="loginbutton" class="play-icon popup-with-zoom-anim">登录</a>
-							<a  @click="logout" v-show="!loginbutton" class="play-icon popup-with-zoom-anim" id="logout">退出登录</a>
+							<a @click="logout" v-show="!loginbutton" class="play-icon popup-with-zoom-anim" id="logout">退出登录</a>
 							<div id="small-dialog" class="mfp-hide" v-show="loginin">
 								<form>
-								<h3>Login</h3>
-								<div class="signup">
+									<h3>Login</h3>
+									<div class="signup">
 										<input type="text" class="email" v-model="user.phone" placeholder="您的手机号" required="required" pattern=".{11,}" />
 										<input type="password" v-model="user.password" placeholder="密码" required="required" pattern=".{6,}" autocomplete="off" />
 										<p style="overflow: hidden;">
 											<input type="submit" style="float: left;margin-left: 5%;" value="	 登  录	 " v-on:click="login" />
 											<a href="#small-dialog3" class="play-icon popup-with-zoom-anim">
-												<input type="submit" style="float: right;margin-right: 5%;" value="	注 册	">	
+												<input type="submit" style="float: right;margin-right: 5%;" value="	注 册	">
 											</a>
-											
+
 										</p>
-								</div>
+									</div>
 								</form>
 								<div class="clearfix"> </div>
 							</div>
@@ -158,7 +158,7 @@
 					<li class="active">
 						<a href="/" class="home-icon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>主站</a>
 					</li>
-				
+
 					<li>
 						<a href="/ueditor" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-hourglass" aria-hidden="true"></span>动态</a>
 					</li>
@@ -232,23 +232,23 @@
 				user: {
 					phone: '',
 					password: '',
-					name:''
+					name: ''
 				},
 				categorys: [],
 				sendCode: true,
 				times: 0,
 				contactPhoneShow: false,
 				contactPhoneText: '',
-				phoneExitShow:true,
-				phoneExitText:'',
+				phoneExitShow: true,
+				phoneExitText: '',
 				isSend: true,
 				loginbutton: true,
 				codes: '',
-				pe:0,
-				loginin:true,
-				registers:true,
-				registerin:true,
-				nums:0
+				pe: 0,
+				loginin: true,
+				registers: true,
+				registerin: true,
+				nums: 0
 			}
 
 		},
@@ -258,67 +258,66 @@
 			this.inboxnolook();
 		},
 		methods: {
-			inboxnolook:function(){
+			inboxnolook: function() {
 				this.$http.get("http://localhost/message/inboxnolook").then(
-					function(result){
+					function(result) {
 						this.nums = result.data;
 					},
-					function(error){
-					}
+					function(error) {}
 				)
 			},
-			Refresh:function(){//是否登录
+			Refresh: function() { //是否登录
 				this.$http.get("http://localhost/user/Refresh").then(
-					
-					function(result){
+
+					function(result) {
 						this.Refresh = result.data;
-						if (this.Refresh==1) {
-							this.registers=false
-							this.loginbutton=false
-							
-						} else{
-							this.loginbutton=true
+						if(this.Refresh == 1) {
+							this.registers = false
+							this.loginbutton = false
+
+						} else {
+							this.loginbutton = true
 							this.loginin = true;
 							this.registers = true;
 							this.registerin = true;
 						}
 					},
-					function(error){
+					function(error) {
 						alert("刷新失败")
 					}
 				)
 			},
 			//退出登录
-			logout:function(){
+			logout: function() {
 				this.$router.push({
-							path:"/"
-						}),
-				this.$http.get("http://localhost/user/logout").then(
-					function(result){
-						this.loginbutton = true;
-						this.loginin = true;
-						this.registers = true;
-						this.registerin = true;
-					},
-					function(error){
-						alert("退出登录失败，请重试.")
-					}
-				)
+						path: "/"
+					}),
+					this.$http.get("http://localhost/user/logout").then(
+						function(result) {
+							this.loginbutton = true;
+							this.loginin = true;
+							this.registers = true;
+							this.registerin = true;
+						},
+						function(error) {
+							alert("退出登录失败，请重试.")
+						}
+					)
 			},
 			//注册
-			register:function(){
+			register: function() {
 				/*var _this = this;*/
-				this.$http.post("http://localhost/user/register",{//传参
-					"name":this.user.name,
-					"password":this.user.password,
-					"phone":this.user.phone,
-					"codes":this.codes
+				this.$http.post("http://localhost/user/register", { //传参
+					"name": this.user.name,
+					"password": this.user.password,
+					"phone": this.user.phone,
+					"codes": this.codes
 				}).then(
-					function(result){
+					function(result) {
 						this.registers = false;
 						this.registerin = false
 					},
-					function(error){
+					function(error) {
 						alert("注册失败，请重试.")
 					}
 				)
@@ -350,13 +349,13 @@
 					function(result) {
 						console.log("发送成功");
 						console.log(this.user.phone);
-						
+
 						this.pe = result.data;
-						if (this.pe>=1) {
+						if(this.pe >= 1) {
 							this.phoneExitShow = true;
 							this.phoneExitText = '该手机号已注册,请前去登录界面'
 							this.isSend = true
-						} else{
+						} else {
 							this.isSend = false
 						}
 						console.log(this.pe);
@@ -387,12 +386,12 @@
 					}
 				)
 			},
-			select: function(cid,cname) {
+			select: function(cid, cname) {
 				this.$router.push({
 					path: "/videoDisplay",
 					query: {
 						cid: cid,
-						cname:cname
+						cname: cname
 					}
 				})
 			},
@@ -409,7 +408,7 @@
 						this.registers = false;
 						this.loginbutton = false;
 						this.loginin = false;
-						
+
 					},
 					function(error) {
 						alert("登录失败，请重新登录.")
@@ -420,21 +419,22 @@
 	}
 </script>
 <style>
-.looks{
-	display: inline-block;
-	font-size: 12px;
-	transform: scale(.85);
-	color: #fff;
-	margin-left: 2px;
-    font-weight: 500;
-	background-color: #ffafc9;
-	border-radius: 4px;
-	line-height: 13px;
-	max-width: 30px;
-	padding: 1px 3px;
-	font-family: sans-serif,sans-serifsans-serif,Calibri,Arial,Helvetica;
-}
-#logout{
-	cursor: pointer;
-}
+	.looks {
+		display: inline-block;
+		font-size: 12px;
+		transform: scale(.85);
+		color: #fff;
+		margin-left: 2px;
+		font-weight: 500;
+		background-color: #ffafc9;
+		border-radius: 4px;
+		line-height: 13px;
+		max-width: 30px;
+		padding: 1px 3px;
+		font-family: sans-serif, sans-serifsans-serif, Calibri, Arial, Helvetica;
+	}
+	
+	#logout {
+		cursor: pointer;
+	}
 </style>
