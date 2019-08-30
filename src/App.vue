@@ -355,6 +355,7 @@
 							this.phoneExitShow = true;
 							this.phoneExitText = '该手机号已注册,请前去登录界面'
 							this.isSend = true
+							this.sendCode = true
 						} else {
 							this.isSend = false
 						}
