@@ -18,7 +18,7 @@
 						<div class="col-md-1 column" style="margin-top: -21px;">
 							<a href=""><img alt="140x140" :src="user.photourl" class="img-circle" /></a>
 						</div>
-						<div class="col-md-1 column" style="margin-top: -21px;">
+						<div class="col-md-3 column" style="margin-top: -21px;">
 						<b  style="font-size:medium;margin-left: -21px;">{{user.name}} </b>
 						</div>
 					</div>

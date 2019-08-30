@@ -10,9 +10,9 @@
 						<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="margin-bottom: 50px;">
 							<div class="resent-grid-img recommended-grid-img">
 								<a style="cursor: pointer;" @click="toVideo(recom.id)"><img width="261px" height="163px" :src="recom.photourl" alt="" /></a>
-								<div class="clck movie-clock">
+								<!--<div class="clck movie-clock">
 									<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-								</div>
+								</div>-->
 							</div>
 							<div class="resent-grid-info recommended-grid-info recommended-grid-movie-info">
 								<h5><a style="cursor: pointer;" @click="toVideo(recom.id)" class="title">{{recom.title}}</a></h5>
@@ -41,13 +41,13 @@
 					<div v-for="video in videos">
 						<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="margin-bottom: 50px;">
 							<div class="resent-grid-img recommended-grid-img">
-								<a @click="toVideo(video.id)"><img width="261px" height="163px" :src="video.photourl" alt="" /></a>
-								<div class="clck movie-clock">
+								<a style="cursor: pointer;" @click="toVideo(video.id)"><img width="261px" height="163px" :src="video.photourl" alt="" /></a>
+								<!--<div class="clck movie-clock">
 									<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-								</div>
+								</div>-->
 							</div>
 							<div class="resent-grid-info recommended-grid-info recommended-grid-movie-info">
-								<h5><a @click="toVideo(video.id)" class="title">{{video.title}}</a></h5>
+								<h5><a style="cursor: pointer;" @click="toVideo(video.id)" class="title">{{video.title}}</a></h5>
 								<ul>
 									<li>
 									</li>
